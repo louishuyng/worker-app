@@ -3,8 +3,22 @@ module.exports = {
     'module:metro-react-native-babel-preset',
     '@babel/preset-typescript',
   ],
-  sourceMaps: 'inline',
   plugins: [
+    [
+      'module-resolver',
+      {
+        root: ['./src'],
+        extensions: ['.js', '.ts', '.tsx', '.ios.js', '.android.js'],
+        alias: {
+          'api/*': ['api/*'],
+          'navigation/*': ['navigation/*'],
+          'screens/*': ['screens/*'],
+          'components/*': ['./components/*'],
+          'store/*': ['store/*'],
+          'utils/*': ['utils/*'],
+        },
+      },
+    ],
     [
       '@babel/plugin-proposal-decorators',
       {

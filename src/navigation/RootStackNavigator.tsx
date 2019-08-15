@@ -4,7 +4,7 @@ import {
   StackNavigatorConfig,
 } from 'react-navigation';
 
-import Demo from '../screen/demo';
+import Demo from 'components/demo';
 
 const routeConfig: NavigationRouteConfig = {
   Demo: {
