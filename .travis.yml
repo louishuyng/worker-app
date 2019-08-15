@@ -15,10 +15,8 @@ matrix:
   - env: PACKAGE=resolvers/node
     node_js: 10
   fast_finish: true
-before_install:
-  - 'nvm install-latest-npm'
 install:
-  - npm install
+  - yarn
 script:
-  - 'npm run lint'
-  - 'npm run test'
+  - 'yarn lint'
+  - 'yarn test --verbose "--no-cache"'

@@ -4,13 +4,14 @@ exports[`[Temp] render renders without crashing 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "height": "100%",
-      "justifyContent": "center",
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": "100%",
+        "justifyContent": "center",
+      },
+    ]
   }
 >
   <Text>

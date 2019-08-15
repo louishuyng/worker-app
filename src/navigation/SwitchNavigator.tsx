@@ -3,7 +3,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { ThemeProvider } from 'styled-components';
 
 import RootNavigator from './RootStackNavigator';
-import { createTheme, ThemeType } from '../../utils/Theme';
+import { createTheme, ThemeType } from '../utils/Theme';
 
 const SwitchNavigator = createSwitchNavigator({
   RootNavigator,

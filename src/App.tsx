@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SwitchNavigator from './components/navigation/SwitchNavigator';
+import SwitchNavigator from './navigation/SwitchNavigator';
 
 const App = () => {
   return (
