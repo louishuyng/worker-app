@@ -20,7 +20,8 @@
       "screens/*": ["screens/*"],
       "components/*": ["./components/*"],
       "store/*": ["store/*"],
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "types/*": ["types/*"]
     }
   },
   "include": [

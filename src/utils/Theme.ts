@@ -3,7 +3,7 @@ export enum ThemeType {
   DARK = 'DARK',
 };
 
-const colors = {
+export const colors = {
   skyBlue: '#069ccd',
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
