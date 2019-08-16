@@ -1,7 +1,4 @@
-
 export const IC_MASK = require('../../assets/icons/mask.png');
-
-// TabBar Icon
 export const JOBLIST_ACTIVE = require('../../assets/icons/bottomBar/JobListActive.png');
 export const JOBLIST_UN_ACTIVE = require('../../assets/icons/bottomBar/JobListUnActive.png');
 export const CALENDAR_ACTIVE = require('../../assets/icons/bottomBar/CalendarActive.png');
@@ -10,3 +7,5 @@ export const NOTIFICATION_ACITVE = require('../../assets/icons/bottomBar/Notific
 export const NOTIFICATION_UN_ACITVE = require('../../assets/icons/bottomBar/NotificationUnActive.png');
 export const USER_ACTIVE = require('../../assets/icons/bottomBar/UserActive.png');
 export const USER_UN_ACTIVE = require('../../assets/icons/bottomBar/UserUnActive.png');
+export const CLOSE_ICON = require('../../assets/icons/close.png');
+export const HELP_ICON = require('../../assets/icons/help-circle.png');
