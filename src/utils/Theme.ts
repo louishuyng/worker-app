@@ -1,9 +1,11 @@
 export enum ThemeType {
   LIGHT = 'LIGHT',
   DARK = 'DARK',
-};
+}
 
 export const colors = {
+  white: '#FFFFFF',
+  paleSky: '#6F7780',
   skyBlue: '#069ccd',
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
