@@ -5,10 +5,11 @@ module.exports = {
   preset: 'react-native',
   setupFiles: [
     './test/jestSetup.ts',
+    './node_modules/react-native-gesture-handler/jestSetup.js',
   ],
-  transformIgnorePatterns: [
-    'node_modules/(?!(.*-)?react-(.*-)?native(-.*)?)',
-  ],
+  // transformIgnorePatterns: [
+  //   'node_modules/(?!(.*-)?react-(.*-)?native(-.*)?)',
+  // ],
   globals: {
     'ts-jest': {
       tsConfig: {
@@ -18,10 +19,10 @@ module.exports = {
     },
   },
   transform: {
-    '^.+\\.(js|jsx)$': 'babel-jest',
+    '^.+\\.jsx?$': 'babel-jest',
     '\\.(ts|tsx)$': 'ts-jest',
   },
-  // 'testRegex': '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
+  // testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   testPathIgnorePatterns: [
     '\\.snap$',
     '<rootDir>/node_modules/',
@@ -38,8 +39,17 @@ module.exports = {
     'android.ts',
     'android.tsx',
   ],
-  // 'moduleNameMapper': {
-  //   '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|
-  // woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':'<rootDir>/test/assetsTransformer.js'
-  // },
+  modulePaths: ['<rootDir>/src'],
+  moduleNameMapper: {
+    '^api(.*)$': ['<rootDir>/src/api/*'],
+    '^navigation/(.*)$': ['<rootDir>/src/navigation/*'],
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf)$': '<rootDir>/test/assetsTransformer.js',
+    '\\.(woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/test/assetsTransformer.js',
+    // '^screens/*': ['./src/screens/*'],
+    // '^components/*': ['./src/components/*'],
+    // '^store/*': ['./src/store/*'],
+    // '^utils/*': ['./src/utils/*'],
+    // '^types/*': ['./src/types/*'],
+  },
+  transformIgnorePatterns: [],
 };
