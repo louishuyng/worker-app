@@ -19,4 +19,4 @@ install:
   - yarn
 script:
   - 'yarn lint'
-  - 'yarn test --verbose "--no-cache"'
+  

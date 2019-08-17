@@ -1,11 +1,19 @@
 export const IC_MASK = require('../../assets/icons/mask.png');
-export const JOBLIST_ACTIVE = require('../../assets/icons/bottomBar/JobListActive.png');
-export const JOBLIST_UN_ACTIVE = require('../../assets/icons/bottomBar/JobListUnActive.png');
-export const CALENDAR_ACTIVE = require('../../assets/icons/bottomBar/CalendarActive.png');
-export const CALENDAR_UN_ACTIVE = require('../../assets/icons/bottomBar/CalendarUnActive.png');
-export const NOTIFICATION_ACITVE = require('../../assets/icons/bottomBar/NotificationActive.png');
-export const NOTIFICATION_UN_ACITVE = require('../../assets/icons/bottomBar/NotificationUnActive.png');
-export const USER_ACTIVE = require('../../assets/icons/bottomBar/UserActive.png');
-export const USER_UN_ACTIVE = require('../../assets/icons/bottomBar/UserUnActive.png');
+
+// Bottom Navigation Icons
+export const IC_JOBLIST_ACTIVE = require('../../assets/icons/bottomBar/JobListActive.png');
+export const IC_JOBLIST_UN_ACTIVE = require('../../assets/icons/bottomBar/JobListUnActive.png');
+export const IC_CALENDAR_ACTIVE = require('../../assets/icons/bottomBar/CalendarActive.png');
+export const IC_CALENDAR_UN_ACTIVE = require('../../assets/icons/bottomBar/CalendarUnActive.png');
+export const IC_NOTIFICATION_ACITVE = require('../../assets/icons/bottomBar/NotificationActive.png');
+export const IC_NOTIFICATION_UN_ACITVE = require('../../assets/icons/bottomBar/NotificationUnActive.png');
+export const IC_USER_ACTIVE = require('../../assets/icons/bottomBar/UserActive.png');
+export const IC_USER_UN_ACTIVE = require('../../assets/icons/bottomBar/UserUnActive.png');
+
+// Auth Icons
+export const IC_STEP_ONE_SIGN_UP = require('../../assets/icons/auth/Step1.png');
+export const IC_STEP_TWO_SIGN_UP = require('../../assets/icons/auth/Step2.png');
+
+// Others
 export const CLOSE_ICON = require('../../assets/icons/close.png');
 export const HELP_ICON = require('../../assets/icons/help-circle.png');

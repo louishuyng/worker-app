@@ -3,7 +3,23 @@ export enum ThemeType {
   DARK = 'DARK',
 }
 
-export const colors = {
+export interface colorsType{
+  white: string,
+  paleSky: string,
+  skyBlue: string,
+  whiteGray: string,
+  dusk: string,
+  green: string,
+  greenBlue: string,
+  mediumGray: string,
+  paleGray: string,
+  lightBackground: string,
+  lightBackgroundLight: string,
+  darkBackground: string,
+  darkBackgroundLight: string,
+}
+
+export const colors: colorsType = {
   white: '#FFFFFF',
   paleSky: '#6F7780',
   skyBlue: '#069ccd',
@@ -30,6 +46,7 @@ const theme = {
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'black',
     tintColor: '#333333',
+    colors,
   },
   dark: {
     background: colors.darkBackground,
@@ -41,6 +58,7 @@ const theme = {
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'white',
     tintColor: '#a3a3a3',
+    colors,
   },
 };
 

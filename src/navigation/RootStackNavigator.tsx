@@ -4,11 +4,11 @@ import {
   StackNavigatorConfig,
 } from 'react-navigation';
 
-import Demo from 'components/demo';
+import { SignInComponent } from 'components/Auth';
 
 const routeConfig: NavigationRouteConfig = {
   Demo: {
-    screen: Demo,
+    screen: SignInComponent,
     navigationOptions: ({ navigation, screenProps }
       : { navigation: any, screenProps: any }) => {
       const { theme } = screenProps;

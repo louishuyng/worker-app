@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
+
 import { TextInputUIProps } from './types';
 
 const LableStyled = styled.Text`
@@ -12,11 +13,10 @@ const LableStyled = styled.Text`
 const InputStyled = styled.TextInput`
   border-width: 1;
   border-radius: 6;
-  height: 50;
   padding: 8px;
-  margin-bottom: 20px;
   font-size: 17px;
-  background-color: #ffffff;
+  margin-bottom: 5%;
+  background-color: ${({ theme }) => theme.colors.white};
   border-color: #dbdede;
 `;
 

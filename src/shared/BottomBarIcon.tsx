@@ -7,7 +7,7 @@ const Icon = styled.Image`
 `;
 
 interface BottomTabBarIconProps {
-  source: ImageSourcePropType,
+  source: ImageSourcePropType;
 }
 
 const ButtonBarIcon = ({ source }: BottomTabBarIconProps) => (

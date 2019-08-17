@@ -16,6 +16,7 @@ module.exports = {
           'components/*': ['./components/*'],
           'store/*': ['store/*'],
           'utils/*': ['utils/*'],
+          'locales/*': ['locales/*'],
         },
       },
     ],
