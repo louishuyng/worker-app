@@ -1,3 +1,5 @@
+import { RouteName } from 'navigation/SwitchNavigator';
+
 export enum AuthStage {
   SIGNUP_STEP_ONE,
   SIGNUP_STEP_TWO,
