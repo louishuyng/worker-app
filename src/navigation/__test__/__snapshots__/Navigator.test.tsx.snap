@@ -138,7 +138,7 @@ exports[`Switch Navigator renders without crashing 1`] = `
                         }
                       >
                         <Text>
-                          DEMO
+                          Log In
                         </Text>
                       </RCTSafeAreaView>
                     </View>

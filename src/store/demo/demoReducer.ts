@@ -5,8 +5,8 @@ import { demoActions } from 'store/demo/demoActions';
 export type DemoActions = ActionType<typeof demoActions>;
 
 export interface DemoState {
-  isLoading: boolean,
-  err: string,
+  isLoading: boolean;
+  err: string;
 }
 
 const initialState = {

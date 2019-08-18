@@ -21,7 +21,8 @@
       "components/*": ["./components/*"],
       "store/*": ["store/*"],
       "utils/*": ["utils/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "locales/*": ["locales/*"]
     }
   },
   "include": [
