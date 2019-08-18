@@ -1,6 +1,7 @@
 import { AuthStage, InputAuthData } from './authScreenConfig';
 
 import { getString } from 'locales';
+import { RouteName } from 'navigation/SwitchNavigator';
 
 type AuthForm = {
   [key in AuthStage]: Array<InputAuthData>

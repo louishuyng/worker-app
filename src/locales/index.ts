@@ -28,6 +28,21 @@ const strings: any = new LocalizedStrings({
       SIGN_UP_STEP_ONE: 'SignUpStepOne',
       SIGN_UP_STEP_TWO: 'SignUpStepTwo',
       MAIN: 'Main',
+      SEND_MAIL: 'SendMail',
+      CONFIRM_MAIL: 'ConfirmMail',
+      RESET_PASSWORD: 'ResetPassword',
+    },
+    recovery: {
+      RECOVERY_TITLE: 'Password Recovery',
+      SEND_MAIL_INSTRUCTION: 'Enter the email you’re using for your account.',
+      SEND_MAIL_DESCIPTION: 'We’ve sent password reset instructions to your email address' +
+        '.If no email is received within ten minutes, check that the submitted address is correct.',
+      EMAIL: 'Email',
+      NEW_PASSWORD: 'New Password',
+      CONFIRM_PASSWORD: 'Confirm Password',
+      CONTINUE: 'Continue',
+      BACK_TO_LOGIN: 'Back to Login',
+      RESET_PASSWORD: 'Reset Password',
     },
   },
 });

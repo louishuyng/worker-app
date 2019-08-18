@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 
-import { AuthStage, InputAuthData } from './models/authScreenConfig';
-import { AuthScreenModel } from './models/authScreenModel';
+import { AuthStage, InputAuthData } from '../models/authScreenConfig';
+import { AuthScreenModel } from '../models/authScreenModel';
 import TextInputUI from 'components/common/TextInput/TextInput';
 import ButtonUI from 'components/common/Button/Button';
 import { Types } from 'components/common/Button/types';
 import { IC_STEP_ONE_SIGN_UP, IC_STEP_TWO_SIGN_UP } from 'utils/Icons';
-import { ScrollView } from 'react-native';
+import { getString } from 'locales';
 
 interface Props {
   stage: AuthStage;
@@ -50,6 +51,11 @@ const Title = styled.Text`
   margin-top: 5%;
   font-size: 34px;
   font-weight: bold;
+`;
+
+const ForgetPasswordLabel = styled.Text`
+  font-size: 14px;
+  text-align: right;
 `;
 
 const StepIcon = styled.Image`
@@ -106,31 +112,37 @@ export default class AuthScreen extends Component<Props, State> {
     const isStepOne = status === AuthStage.SIGNUP_STEP_ONE;
 
     return (
-      <Container>
-        <WrapperTitle>
-          <Title>{title}</Title>
-          {isLogin || (
-            <WrapperStatus>
-              {isStepOne ? (
-                <StepIcon source={IC_STEP_ONE_SIGN_UP}/>
-              ) : (
-                <StepIcon source={IC_STEP_TWO_SIGN_UP}/>
-              )}
-              <StepLabel>{stepLabel}</StepLabel>
-            </WrapperStatus>
-          )}
-        </WrapperTitle>
-        <KeyboardAvoidingView>
-          <WrapperForm>
-            {this.displayForm(form)}
-          </WrapperForm>
-        </KeyboardAvoidingView>
-        <WrapperFooter>
-          <ButtonUI type={Types.SUBMIT} title={buttonLabel} onPress={() => navigate(navigator)}/>
-          <SuggestionTitle>{suggestionTitle}</SuggestionTitle>
-          <NavigationTitle onPress={() => navigate(subNavigator)}>{navigatorTitle}</NavigationTitle>
-        </WrapperFooter>
-      </Container>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <Container>
+          <WrapperTitle>
+            <Title>{title}</Title>
+            {isLogin || (
+              <WrapperStatus>
+                {isStepOne ? (
+                  <StepIcon source={IC_STEP_ONE_SIGN_UP}/>
+                ) : (
+                  <StepIcon source={IC_STEP_TWO_SIGN_UP}/>
+                )}
+                <StepLabel>{stepLabel}</StepLabel>
+              </WrapperStatus>
+            )}
+          </WrapperTitle>
+          <KeyboardAvoidingView>
+            <WrapperForm>
+              {this.displayForm(form)}
+              {isLogin && <ForgetPasswordLabel onPress={() => navigate(getString('screen', 'SEND_MAIL'))}>
+                {getString('auth', 'FORGET_PASSWORD')}
+              </ForgetPasswordLabel>}
+            </WrapperForm>
+          </KeyboardAvoidingView>
+          <WrapperFooter>
+            <ButtonUI type={Types.SUBMIT} title={buttonLabel} onPress={() => navigate(navigator)}/>
+            <SuggestionTitle>{suggestionTitle}</SuggestionTitle>
+            <NavigationTitle onPress={() => navigate(subNavigator)}>{navigatorTitle}</NavigationTitle>
+          </WrapperFooter>
+        </Container>
+      </TouchableWithoutFeedback>
+
     );
   }
 }

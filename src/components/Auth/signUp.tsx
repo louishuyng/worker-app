@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthScreen from './shared';
+import AuthScreen from './shared/layout';
 
 import { AuthStage } from './models/authScreenConfig';
 

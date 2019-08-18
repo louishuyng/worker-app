@@ -17,3 +17,8 @@ export const IC_STEP_TWO_SIGN_UP = require('../../assets/icons/auth/Step2.png');
 // Others
 export const CLOSE_ICON = require('../../assets/icons/close.png');
 export const HELP_ICON = require('../../assets/icons/help-circle.png');
+export const ELLIPSE_FILLED = require('../../assets/icons/EllipseFilled.png');
+export const ELLIPSE_DONE = require('../../assets/icons/EllipseDone.png');
+export const ELLIPSE_NOT_YET = require('../../assets/icons/EllipseNotYet.png');
+export const LINE_STEP1 = require('../../assets/icons/LineStep1.png');
+export const LINE_STEP2 = require('../../assets/icons/LineStep2.png');
