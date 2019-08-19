@@ -2,7 +2,7 @@ import { RecoveryPasswordStage, InputData } from './recoveryPasswordTypes';
 import { getString } from 'locales';
 import { RouteName } from 'constant';
 
-type recoveryFormModel = { [key in RecoveryPasswordStage]: InputData[] };
+type recoveryFormModel = { [key in RecoveryPasswordStage]?: InputData[] };
 type recoveryTitleModel = { [key in RecoveryPasswordStage]: string };
 type recoveryDescriptionModel = {
   [key in RecoveryPasswordStage]: string | null
@@ -14,15 +14,21 @@ export const recoveryFormData: recoveryFormModel = {
   [RecoveryPasswordStage.SEND_MAIL]: [
     {
       label: getString('recovery', 'EMAIL'),
+      type: 'email',
+      fieldName: 'email',
     },
   ],
-  [RecoveryPasswordStage.CONFIRM_MAIL]: [],
+  [RecoveryPasswordStage.CONFIRM_MAIL]: undefined,
   [RecoveryPasswordStage.RESET_PASSWORD]: [
     {
       label: getString('recovery', 'NEW_PASSWORD'),
+      type: 'password',
+      fieldName: 'newPassword',
     },
     {
       label: getString('recovery', 'CONFIRM_PASSWORD'),
+      type: 'password',
+      fieldName: 'confirmPassword',
     },
   ],
 };

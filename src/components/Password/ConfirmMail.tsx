@@ -1,9 +1,10 @@
 import React from 'react';
-import LayoutPasswordScreen from '../shared/layout';
-import getModelData from '../models/getModelData';
-import { RecoveryPasswordStage } from '../models/recoveryPasswordTypes';
 
-const ConfirmMailScreen = (props: any) => {
+import LayoutPasswordScreen from './shared';
+import getModelData from './models/getModelData';
+import { RecoveryPasswordStage } from './models/recoveryPasswordTypes';
+
+export const ConfirMailComponent = (props: any) => {
   return (
     <LayoutPasswordScreen
       onPress={() => {
@@ -11,9 +12,8 @@ const ConfirmMailScreen = (props: any) => {
           getModelData(RecoveryPasswordStage.CONFIRM_MAIL).navigator
         );
       }}
+      {...props}
       {...getModelData(RecoveryPasswordStage.CONFIRM_MAIL)}
     />
   );
 };
-
-export default ConfirmMailScreen;

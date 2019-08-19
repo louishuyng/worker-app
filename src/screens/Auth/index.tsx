@@ -1,16 +1,34 @@
 import { SignUpStepOneComponent, SignUpStepTwoComponent, SignInComponent } from 'components/Auth';
-import { withConnectFormikAuth } from './withConnectFormikAuth';
 
-import { AuthStage } from 'components/Auth/models/authScreenConfig';
+import { withConnectFormik } from 'screens/hoc/withConnectFormik';
+import { signUpStepOneValidationShcema, signUpStepTwoValidationShcema, signInValidationSchema } from './validation';
+import {
+  handleSubmitSignUpStepOne, InitMapPropsSignUpStepOne, handleSubmitSignUpStepTwo,
+  InitMapPropsSignUpStepTwo,
+  handleSubmitLogin,
+  InitMapPropsLogin,
+} from './models';
 
-export const SignUpStepOneScreen = withConnectFormikAuth({
-  Component: SignUpStepOneComponent, stage: AuthStage.SIGNUP_STEP_ONE,
+export const SignUpStepOneScreen = withConnectFormik({
+  Component: SignUpStepOneComponent,
+  customSchema: signUpStepOneValidationShcema,
+  displayName: 'SignUpStepOne',
+  handleSubmit: handleSubmitSignUpStepOne,
+  initMapProps: InitMapPropsSignUpStepOne,
 });
 
-export const SignUpStepTwoScreen = withConnectFormikAuth({
-  Component: SignUpStepTwoComponent, stage: AuthStage.SIGNUP_STEP_TWO,
+export const SignUpStepTwoScreen = withConnectFormik({
+  Component: SignUpStepTwoComponent,
+  customSchema: signUpStepTwoValidationShcema,
+  displayName: 'SignUpStepTwo',
+  handleSubmit: handleSubmitSignUpStepTwo,
+  initMapProps: InitMapPropsSignUpStepTwo,
 });
 
-export const SignInScreen = withConnectFormikAuth({
-  Component: SignInComponent, stage: AuthStage.LOGIN,
+export const SignInScreen = withConnectFormik({
+  Component: SignInComponent,
+  customSchema: signInValidationSchema,
+  displayName: 'SignUpStepTwo',
+  handleSubmit: handleSubmitLogin,
+  initMapProps: InitMapPropsLogin,
 });

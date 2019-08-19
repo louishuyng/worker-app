@@ -6,12 +6,11 @@ import { Field } from 'formik';
 
 import { AuthStage, InputAuthData } from '../models/authScreenConfig';
 import { AuthScreenModel } from '../models/authScreenModel';
-import ButtonUI from 'components/common/Button/Button';
+import { ButtonUI, TextInputFormikUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { IC_STEP_ONE_SIGN_UP, IC_STEP_TWO_SIGN_UP } from 'utils/Icons';
 import { getString } from 'locales';
 import { FormikAuthValues } from 'screens/Auth/models';
-import TextInputFormikUI from 'components/common/TextInputFormik/TextInputFormik';
 import { RouteName } from 'constant';
 
 interface Props {
@@ -96,7 +95,7 @@ export default class AuthScreen extends Component<Props, State> {
 
   displayForm = (data: Array<InputAuthData>): any => {
     return data.map((value, key) => {
-      const { placeholder, fieldName, title, type } = value;
+      const { placeholder, fieldName, label, type } = value;
       return (
         <Field
           key={key}
@@ -104,7 +103,7 @@ export default class AuthScreen extends Component<Props, State> {
           component={TextInputFormikUI}
           name={fieldName}
           placeholder={placeholder}
-          label={title}
+          label={label}
         />
       );
     });

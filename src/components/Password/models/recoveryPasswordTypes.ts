@@ -7,6 +7,8 @@ export enum RecoveryPasswordStage {
 export interface InputData {
   label: string;
   placeholder?: string;
+  type: string;
+  fieldName: string;
 }
 
 export interface RecoveryScreenConfig {
