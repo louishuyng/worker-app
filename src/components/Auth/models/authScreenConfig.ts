@@ -1,6 +1,3 @@
-import { RouteName } from 'navigation/SwitchNavigator';
-import { FieldConfig } from 'formik';
-
 export enum AuthStage {
   SIGNUP_STEP_ONE,
   SIGNUP_STEP_TWO,

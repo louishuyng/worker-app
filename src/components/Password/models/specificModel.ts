@@ -1,5 +1,6 @@
 import { RecoveryPasswordStage, InputData } from './recoveryPasswordTypes';
 import { getString } from 'locales';
+import { RouteName } from 'constant';
 
 type recoveryFormModel = { [key in RecoveryPasswordStage]: InputData[] };
 type recoveryTitleModel = { [key in RecoveryPasswordStage]: string };
@@ -57,7 +58,7 @@ export const recoveryButtonTitleData: recoveryButtonModel = {
 };
 
 export const routeNameData: routeNameData = {
-  [RecoveryPasswordStage.SEND_MAIL]: getString('screen', 'CONFIRM_MAIL'),
-  [RecoveryPasswordStage.CONFIRM_MAIL]: getString('screen', 'LOGIN'),
-  [RecoveryPasswordStage.RESET_PASSWORD]: '',
+  [RecoveryPasswordStage.SEND_MAIL]: RouteName.CONFIRM_MAIL,
+  [RecoveryPasswordStage.CONFIRM_MAIL]: RouteName.SIGN_IN,
+  [RecoveryPasswordStage.RESET_PASSWORD]: RouteName.RESET_PASSWORD,
 };

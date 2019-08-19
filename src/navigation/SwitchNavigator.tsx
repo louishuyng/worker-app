@@ -14,17 +14,7 @@ import { SignInScreen, SignUpStepOneScreen, SignUpStepTwoScreen } from 'screens/
 import SendMailScreen from 'components/Password/RecoveryPassword/SendMail';
 import { ConfirmMailScreen } from 'components/Password/RecoveryPassword';
 import { ResetPasswordScreen } from 'components/Password';
-import { getString } from 'locales';
-
-export enum RouteName {
-  SIGN_IN = getString('screen', 'LOGIN'),
-  SIGN_UP_STEP_ONE = getString('screen', 'SIGN_UP_STEP_ONE'),
-  SIGN_UP_STEP_TWO = getString('screen', 'SIGN_UP_STEP_TWO'),
-  MAIN = getString('screen', 'MAIN'),
-  SEND_MAIL = getString('screen', 'SEND_MAIL'),
-  CONFIRM_MAIL = getString('screen', 'CONFIRM_MAIL'),
-  RESET_PASSWORD = getString('screen', 'RESET_PASSWORD'),
-}
+import { RouteName } from 'constant';
 
 const routeConfigMap: NavigationRouteConfigMap = {
   [RouteName.SIGN_IN]: SignInScreen,

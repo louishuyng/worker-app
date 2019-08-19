@@ -12,6 +12,7 @@ import { IC_STEP_ONE_SIGN_UP, IC_STEP_TWO_SIGN_UP } from 'utils/Icons';
 import { getString } from 'locales';
 import { FormikAuthValues } from 'screens/Auth/models';
 import TextInputFormikUI from 'components/common/TextInputFormik/TextInputFormik';
+import { RouteName } from 'constant';
 
 interface Props {
   stage: AuthStage;
@@ -140,7 +141,7 @@ export default class AuthScreen extends Component<Props, State> {
           <KeyboardAvoidingView>
             <WrapperForm>
               {this.displayForm(form)}
-              {isLogin && <ForgetPasswordLabel onPress={() => navigate(getString('screen', 'SEND_MAIL'))}>
+              {isLogin && <ForgetPasswordLabel onPress={() => navigate(RouteName.SEND_MAIL)}>
                 {getString('auth', 'FORGET_PASSWORD')}
               </ForgetPasswordLabel>}
             </WrapperForm>

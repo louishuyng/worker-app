@@ -17,7 +17,7 @@ interface Props {
 export const withConnectFormikAuth = ({ Component, stage }: ConnectFormikAuthParamaters) => (props: Props) => {
   const RenderComponent = withFormik<Props, FormikAuthValues>({
     enableReinitialize: false,
-    validationSchema: AuthValidationSchema[stage],
+    // validationSchema: AuthValidationSchema[stage],
     mapPropsToValues: () => initMapPropsToValue[stage],
     handleSubmit: (values) => handleSubmitByStage[stage](values),
     displayName: 'Auth',

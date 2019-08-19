@@ -1,6 +1,7 @@
 import { AuthStage, InputAuthData } from './authScreenConfig';
 
 import { getString } from 'locales';
+import { RouteName } from 'constant';
 
 type AuthForm = {
   [key in AuthStage]: Array<InputAuthData>
@@ -97,13 +98,13 @@ export const authNavigatorTitleData: AuthTitle = {
 };
 
 export const authNavigatorData: AuthTitle = {
-  [AuthStage.SIGNUP_STEP_ONE]: getString('screen', 'SIGN_UP_STEP_TWO'),
-  [AuthStage.SIGNUP_STEP_TWO]: getString('screen', 'LOGIN'),
-  [AuthStage.LOGIN]: getString('screen', 'MAIN'),
+  [AuthStage.SIGNUP_STEP_ONE]: RouteName.SIGN_UP_STEP_TWO,
+  [AuthStage.SIGNUP_STEP_TWO]: RouteName.SIGN_IN,
+  [AuthStage.LOGIN]: RouteName.MAIN,
 };
 
 export const authSubNavigatorData: AuthTitle = {
-  [AuthStage.SIGNUP_STEP_ONE]: getString('screen', 'LOGIN'),
-  [AuthStage.SIGNUP_STEP_TWO]: getString('screen', 'LOGIN'),
-  [AuthStage.LOGIN]: getString('screen', 'SIGN_UP_STEP_ONE'),
+  [AuthStage.SIGNUP_STEP_ONE]: RouteName.SIGN_IN,
+  [AuthStage.SIGNUP_STEP_TWO]: RouteName.SIGN_IN,
+  [AuthStage.LOGIN]: RouteName.SIGN_UP_STEP_ONE,
 };
