@@ -2,18 +2,23 @@ import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Field } from 'formik';
 
 import { AuthStage, InputAuthData } from '../models/authScreenConfig';
 import { AuthScreenModel } from '../models/authScreenModel';
-import TextInputUI from 'components/common/TextInput/TextInput';
 import ButtonUI from 'components/common/Button/Button';
 import { Types } from 'components/common/Button/types';
 import { IC_STEP_ONE_SIGN_UP, IC_STEP_TWO_SIGN_UP } from 'utils/Icons';
 import { getString } from 'locales';
+import { FormikAuthValues } from 'screens/Auth/models';
+import TextInputFormikUI from 'components/common/TextInputFormik/TextInputFormik';
 
 interface Props {
   stage: AuthStage;
-  navigation: {navigate: Function},
+  navigation: {navigate: Function};
+  values: FormikAuthValues;
+  errors: Object;
+  handleSubmit: Function;
 }
 
 interface State {
@@ -90,12 +95,15 @@ export default class AuthScreen extends Component<Props, State> {
 
   displayForm = (data: Array<InputAuthData>): any => {
     return data.map((value, key) => {
+      const { placeholder, fieldName, title, type } = value;
       return (
-        <TextInputUI
+        <Field
           key={key}
-          lable={value.title}
-          placeholder={value.placeholder}
-          onchange={() => null}
+          type={type}
+          component={TextInputFormikUI}
+          name={fieldName}
+          placeholder={placeholder}
+          label={title}
         />
       );
     });
@@ -106,8 +114,10 @@ export default class AuthScreen extends Component<Props, State> {
       title, form, buttonLabel, suggestionTitle, stepLabel,
       navigatorTitle, status, navigator, subNavigator,
     } = AuthScreenModel(this.props.stage);
-    const { navigate } = this.props.navigation;
-
+    const {
+      navigation: { navigate },
+      handleSubmit,
+    } = this.props;
     const isLogin = status === AuthStage.LOGIN;
     const isStepOne = status === AuthStage.SIGNUP_STEP_ONE;
 
@@ -136,7 +146,7 @@ export default class AuthScreen extends Component<Props, State> {
             </WrapperForm>
           </KeyboardAvoidingView>
           <WrapperFooter>
-            <ButtonUI type={Types.SUBMIT} title={buttonLabel} onPress={() => navigate(navigator)}/>
+            <ButtonUI type={Types.SUBMIT} title={buttonLabel} onPress={() => handleSubmit()}/>
             <SuggestionTitle>{suggestionTitle}</SuggestionTitle>
             <NavigationTitle onPress={() => navigate(subNavigator)}>{navigatorTitle}</NavigationTitle>
           </WrapperFooter>

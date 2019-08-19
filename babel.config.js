@@ -17,6 +17,7 @@ module.exports = {
           'store/*': ['store/*'],
           'utils/*': ['utils/*'],
           'locales/*': ['locales/*'],
+          'constant/*': ['constant/*'],
         },
       },
     ],

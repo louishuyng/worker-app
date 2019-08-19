@@ -1,4 +1,5 @@
 import { RouteName } from 'navigation/SwitchNavigator';
+import { FieldConfig } from 'formik';
 
 export enum AuthStage {
   SIGNUP_STEP_ONE,
@@ -9,6 +10,8 @@ export enum AuthStage {
 export interface InputAuthData {
   title: string;
   placeholder?: string;
+  fieldName: string;
+  type: string;
 }
 
 export interface AuthScreenConfig {
