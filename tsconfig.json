@@ -22,7 +22,8 @@
       "store/*": ["store/*"],
       "utils/*": ["utils/*"],
       "types/*": ["types/*"],
-      "locales/*": ["locales/*"]
+      "locales/*": ["locales/*"],
+      "constant/*": ["constant/*"],
     }
   },
   "include": [

@@ -9,11 +9,8 @@ import { ThemeProvider } from 'styled-components';
 
 import { createTheme, ThemeType } from 'utils/Theme';
 import BottomMaterialNavigator from './BottomMaterialNavigator';
-import {
-  SignInComponent,
-  SignUpStepOneComponent,
-  SignUpStepTwoComponent,
-} from 'components/Auth';
+
+import { SignInScreen, SignUpStepOneScreen, SignUpStepTwoScreen } from 'screens/Auth';
 import SendMailScreen from 'components/Password/RecoveryPassword/SendMail';
 import { ConfirmMailScreen } from 'components/Password/RecoveryPassword';
 import { ResetPasswordScreen } from 'components/Password';
@@ -30,9 +27,9 @@ export enum RouteName {
 }
 
 const routeConfigMap: NavigationRouteConfigMap = {
-  [RouteName.SIGN_IN]: SignInComponent,
-  [RouteName.SIGN_UP_STEP_ONE]: SignUpStepOneComponent,
-  [RouteName.SIGN_UP_STEP_TWO]: SignUpStepTwoComponent,
+  [RouteName.SIGN_IN]: SignInScreen,
+  [RouteName.SIGN_UP_STEP_ONE]: SignUpStepOneScreen,
+  [RouteName.SIGN_UP_STEP_TWO]: SignUpStepTwoScreen,
   [RouteName.SEND_MAIL]: SendMailScreen,
   [RouteName.CONFIRM_MAIL]: ConfirmMailScreen,
   [RouteName.RESET_PASSWORD]: ResetPasswordScreen,

@@ -5,6 +5,8 @@ export enum ThemeType {
 
 export interface colorsType{
   white: string,
+  alizarin: string,
+  iron: string,
   paleSky: string,
   skyBlue: string,
   whiteGray: string,
@@ -21,6 +23,8 @@ export interface colorsType{
 
 export const colors: colorsType = {
   white: '#FFFFFF',
+  alizarin: '#e74c3c',
+  iron: '#DBDEDE',
   paleSky: '#6F7780',
   skyBlue: '#069ccd',
   whiteGray: '#f7f6f3',
