@@ -5,7 +5,7 @@ export enum AuthStage {
 }
 
 export interface InputAuthData {
-  title: string;
+  label: string;
   placeholder?: string;
   fieldName: string;
   type: string;

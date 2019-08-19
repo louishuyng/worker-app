@@ -1,5 +1,3 @@
-import { AuthStage } from 'components/Auth/models/authScreenConfig';
-
 export interface FormikAuthValues {
   email?: string,
   password?: string,
@@ -10,43 +8,32 @@ export interface FormikAuthValues {
   department?: string,
 }
 
-type IInitMapProps = {
-  [key in AuthStage]: {
-    [index: string]: string,
-  }
+export const InitMapPropsLogin = {
+  email: '',
+  password: '',
 };
 
-interface HandleSubmitFunc {
-  (values: FormikAuthValues): any;
-}
-
-type IHandleSubmitByStage = {
-  [key in AuthStage]: HandleSubmitFunc;
+export const InitMapPropsSignUpStepOne = {
+  firstName: '',
+  lastName: '',
+  phoneNumber: '',
+  email: '',
 };
 
-export const initMapPropsToValue: IInitMapProps = {
-  [AuthStage.LOGIN]: {
-    email: '',
-    password: '',
-  },
-  [AuthStage.SIGNUP_STEP_ONE]: {
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
-  },
-  [AuthStage.SIGNUP_STEP_TWO]: {
-    department: '',
-    password: '',
-    repeatPassword: '',
-  },
+export const InitMapPropsSignUpStepTwo = {
+  department: '',
+  password: '',
+  repeatPassword: '',
 };
 
-export const handleSubmitByStage: IHandleSubmitByStage = {
-  [AuthStage.LOGIN]: (values) => {
-  },
-  [AuthStage.SIGNUP_STEP_ONE]: (values) => {
-  },
-  [AuthStage.SIGNUP_STEP_TWO]: (values) => {
-  },
+export const handleSubmitLogin = (values: FormikAuthValues) => {
+
+};
+
+export const handleSubmitSignUpStepOne = (values: FormikAuthValues) => {
+
+};
+
+export const handleSubmitSignUpStepTwo = (values: FormikAuthValues) => {
+
 };

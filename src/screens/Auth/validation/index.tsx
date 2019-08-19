@@ -1,13 +1,8 @@
 import * as Yup from 'yup';
 
-import { AuthStage } from 'components/Auth/models/authScreenConfig';
 import { emailRegExp, passRegExp } from 'constant';
 
-type AuthValidationSchemaInterface = {
-  [key in AuthStage]: any;
-};
-
-const signInValidationSchema = Yup.object().shape({
+export const signInValidationSchema = Yup.object().shape({
   email: Yup
     .string()
     .required()
@@ -17,7 +12,7 @@ const signInValidationSchema = Yup.object().shape({
     .required(),
 });
 
-const signUpStepOneValidationShcema = Yup.object().shape({
+export const signUpStepOneValidationShcema = Yup.object().shape({
   firstName: Yup
     .string()
     .required(),
@@ -33,7 +28,7 @@ const signUpStepOneValidationShcema = Yup.object().shape({
     .matches(emailRegExp),
 });
 
-const signUpStepTwoValidationShcema = Yup.object().shape({
+export const signUpStepTwoValidationShcema = Yup.object().shape({
   department: Yup
     .string()
     .required(),
@@ -46,9 +41,3 @@ const signUpStepTwoValidationShcema = Yup.object().shape({
     .required()
     .oneOf([Yup.ref('password'), '']),
 });
-
-export const AuthValidationSchema: AuthValidationSchemaInterface = {
-  [AuthStage.LOGIN]: signInValidationSchema,
-  [AuthStage.SIGNUP_STEP_ONE]: signUpStepOneValidationShcema,
-  [AuthStage.SIGNUP_STEP_TWO]: signUpStepTwoValidationShcema,
-};

@@ -14,23 +14,23 @@ type AuthTitle = {
 export const autFormData: AuthForm = {
   [AuthStage.SIGNUP_STEP_ONE]: [
     {
-      title: getString('auth', 'FIRST_NAME'),
+      label: getString('auth', 'FIRST_NAME'),
       fieldName: 'firstName',
       type: 'text',
     },
     {
-      title: getString('auth', 'LAST_NAME'),
+      label: getString('auth', 'LAST_NAME'),
       fieldName: 'lastName',
       type: 'text',
     },
     {
-      title: getString('auth', 'PHONE_NUMBER'),
+      label: getString('auth', 'PHONE_NUMBER'),
       placeholder: getString('auth', 'PLACE_HOLDER_PHONE'),
       fieldName: 'phoneNumber',
       type: 'number',
     },
     {
-      title: getString('auth', 'EMAIL'),
+      label: getString('auth', 'EMAIL'),
       placeholder: getString('auth', 'PLACE_HOLDER_EMAIL'),
       fieldName: 'email',
       type: 'email',
@@ -38,29 +38,29 @@ export const autFormData: AuthForm = {
   ],
   [AuthStage.SIGNUP_STEP_TWO]: [
     {
-      title: getString('auth', 'DEPARTMENT'),
+      label: getString('auth', 'DEPARTMENT'),
       fieldName: 'department',
       type: 'text',
     },
     {
-      title: getString('auth', 'PASSWORD'),
+      label: getString('auth', 'PASSWORD'),
       fieldName: 'password',
       type: 'password',
     },
     {
-      title: getString('auth', 'REPEAT_PASSWORD'),
+      label: getString('auth', 'REPEAT_PASSWORD'),
       fieldName: 'repeatPassword',
       type: 'password',
     },
   ],
   [AuthStage.LOGIN]: [
     {
-      title: getString('auth', 'EMAIL'),
+      label: getString('auth', 'EMAIL'),
       fieldName: 'email',
       type: 'email',
     },
     {
-      title: getString('auth', 'PASSWORD'),
+      label: getString('auth', 'PASSWORD'),
       fieldName: 'password',
       type: 'password',
     },

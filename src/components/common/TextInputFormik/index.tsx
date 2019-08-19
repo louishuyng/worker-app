@@ -33,8 +33,8 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
     type,
     label,
     placeholder,
-    field: { name, value },
-    form: { setFieldValue, submitCount, errors, touched, setFieldTouched, isSubmitting },
+    field: { name },
+    form: { setFieldValue, submitCount, errors, touched, setFieldTouched },
   } = props;
   const isError = touched[name] && errors[name] && submitCount > 0;
   const editPlaceHolder = isError ? errors[name] : placeholder;

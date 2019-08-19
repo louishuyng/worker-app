@@ -1,10 +1,10 @@
 import React from 'react';
 
 import getModelData from 'components/Password/models/getModelData';
-import LayoutPasswordScreen from 'components/Password/shared/layout';
+import LayoutPasswordScreen from 'components/Password/shared';
 import { RecoveryPasswordStage } from 'components/Password/models/recoveryPasswordTypes';
 
-const ResetPasswordScreen = (props: any) => {
+export const ResetPasswordComponent = (props: any) => {
   return (
     <LayoutPasswordScreen
       onPress={() => {
@@ -17,5 +17,3 @@ const ResetPasswordScreen = (props: any) => {
     />
   );
 };
-
-export default ResetPasswordScreen;

@@ -3,7 +3,7 @@ import { Button, View, Image, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import styled from 'styled-components/native';
 
-import ButtonUI from 'components/common/Button/Button';
+import { ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { CLOSE_ICON } from 'utils/Icons';
 import { ModalUIProps, ModalUIState } from './types';

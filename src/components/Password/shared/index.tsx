@@ -2,9 +2,9 @@ import React from 'react';
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import styled from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Field } from 'formik';
 
-import TextInputUI from 'components/common/TextInput/TextInput';
-import ButtonUI from 'components/common/Button/Button';
+import { ButtonUI, TextInputFormikUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { InputData } from '../models/recoveryPasswordTypes';
 
@@ -38,10 +38,11 @@ interface AboutPasswordScreenProps {
   forms?: Array<InputData>;
   buttonTitle: string;
   onPress: () => any;
+  handleSubmit: () => any;
 }
 
-const AboutPasswordScreen = (props: AboutPasswordScreenProps) => {
-  const { title, description, forms, buttonTitle, onPress } = props;
+const LayoutPasswordScreen = (props: AboutPasswordScreenProps) => {
+  const { title, description, forms, buttonTitle, onPress, handleSubmit } = props;
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <Container>
@@ -51,23 +52,31 @@ const AboutPasswordScreen = (props: AboutPasswordScreenProps) => {
               <TitleWrapper>{title}</TitleWrapper>
               <DescriptionWrapper>{description}</DescriptionWrapper>
               {forms
-                ? forms.map((form, i) => (
-                  <TextInputUI
-                    key={i}
-                    lable={form.label}
-                    onchange={() => { }}
-                  />
-                ))
+                ? forms.map((form, key) => {
+                  const {
+                    type, label, placeholder, fieldName,
+                  } = form;
+                  return (
+                    <Field
+                      key={key}
+                      type={type}
+                      component={TextInputFormikUI}
+                      name={fieldName}
+                      placeholder={placeholder}
+                      label={label}
+                    />
+                  );
+                })
                 : null}
             </View>
           </KeyboardAwareScrollView>
         </WrapperBody>
         <WrapperButton>
-          <ButtonUI onPress={onPress} title={buttonTitle} type={Types.SUBMIT} />
+          <ButtonUI onPress={() => handleSubmit()} title={buttonTitle} type={Types.SUBMIT} />
         </WrapperButton>
       </Container>
     </TouchableWithoutFeedback>
   );
 };
 
-export default AboutPasswordScreen;
+export default LayoutPasswordScreen;

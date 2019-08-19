@@ -11,16 +11,14 @@ import { createTheme, ThemeType } from 'utils/Theme';
 import BottomMaterialNavigator from './BottomMaterialNavigator';
 
 import { SignInScreen, SignUpStepOneScreen, SignUpStepTwoScreen } from 'screens/Auth';
-import SendMailScreen from 'components/Password/RecoveryPassword/SendMail';
-import { ConfirmMailScreen } from 'components/Password/RecoveryPassword';
-import { ResetPasswordScreen } from 'components/Password';
+import { SendEmailScreen, ConfirmMailScreen, ResetPasswordScreen } from 'screens/Password';
 import { RouteName } from 'constant';
 
 const routeConfigMap: NavigationRouteConfigMap = {
   [RouteName.SIGN_IN]: SignInScreen,
   [RouteName.SIGN_UP_STEP_ONE]: SignUpStepOneScreen,
   [RouteName.SIGN_UP_STEP_TWO]: SignUpStepTwoScreen,
-  [RouteName.SEND_MAIL]: SendMailScreen,
+  [RouteName.SEND_MAIL]: SendEmailScreen,
   [RouteName.CONFIRM_MAIL]: ConfirmMailScreen,
   [RouteName.RESET_PASSWORD]: ResetPasswordScreen,
   [RouteName.MAIN]: BottomMaterialNavigator,
