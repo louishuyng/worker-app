@@ -11,12 +11,14 @@ import {
 } from 'utils/Icons';
 import { ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
-import { AvailableJob } from './models/NewJobTabConfig';
+import { JobDetail } from '../type';
+import { getString } from 'locales';
+import { setStatusLable } from '../models/jobListModels';
 
 const Container = styled.View`
   padding-top: 3%;
   border-width: 1;
-  border-color: #DBDEDE;
+  border-color: ${({ theme }) => theme.colors.iron};
   border-radius: 7;
   padding-horizontal: 10;
   padding-vertical: 10;
@@ -37,6 +39,11 @@ const WrapperTime = styled.View`
   flex-direction: row;
   padding-vertical: 10;
   align-items: center;
+`;
+
+const WrapperInnerTime = styled.View`
+  flex-direction: row;
+  margin-right: 5%;
 `;
 
 const DateStyled = styled.Text`
@@ -65,7 +72,7 @@ const WrapperImage = styled.TouchableOpacity`
   align-items: center;
   border-radius: 5;
   margin-right: 5;
-  borderColor: #6F7780;
+  borderColor: ${({ theme }) => theme.colors.paleGray};
 `;
 
 const ImageStyled = styled(Image)`
@@ -83,22 +90,31 @@ const LocationStyled = styled.Text`
   margin-horizontal: 5;
 `;
 
-interface AvailableJobProps extends AvailableJob { }
+interface AvailableJobProps {
+  jobData: JobDetail;
+}
 
-export const AvailableJobComponent = (props: AvailableJobProps) => {
-  const { date, time: { begin, end }, location } = props;
+export const JobThumbnail = (props: AvailableJobProps) => {
+  const {
+    jobData: { date, timeAvaliable: { begin, end }, location, status },
+  } = props;
+
   return (
     <View style={{ padding: 20 }}>
       <Container>
         <WrapperTitle>
           <Image source={ORANGE_CIRCLE} />
-          <TitleStyled>Parking</TitleStyled>
+          <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
         </WrapperTitle>
         <WrapperTime>
-          <Image source={CALENDER_DAY_SOLID} />
-          <DateStyled>{date}</DateStyled>
-          <Image source={CLOCK_SOLID} />
-          <TimeStyled>{begin} - {end}</TimeStyled>
+          <WrapperInnerTime>
+            <Image source={CALENDER_DAY_SOLID} />
+            <DateStyled>{date}</DateStyled>
+          </WrapperInnerTime>
+          <WrapperInnerTime>
+            <Image source={CLOCK_SOLID} />
+            <TimeStyled>{begin} - {end}</TimeStyled>
+          </WrapperInnerTime>
         </WrapperTime>
         <WrapperLocation>
           <Image source={MAP_MARKER} />
@@ -109,7 +125,11 @@ export const AvailableJobComponent = (props: AvailableJobProps) => {
             <ImageStyled source={LOCATION} />
           </WrapperImage>
           <ButtonStyled>
-            <ButtonUI type={Types.SETSTATUS} title="Set to EnRoute" onPress={() => { }} />
+            <ButtonUI
+              type={Types.SETSTATUS}
+              title={setStatusLable[status]}
+              onPress={() => { }}
+            />
           </ButtonStyled>
         </WrapperButton>
       </Container>

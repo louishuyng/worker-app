@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { AvailableJobComponent } from './AvailableJob';
-import { JobAssignComponent } from './JobAssign';
-import { NewJobTabModel } from 'components/JobList/NewJobTab/models/newJobModel';
-import { NewJobTabStage } from 'components/JobList/NewJobTab/models/newJobTabConfig';
+import { JobDetail, WorkingHourInterface } from '../type';
+import { JobThumbnail } from '../shared/JobThumbnail';
+import { NoJobThumbnail } from '../shared/NoJobThumbnail';
 
-const Wrapper = styled.View<{ tabLabel: string }>`
+const Wrapper = styled.View`
   flex: 1;
   padding-top: 10;
   padding-bottom: 10;
@@ -26,17 +25,23 @@ interface AvailableJob {
 }
 
 interface NewJobTabProps {
-  stage: NewJobTabStage;
   tabLabel: string;
+  jobData: Array<JobDetail>;
+  currentWorkingHour: Array<WorkingHourInterface>;
 }
 
 const NewJobTab = (props: NewJobTabProps) => {
-  const dataModel: any = NewJobTabModel(props.stage);
+  const { jobData, currentWorkingHour } = props;
+  const isEmptyJob = jobData.length === 0;
+  const displayJobThumnail = (data: Array<JobDetail>) => {
+    return data.map((value: JobDetail, index: number) => (
+      <JobThumbnail key={index} jobData={value} />
+    ));
+  };
+
   return (
-    <Wrapper tabLabel="New Job">
-      {props.stage === NewJobTabStage.ON_HAVE_AVAILABLE_JOB
-        ? (dataModel as []).map((item, i) => <AvailableJobComponent key={i} {...item} />)
-        : <JobAssignComponent data={dataModel} />}
+    <Wrapper>
+      {!isEmptyJob ? displayJobThumnail(jobData) : <NoJobThumbnail hourWorkingData={currentWorkingHour}/>}
     </Wrapper>
   );
 };

@@ -1,22 +1,45 @@
 import React from 'react';
-import NewJobTab from './NewJobTab';
-import { NewJobTabStage } from 'components/JobList/NewJobTab/models/newJobTabConfig';
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view';
-import { colors } from 'utils/Theme';
-const DemoTabView = () => (
-  <ScrollableTabView
-    tabBarActiveTextColor='#3A3C3E'
-    tabBarInactiveTextColor='#6F7780'
-    tabBarUnderlineStyle={{ backgroundColor: colors.skyBlue }}
-    tabBarTextStyle={{ fontSize: 13, fontWeight: '400' }}
-    initialPage={0}
-    renderTabBar={() => <ScrollableTabBar />}
-  >
-    <NewJobTab key={1} tabLabel="New Job" stage={NewJobTabStage.ON_HAVE_AVAILABLE_JOB} />
-    <NewJobTab key={2} tabLabel="New Job" stage={NewJobTabStage.NOT_YET_SET_AVAILABLE_TIME} />
-    <NewJobTab key={3} tabLabel="New Job" stage={NewJobTabStage.ON_SET_AVAILABLE_TIME} />
-    <NewJobTab key={4} tabLabel="New Job" stage={NewJobTabStage.ON_HAVE_AVAILABLE_JOB} />
-  </ScrollableTabView>
-);
 
-export default DemoTabView;
+import { colors } from 'utils/Theme';
+import NewJobTab from './NewJobTab';
+import { mockCurrentWorkingHour, mockJobData } from './mock';
+import { getString } from 'locales';
+import { BottomBarIconUI } from 'components/common';
+import { IC_JOBLIST_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
+import { TabBarIconProps } from 'react-navigation';
+
+interface State {}
+
+interface Props {}
+export default class JobList extends React.Component<Props, State > {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  render() {
+    return (
+      <ScrollableTabView
+        tabBarActiveTextColor={colors.capeCod}
+        tabBarInactiveTextColor={colors.paleSky}
+        tabBarUnderlineStyle={{
+          backgroundColor: colors.skyBlue,
+          borderTopLeftRadius: 100,
+          borderTopRightRadius: 100,
+        }}
+        tabBarTextStyle={{ fontSize: 13, fontWeight: '400' }}
+        initialPage={0}
+        renderTabBar={() => <ScrollableTabBar />}
+      >
+        <NewJobTab
+          tabLabel={getString('jobList', 'newJobTabTitle')}
+          key={1}
+          currentWorkingHour={mockCurrentWorkingHour}
+          jobData={mockJobData}
+        />
+      </ScrollableTabView>
+    );
+  }
+}
