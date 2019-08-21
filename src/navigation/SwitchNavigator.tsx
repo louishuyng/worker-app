@@ -5,6 +5,7 @@ import {
   createSwitchNavigator,
   SwitchNavigatorConfig,
 } from 'react-navigation';
+
 import { ThemeProvider } from 'styled-components';
 
 import { createTheme, ThemeType } from 'utils/Theme';
@@ -25,7 +26,7 @@ const routeConfigMap: NavigationRouteConfigMap = {
 };
 
 const switchConfig: SwitchNavigatorConfig = {
-  initialRouteName: 'SignUpStepOne',
+  initialRouteName: 'Main',
 };
 
 const SwitchAnimatedNavigator = createSwitchNavigator(

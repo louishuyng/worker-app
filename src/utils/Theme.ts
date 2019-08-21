@@ -10,6 +10,7 @@ export interface colorsType{
   paleSky: string,
   skyBlue: string,
   whiteGray: string,
+  chateauGreen: string,
   dusk: string,
   green: string,
   greenBlue: string,
@@ -19,6 +20,7 @@ export interface colorsType{
   lightBackgroundLight: string,
   darkBackground: string,
   darkBackgroundLight: string,
+  capeCod: string,
 }
 
 export const colors: colorsType = {
@@ -28,6 +30,7 @@ export const colors: colorsType = {
   paleSky: '#6F7780',
   skyBlue: '#069ccd',
   whiteGray: '#f7f6f3',
+  chateauGreen: '#34A466',
   dusk: 'rgb(65,77,107)',
   green: 'rgb(29,211,168)',
   greenBlue: 'rgb(36,205,151)',
@@ -37,6 +40,7 @@ export const colors: colorsType = {
   lightBackgroundLight: '#f7f6f3',
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
+  capeCod: '#3A3C3E',
 };
 
 const theme = {

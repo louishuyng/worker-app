@@ -22,3 +22,11 @@ export const ELLIPSE_DONE = require('../../assets/icons/EllipseDone.png');
 export const ELLIPSE_NOT_YET = require('../../assets/icons/EllipseNotYet.png');
 export const LINE_STEP1 = require('../../assets/icons/LineStep1.png');
 export const LINE_STEP2 = require('../../assets/icons/LineStep2.png');
+
+// Job List
+export const ORANGE_CIRCLE = require('../../assets/icons/joblist/orange-circle.png');
+export const CALENDER_DAY_SOLID = require('../../assets/icons/joblist/calendar-day-solid.png');
+export const CLOCK_SOLID = require('../../assets/icons/joblist/clock-solid.png');
+export const MAP_MARKER = require('../../assets/icons/joblist/map-marker-alt-solid.png');
+export const LOCATION = require('../../assets/icons/joblist/map-marked-alt-solid.png');
+export const ALERT_CIRCLE = require('../../assets/icons/joblist/alert-circle.png');

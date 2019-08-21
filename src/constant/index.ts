@@ -12,4 +12,5 @@ export const RouteName = {
   SEND_MAIL: getString('screen', 'SEND_MAIL'),
   CONFIRM_MAIL: getString('screen', 'CONFIRM_MAIL'),
   RESET_PASSWORD: getString('screen', 'RESET_PASSWORD'),
+  JOB_LIST: getString('screen', 'JOB_LIST'),
 };
