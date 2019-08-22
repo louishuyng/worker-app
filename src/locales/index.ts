@@ -36,7 +36,8 @@ const strings: any = new LocalizedStrings({
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',
       SEND_MAIL_INSTRUCTION: 'Enter the email you’re using for your account.',
-      SEND_MAIL_DESCIPTION: 'We’ve sent password reset instructions to your email address' +
+      SEND_MAIL_DESCIPTION:
+        'We’ve sent password reset instructions to your email address' +
         '.If no email is received within ten minutes, check that the submitted address is correct.',
       EMAIL: 'Email',
       NEW_PASSWORD: 'New Password',
@@ -64,6 +65,18 @@ const strings: any = new LocalizedStrings({
       setLocation: 'Set to OnLocation',
       setSecured: 'Set to Secured',
       setEndOfShift: 'Set to End Of Shift',
+    },
+    modal: {
+      jobCancelledTitle: 'Job has been cancelled!',
+      skipSignature: 'Why do you want to skip signature?',
+      cancel: 'Cancel',
+      set: 'Set',
+      ok: 'Ok',
+      skip: 'Skip',
+      setEnroute: 'Set Status to Enroute',
+      setSecured: 'Set Status to Secured',
+      setLocation: 'Set Status to Location',
+      setEndOfShift: 'Set Status to End Of Shift',
     },
   },
 });

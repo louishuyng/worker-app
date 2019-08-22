@@ -11,3 +11,10 @@ export const setStatusLable: setStatusLableInterface = {
   [JobStatus.SECURED]: getString('jobList', 'setSecured'),
   [JobStatus.ENDOFSHIFT]: getString('jobList', 'setEndOfShift'),
 };
+
+export const setStatusModalLabel: setStatusLableInterface = {
+  [JobStatus.ENROUTE]: getString('modal', 'setEnroute'),
+  [JobStatus.LOCATION]: getString('modal', 'setLocation'),
+  [JobStatus.SECURED]: getString('modal', 'setSecured'),
+  [JobStatus.ENDOFSHIFT]: getString('modal', 'setEndOfShift'),
+};
