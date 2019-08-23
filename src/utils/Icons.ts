@@ -30,3 +30,6 @@ export const CLOCK_SOLID = require('../../assets/icons/joblist/clock-solid.png')
 export const MAP_MARKER = require('../../assets/icons/joblist/map-marker-alt-solid.png');
 export const LOCATION = require('../../assets/icons/joblist/map-marked-alt-solid.png');
 export const ALERT_CIRCLE = require('../../assets/icons/joblist/alert-circle.png');
+
+// Checkbox
+export const CHECK_MARK = require('../../assets/icons/checkbox/check-mark.png');

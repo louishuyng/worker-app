@@ -11,7 +11,7 @@ import {
   HELP_ICON,
 } from 'utils/Icons';
 import { ButtonUI } from 'components/common';
-import { CancelledJobModal } from 'components/common/Modal';
+import { SetStatusModal } from 'components/common/Modal';
 import { Types } from 'components/common/Button/types';
 import { JobDetail } from '../type';
 import { getString } from 'locales';
@@ -111,7 +111,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
   render() {
     const {
       jobData: {
-        date, timeAvaliable: { begin, end }, location, status, jobName,
+        date, timeAvaliable: { begin, end }, location, status,
       },
     } = this.props;
     return (
@@ -153,14 +153,14 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
           </WrapperButton>
         </Container>
         {this.state.isModalVisible && (
-          <CancelledJobModal
-            location={location}
-            jobName={jobName}
-            reason={'Cancelled due to the weather'}
-            closeModal={() => this.setState({
-              isModalVisible: false,
-            })}
+          <SetStatusModal
             onPress={() => null}
+            statusLabel={setStatusModalLabel[status]}
+            closeModal={() => {
+              this.setState({
+                isModalVisible: false,
+              });
+            }}
           />
         )}
       </View>

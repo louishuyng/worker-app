@@ -47,20 +47,20 @@ const ContainerStyled = styled.View`
 `;
 
 const TitleStyled = styled.Text`
-  font-size: 17;
   font-weight: bold;
   text-transform: capitalize;
   color: ${({ type }: { type: Types }) => handleTextColors(type)};
 `;
 
 const ButtonUI = (props: ButtonUIProps) => {
+  const { type, title, onPress } = props;
   return (
-    <ContainerStyled type={props.type}>
+    <ContainerStyled type={type}>
       <TouchableOpacity
-        style={{ alignItems: 'center', paddingVertical: 17 }}
-        onPress={props.onPress}
+        style={{ alignItems: 'center', paddingVertical: 13 }}
+        onPress={onPress}
       >
-        <TitleStyled type={props.type}>{props.title}</TitleStyled>
+        <TitleStyled type={type}>{title}</TitleStyled>
       </TouchableOpacity>
     </ContainerStyled>
   );

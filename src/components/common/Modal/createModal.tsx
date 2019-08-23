@@ -1,7 +1,6 @@
 import CancelledJob from './JobCancelled';
 import SkipSignature from './SkipSignature';
-import SetEnRoute from './SetStatus';
-import { ImageSourcePropType } from 'react-native';
+import SetStatus from './SetStatus';
 
 import { ModalTypes } from './models/modalModels';
 import { getString } from 'locales';
@@ -16,7 +15,10 @@ export interface JobCancelledProps extends ExtraModalLayoutProps {
 
 export interface SetStatusProps extends ExtraModalLayoutProps {
   statusLabel: string
-  mainIconSource: ImageSourcePropType,
+}
+
+export interface SkipSignatureProps extends ExtraModalLayoutProps {
+  reasons: string[] // chưa rõ dữ liệu ở đây
 }
 
 const CancelledJobModal = withBodyModal<JobCancelledProps>({
@@ -29,9 +31,9 @@ const SetStatusModal = withBodyModal<SetStatusProps>({
   title: null,
   submitActionName: getString('modal', 'set'),
   cancelActionName: getString('modal', 'cancel'),
-})(SetEnRoute);
+})(SetStatus);
 
-const SkipSignatureModal = withBodyModal({
+const SkipSignatureModal = withBodyModal<SkipSignatureProps>({
   title: getString('modal', 'skipSignature'),
   submitActionName: getString('modal', 'ok'),
   cancelActionName: getString('modal', 'cancel'),

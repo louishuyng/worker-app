@@ -25,9 +25,7 @@ const TitleWrapper = styled.View`
   border-bottom-color: #dbdede;
 `;
 
-const ContentWrapper = styled.View`
-  align-items: center;
-`;
+const ContentWrapper = styled.View``;
 
 const ButtonWrapper = styled.View`
   flex-direction: row;
@@ -37,12 +35,17 @@ const ButtonWrapper = styled.View`
   padding-bottom: 10;
 `;
 
-const Title = styled.Text`
-  font-size: 16;
-`;
+const Title = styled.Text``;
 
 const ModalLayout = (props: ModalUIProps) => {
-  const { title, cancelActionName, children, closeModal, submitActionName, onPress } = props;
+  const {
+    title,
+    submitActionName,
+    cancelActionName,
+    closeModal,
+    children,
+    onPress,
+  } = props;
   return (
     <View>
       <Modal

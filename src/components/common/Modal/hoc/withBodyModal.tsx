@@ -12,7 +12,7 @@ export const withBodyModal = <T extends ExtraModalLayoutProps>(modalData: BaseMo
         closeModal={closeModal}
         {...modalData}
       >
-        <ChildComponent {...props}/>
+        <ChildComponent {...props} />
       </ModalLayout>
     );
   };

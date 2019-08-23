@@ -72,7 +72,7 @@ const LayoutPasswordScreen = (props: AboutPasswordScreenProps) => {
           </KeyboardAwareScrollView>
         </WrapperBody>
         <WrapperButton>
-          <ButtonUI onPress={() => handleSubmit()} title={buttonTitle} type={Types.SUBMIT} />
+          <ButtonUI onPress={() => onPress()} title={buttonTitle} type={Types.SUBMIT} />
         </WrapperButton>
       </Container>
     </TouchableWithoutFeedback>

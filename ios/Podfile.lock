@@ -194,9 +194,9 @@ SPEC CHECKSUMS:
   React-RCTText: b074d89033583d4f2eb5faf7ea2db3a13c7553a2
   React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
-  ReactNativeLocalization: b085fa2140d940c99c7cf5693f95d80edca5bcac
-  RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
-  RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
+  ReactNativeLocalization: ced64c41959db9af8a52698752791291f20e9db8
+  RNCAsyncStorage: 621bad7a889b5bf1583a52547f2dcd3a4d1ff15e
+  RNGestureHandler: 92bf21a38c1af25ed3ff92414e51b3b0cb6288c8
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 

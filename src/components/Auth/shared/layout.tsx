@@ -116,7 +116,6 @@ export default class AuthScreen extends Component<Props, State> {
     } = AuthScreenModel(this.props.stage);
     const {
       navigation: { navigate },
-      handleSubmit,
     } = this.props;
     const isLogin = status === AuthStage.LOGIN;
     const isStepOne = status === AuthStage.SIGNUP_STEP_ONE;
@@ -146,7 +145,7 @@ export default class AuthScreen extends Component<Props, State> {
             </WrapperForm>
           </KeyboardAvoidingView>
           <WrapperFooter>
-            <ButtonUI type={Types.SUBMIT} title={buttonLabel} onPress={() => handleSubmit()}/>
+            <ButtonUI type={Types.SUBMIT} title={buttonLabel} onPress={() => navigate(navigator)}/>
             <SuggestionTitle>{suggestionTitle}</SuggestionTitle>
             <NavigationTitle onPress={() => navigate(subNavigator)}>{navigatorTitle}</NavigationTitle>
           </WrapperFooter>

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { View, Text } from 'react-native';
 import { SetStatusProps } from './createModal';
+import { HELP_ICON } from 'utils/Icons';
 
 const Wrapper = styled.View`
   display: flex;
@@ -20,11 +20,11 @@ const StatusLabel = styled.Text`
 `;
 
 const SetStatus = (props: SetStatusProps) => {
-  const { statusLabel, mainIconSource } = props;
+  const { statusLabel } = props;
   return (
     <Wrapper>
-      <MainIcon source={mainIconSource} />
-      <StatusLabel>{statusLabel} ?</StatusLabel>
+      <MainIcon source={HELP_ICON} />
+      <StatusLabel>{statusLabel}</StatusLabel>
     </Wrapper>
   );
 };
