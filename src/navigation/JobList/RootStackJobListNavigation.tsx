@@ -12,6 +12,22 @@ import { withDefaultStackNavigationConfig } from 'navigation/shared';
 const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
     screen: JobList,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => {
+      const { theme } = screenProps;
+      return ({
+        title: navigation.state.routeName,
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
+        headerTitleStyle: {
+          color: theme.fontColor,
+          fontSize: 17,
+        },
+        headerTintColor: theme.tintColor,
+      });
+    },
   },
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({

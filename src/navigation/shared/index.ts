@@ -2,13 +2,13 @@ import { StackNavigatorConfig, TabBarIconProps } from 'react-navigation';
 import { BottomBarIconUI } from 'components/common';
 import { ImageSourcePropType } from 'react-native';
 
-interface ConfigInterface {
+interface StackNavigationConfigInterface {
   initialRouteName: string;
   activeIcon: ImageSourcePropType;
   unActiveIcon: ImageSourcePropType;
 }
 
-export const withDefaultStackNavigationConfig = (config: ConfigInterface): StackNavigatorConfig => {
+export const withDefaultStackNavigationConfig = (config: StackNavigationConfigInterface): StackNavigatorConfig => {
   const { initialRouteName, activeIcon, unActiveIcon } = config;
 
   return {
