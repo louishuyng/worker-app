@@ -55,8 +55,7 @@ const WrapperFooter = styled.View`
 const Title = styled.Text`
   margin-top: 5%;
   font-size: 34px;
-  font-weight: bold;
-  font-family: 'Roboto-Regular';
+  font-family: 'Roboto-Bold';
 `;
 
 const ForgetPasswordLabel = styled.Text`
@@ -85,9 +84,8 @@ const SuggestionTitle = styled.Text`
 
 const NavigationTitle = styled.Text`
   font-size: 17px;
-  font-weight: bold;
   align-self: center;
-  font-family: 'Roboto-Regular';
+  font-family: 'Roboto-Bold';
   color: ${({ theme }) => theme.colors.skyBlue}
 `;
 

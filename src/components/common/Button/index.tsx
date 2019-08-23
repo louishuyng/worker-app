@@ -47,9 +47,8 @@ const ContainerStyled = styled.View`
 `;
 
 const TitleStyled = styled.Text`
-  font-weight: bold;
   text-transform: capitalize;
-  font-family: 'Roboto-Regular';
+  font-family: 'Roboto-Bold';
   color: ${({ type }: { type: Types }) => handleTextColors(type)};
 `;
 
@@ -58,7 +57,7 @@ const ButtonUI = (props: ButtonUIProps) => {
   return (
     <ContainerStyled type={type}>
       <TouchableOpacity
-        style={{ alignItems: 'center', paddingVertical: 14 }}
+        style={{ alignItems: 'center', paddingVertical: 16 }}
         onPress={props.onPress}
       >
         <TitleStyled type={type}>{title}</TitleStyled>

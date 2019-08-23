@@ -16,6 +16,7 @@ const MainIcon = styled.Image`
 
 const StatusLabel = styled.Text`
   padding: 5%;
+  font-family: 'Roboto-Regular';
   font-size: 17;
 `;
 
