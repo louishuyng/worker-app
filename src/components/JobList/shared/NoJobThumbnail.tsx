@@ -22,16 +22,19 @@ const Container = styled.View`
 const NotificationText = styled.Text`
   font-size: 16;
   padding: 3%;
+  font-family: 'Roboto-Regular';
 `;
 
 const Description = styled.Text`
   font-size: 16;
   padding: 3%;
   text-align: center;
+  font-family: 'Roboto-Regular';
 `;
 
 const FormatedTime = styled.Text`
   padding: 3%;
+  font-family: 'Roboto-Regular';
 `;
 
 const WrapperRecommed = styled.View`
@@ -41,11 +44,13 @@ const WrapperRecommed = styled.View`
 
 const RecommendNavigate = styled.Text`
   text-decoration: underline;
+  font-family: 'Roboto-Regular';
   text-decoration-color: ${({ theme }) => theme.colors.chateauGreen};
   color: ${({ theme }) => theme.colors.chateauGreen};
 `;
 
 const RecommendText = styled.Text`
+  font-family: 'Roboto-Regular';
 `;
 
 interface JobAssignProps {

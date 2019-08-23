@@ -104,5 +104,10 @@
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3",
     "typescript-styled-plugin": "^0.14.0"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }

@@ -15,7 +15,7 @@ import { RouteName } from 'constant';
 
 interface Props {
   stage: AuthStage;
-  navigation: {navigate: Function};
+  navigation: { navigate: Function };
   values: FormikAuthValues;
   errors: Object;
   handleSubmit: Function;
@@ -56,11 +56,13 @@ const Title = styled.Text`
   margin-top: 5%;
   font-size: 34px;
   font-weight: bold;
+  font-family: 'Roboto-Regular';
 `;
 
 const ForgetPasswordLabel = styled.Text`
   font-size: 14px;
   text-align: right;
+  font-family: 'Roboto-Regular';
 `;
 
 const StepIcon = styled.Image`
@@ -70,6 +72,7 @@ const StepIcon = styled.Image`
 const StepLabel = styled.Text`
   font-size: 13;
   margin-top: 2%;
+  font-family: 'Roboto-Regular';
 `;
 
 const SuggestionTitle = styled.Text`
@@ -77,12 +80,14 @@ const SuggestionTitle = styled.Text`
   align-self: center;
   margin-top: 10%;
   margin-bottom: 2%;
+  font-family: 'Roboto-Regular';
 `;
 
 const NavigationTitle = styled.Text`
   font-size: 17px;
   font-weight: bold;
   align-self: center;
+  font-family: 'Roboto-Regular';
   color: ${({ theme }) => theme.colors.skyBlue}
 `;
 
@@ -128,9 +133,9 @@ export default class AuthScreen extends Component<Props, State> {
             {isLogin || (
               <WrapperStatus>
                 {isStepOne ? (
-                  <StepIcon source={IC_STEP_ONE_SIGN_UP}/>
+                  <StepIcon source={IC_STEP_ONE_SIGN_UP} />
                 ) : (
-                  <StepIcon source={IC_STEP_TWO_SIGN_UP}/>
+                  <StepIcon source={IC_STEP_TWO_SIGN_UP} />
                 )}
                 <StepLabel>{stepLabel}</StepLabel>
               </WrapperStatus>

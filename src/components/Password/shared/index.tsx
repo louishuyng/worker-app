@@ -17,6 +17,7 @@ const Container = styled.KeyboardAvoidingView`
 
 const DescriptionWrapper = styled.Text`
   padding-vertical: 15;
+  font-family: 'Roboto-Regular';
 `;
 
 const TitleWrapper = styled(DescriptionWrapper)`

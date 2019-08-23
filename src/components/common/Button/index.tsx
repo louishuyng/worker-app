@@ -49,6 +49,7 @@ const ContainerStyled = styled.View`
 const TitleStyled = styled.Text`
   font-weight: bold;
   text-transform: capitalize;
+  font-family: 'Roboto-Regular';
   color: ${({ type }: { type: Types }) => handleTextColors(type)};
 `;
 
