@@ -33,6 +33,8 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
     type,
     label,
     placeholder,
+    isHideKeyboard,
+    onTouch,
     field: { name },
     form: { setFieldValue, submitCount, errors, touched, setFieldTouched },
   } = props;
@@ -43,8 +45,10 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
       <LableStyled>{label}</LableStyled>
       <InputStyled
         isError={isError}
+        onTouchStart={() => onTouch}
         secureTextEntry={type === 'password' && true}
         onChangeText={(text) => setFieldValue(name, text)}
+        editable={!isHideKeyboard && true}
         onBlur={() => setFieldTouched(name)}
         placeholder={editPlaceHolder}
         placeholderTextColor={isError ? colors.alizarin : colors.iron}

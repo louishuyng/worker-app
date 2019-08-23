@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Image, Text } from 'react-native';
+import { Image, Text, Alert } from 'react-native';
 
 import { ALERT_CIRCLE } from 'utils/Icons';
 import { TimeFormat } from '../type';
@@ -50,9 +50,10 @@ const RecommendText = styled.Text`
 
 interface JobAssignProps {
   hourWorkingData: [] | Array<TimeFormat>;
+  navigation: { navigate: Function }
 }
 
-export const NoJobThumbnail = ({ hourWorkingData }: JobAssignProps) => {
+export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) => {
   const dataLength = hourWorkingData.length;
   const isEmpty = dataLength === 0;
   const begin = !isEmpty && hourWorkingData[0].begin;
@@ -69,12 +70,14 @@ export const NoJobThumbnail = ({ hourWorkingData }: JobAssignProps) => {
             <FormatedTime>{end}</FormatedTime>{getString('jobList', 'today')}
           </Description> : null}
         <WrapperRecommed>
-          <RecommendNavigate>{getString('jobList', 'tapLabel')}</RecommendNavigate>
+          <RecommendNavigate onPress={() => {
+            (navigation).navigate('workHour');
+          }} >{getString('jobList', 'tapLabel')}</RecommendNavigate>
           <RecommendText>
             {
-              isEmpty !== null
-                ? getString('jobList', 'suggestionOne')
-                : getString('jobList', 'suggestionTwo')
+              isEmpty === true
+                ? getString('jobList', 'suggestionTwo')
+                : getString('jobList', 'suggestionOne')
             }
           </RecommendText>
         </WrapperRecommed>

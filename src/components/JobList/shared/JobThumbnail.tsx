@@ -111,7 +111,10 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
   render() {
     const {
       jobData: {
-        date, timeAvaliable: { begin, end }, location, status,
+        date,
+        timeAvaliable: { beginHour, beginMinute, endHour, endMinute },
+        location,
+        status,
       },
     } = this.props;
     return (
@@ -128,7 +131,9 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
             </WrapperInnerTime>
             <WrapperInnerTime>
               <Image source={CLOCK_SOLID} />
-              <TimeStyled>{begin} - {end}</TimeStyled>
+              <TimeStyled>
+                {beginHour}:{beginMinute} - {endHour}:{endMinute}
+              </TimeStyled>
             </WrapperInnerTime>
           </WrapperTime>
           <WrapperLocation>

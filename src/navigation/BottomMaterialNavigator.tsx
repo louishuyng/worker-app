@@ -6,10 +6,10 @@ import { NavigationRouteConfigMap } from 'react-navigation';
 import { colors } from 'utils/Theme';
 import { screenHeight } from 'utils/Styles';
 import bottomBarRouteLists from './models/bottomBarRoutes';
+import { RouteName } from 'constant';
 
 const createRouteConfig = (): NavigationRouteConfigMap => {
   let routes: NavigationRouteConfigMap = {};
-
   bottomBarRouteLists.map((value) => {
     const { key, screen } = value;
     routes = {
@@ -25,7 +25,7 @@ const createRouteConfig = (): NavigationRouteConfigMap => {
 const routeConfigMap = createRouteConfig();
 
 const navigatorConfig: TabConfig = {
-  initialRouteName: 'JobList',
+  initialRouteName: RouteName.JOB_LIST,
   labeled: false,
   barStyle: {
     backgroundColor: colors.lightBackground,

@@ -1,7 +1,4 @@
-export interface TimeFormat {
-  begin: string;
-  end: string;
-}
+import { TimeWorkHourFormat } from 'components/workHours/type';
 
 export enum JobStatus {
   ENROUTE,
@@ -19,6 +16,6 @@ export interface JobDetail {
   date: string;
   location: string;
   jobName: string,
-  timeAvaliable: TimeFormat;
+  timeAvaliable: TimeWorkHourFormat;
   status: JobStatus,
 }

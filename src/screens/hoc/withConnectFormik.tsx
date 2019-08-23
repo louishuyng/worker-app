@@ -5,7 +5,7 @@ import { withFormik } from 'formik';
 import { ObjectSchema } from 'yup';
 
 interface initMapPropsInterface {
-  [key: string]: string;
+  [key: string]: any;
 }
 
 interface handleSubmitFormikInterface {
@@ -15,7 +15,7 @@ interface handleSubmitFormikInterface {
 export interface ConnectFormikAuthParamaters {
   displayName: string,
   Component: any,
-  customSchema: ObjectSchema,
+  customSchema?: ObjectSchema,
   initMapProps: initMapPropsInterface,
   handleSubmit: handleSubmitFormikInterface,
 }

@@ -13,21 +13,11 @@ const Wrapper = styled.View`
   padding-left: 10;
 `;
 
-interface TimeFormat {
-  begin: string;
-  end: string;
-}
-
-interface AvailableJob {
-  time: TimeFormat;
-  location: string;
-  date: string;
-}
-
 interface NewJobTabProps {
   tabLabel: string;
   jobData: Array<JobDetail>;
   currentWorkingHour: Array<WorkingHourInterface>;
+  navigation: { navigate: Function }
 }
 
 const NewJobTab = (props: NewJobTabProps) => {
@@ -41,7 +31,7 @@ const NewJobTab = (props: NewJobTabProps) => {
 
   return (
     <Wrapper>
-      {!isEmptyJob ? displayJobThumnail(jobData) : <NoJobThumbnail hourWorkingData={currentWorkingHour}/>}
+      {!isEmptyJob ? displayJobThumnail(jobData) : <NoJobThumbnail hourWorkingData={currentWorkingHour} {...props} />}
     </Wrapper>
   );
 };

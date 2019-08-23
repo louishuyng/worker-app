@@ -1,10 +1,15 @@
 import { JobStatus, JobDetail, WorkingHourInterface } from './type';
 
+const mockDate = new Date();
 export const mockJobData: Array<JobDetail> = [
   {
     timeAvaliable: {
-      begin: '02:00',
-      end: '18:00',
+      beginHour: mockDate.getHours(),
+      beginMinute: mockDate.getMinutes(),
+      endHour: mockDate.getHours(),
+      endMinute: mockDate.getMinutes(),
+      fieldNameBegin: 'mock1',
+      fieldNameEnd: 'mock2',
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
@@ -14,8 +19,8 @@ export const mockJobData: Array<JobDetail> = [
 ];
 
 export const mockCurrentWorkingHour: Array<WorkingHourInterface> = [
-  {
-    begin: '02:00',
-    end: '18:00',
-  },
+  // {
+  //   begin: '02:00',
+  //   end: '18:00',
+  // },
 ];

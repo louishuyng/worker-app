@@ -1,8 +1,14 @@
 import { AuthScreenConfig, AuthStage } from './authScreenConfig';
 
 import {
-  authTitleData, autFormData, authSuggestionTitleData,
-  authNavigatorTitleData, authButtonLabelData, authNavigatorData, authSubNavigatorData, authStepData,
+  authTitleData,
+  autFormData,
+  authSuggestionTitleData,
+  authNavigatorTitleData,
+  authButtonLabelData,
+  authNavigatorData,
+  authSubNavigatorData,
+  authStepData,
 } from './specificModel';
 
 export const AuthScreenModel = (status: AuthStage): AuthScreenConfig => ({
