@@ -9,10 +9,12 @@ import { BottomBarIconUI } from 'components/common';
 import { IC_JOBLIST_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
 import { TabBarIconProps } from 'react-navigation';
 
-interface State {}
+interface State { }
 
-interface Props {}
-export default class JobList extends React.Component<Props, State > {
+interface Props {
+  navigation: { navigate: Function }
+}
+export default class JobList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -38,6 +40,7 @@ export default class JobList extends React.Component<Props, State > {
           key={1}
           currentWorkingHour={mockCurrentWorkingHour}
           jobData={mockJobData}
+          {...this.props}
         />
       </ScrollableTabView>
     );

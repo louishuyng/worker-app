@@ -32,6 +32,8 @@ const strings: any = new LocalizedStrings({
       CONFIRM_MAIL: 'ConfirmMail',
       RESET_PASSWORD: 'ResetPassword',
       JOB_LIST: 'Job List',
+      WORK_HOURS: 'Work Hours',
+      PROFILE: 'Profile',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',
@@ -77,6 +79,12 @@ const strings: any = new LocalizedStrings({
       setSecured: 'Set Status to Secured',
       setLocation: 'Set Status to Location',
       setEndOfShift: 'Set Status to End Of Shift',
+    },
+    workHours: {
+      save: 'Save',
+      add: '+  Add Hours',
+      from: 'From',
+      to: 'To',
     },
   },
 });

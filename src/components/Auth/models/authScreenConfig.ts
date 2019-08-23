@@ -14,11 +14,11 @@ export interface InputAuthData {
 export interface AuthScreenConfig {
   title: string;
   status: AuthStage;
-  stepLabel: string,
+  stepLabel: string;
   form: Array<InputAuthData>;
-  buttonLabel: string,
+  buttonLabel: string;
   suggestionTitle: string;
   navigatorTitle: string;
   navigator: string;
-  subNavigator: string,
+  subNavigator: string;
 }

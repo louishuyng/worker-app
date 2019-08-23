@@ -1,26 +1,20 @@
-import JobList from '../JobList/RootStackNavigator';
+import RootStackJobList from '../JobList/RootStackJobListNavigation';
 import { routeConfig } from 'navigation/models/routeConfig';
+import RootStackProfileNavigation from 'navigation/Profile/RootStackProfileNavigation';
+import { RouteName } from 'constant';
 
 interface ListBottomBar extends Array<routeConfig> {
   [index: number]: routeConfig;
-};
+}
 
 const bottomBarRouteLists: ListBottomBar = [
   {
-    key: 'JobList',
-    screen: JobList,
+    key: RouteName.JOB_LIST,
+    screen: RootStackJobList,
   },
   {
-    key: 'Calendar',
-    screen: JobList,
-  },
-  {
-    key: 'Notification',
-    screen: JobList,
-  },
-  {
-    key: 'User',
-    screen: JobList,
+    key: RouteName.PROFILE,
+    screen: RootStackProfileNavigation,
   },
 ];
 

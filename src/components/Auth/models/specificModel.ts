@@ -3,13 +3,9 @@ import { AuthStage, InputAuthData } from './authScreenConfig';
 import { getString } from 'locales';
 import { RouteName } from 'constant';
 
-type AuthForm = {
-  [key in AuthStage]: Array<InputAuthData>
-}
+type AuthForm = { [key in AuthStage]: Array<InputAuthData> };
 
-type AuthTitle = {
-  [key in AuthStage]: string
-}
+type AuthTitle = { [key in AuthStage]: string };
 
 export const autFormData: AuthForm = {
   [AuthStage.SIGNUP_STEP_ONE]: [
@@ -80,8 +76,14 @@ export const authStepData: AuthTitle = {
 };
 
 export const authButtonLabelData: AuthTitle = {
-  [AuthStage.SIGNUP_STEP_ONE]: getString('auth', 'SIGNUP_BUTTON_LABLE_STEP_ONE'),
-  [AuthStage.SIGNUP_STEP_TWO]: getString('auth', 'SIGNUP_BUTTON_LABLE_STEP_TWO'),
+  [AuthStage.SIGNUP_STEP_ONE]: getString(
+    'auth',
+    'SIGNUP_BUTTON_LABLE_STEP_ONE'
+  ),
+  [AuthStage.SIGNUP_STEP_TWO]: getString(
+    'auth',
+    'SIGNUP_BUTTON_LABLE_STEP_TWO'
+  ),
   [AuthStage.LOGIN]: getString('auth', 'LOGIN_BUTTON_LABLE'),
 };
 

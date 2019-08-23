@@ -57,8 +57,8 @@ const ButtonUI = (props: ButtonUIProps) => {
   return (
     <ContainerStyled type={type}>
       <TouchableOpacity
-        style={{ alignItems: 'center', paddingVertical: 13 }}
-        onPress={onPress}
+        style={{ alignItems: 'center', paddingVertical: 14 }}
+        onPress={props.onPress}
       >
         <TitleStyled type={type}>{title}</TitleStyled>
       </TouchableOpacity>
