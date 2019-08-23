@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Image, View } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -8,12 +8,14 @@ import {
   CLOCK_SOLID,
   MAP_MARKER,
   LOCATION,
+  HELP_ICON,
 } from 'utils/Icons';
 import { ButtonUI } from 'components/common';
+import { SetStatusModal } from 'components/common/Modal';
 import { Types } from 'components/common/Button/types';
 import { JobDetail } from '../type';
 import { getString } from 'locales';
-import { setStatusLable } from '../models/jobListModels';
+import { setStatusLable, setStatusModalLabel } from '../models/jobListModels';
 
 const Container = styled.View`
   padding-top: 3%;
@@ -90,49 +92,78 @@ const LocationStyled = styled.Text`
   margin-horizontal: 5;
 `;
 
-interface AvailableJobProps {
+interface JobThumbNailProps {
   jobData: JobDetail;
 }
 
-export const JobThumbnail = (props: AvailableJobProps) => {
-  const {
-    jobData: { date, timeAvaliable: { begin, end }, location, status },
-  } = props;
+interface JobThumbNailState {
+  isModalVisible: boolean;
+}
 
-  return (
-    <View style={{ padding: 20 }}>
-      <Container>
-        <WrapperTitle>
-          <Image source={ORANGE_CIRCLE} />
-          <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
-        </WrapperTitle>
-        <WrapperTime>
-          <WrapperInnerTime>
-            <Image source={CALENDER_DAY_SOLID} />
-            <DateStyled>{date}</DateStyled>
-          </WrapperInnerTime>
-          <WrapperInnerTime>
-            <Image source={CLOCK_SOLID} />
-            <TimeStyled>{begin} - {end}</TimeStyled>
-          </WrapperInnerTime>
-        </WrapperTime>
-        <WrapperLocation>
-          <Image source={MAP_MARKER} />
-          <LocationStyled>{location}</LocationStyled>
-        </WrapperLocation>
-        <WrapperButton>
-          <WrapperImage>
-            <ImageStyled source={LOCATION} />
-          </WrapperImage>
-          <ButtonStyled>
-            <ButtonUI
-              type={Types.SETSTATUS}
-              title={setStatusLable[status]}
-              onPress={() => { }}
-            />
-          </ButtonStyled>
-        </WrapperButton>
-      </Container>
-    </View>
-  );
+export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState> {
+  constructor(props: JobThumbNailProps) {
+    super(props);
+    this.state = {
+      isModalVisible: false,
+    };
+  };
+
+  render() {
+    const {
+      jobData: {
+        date, timeAvaliable: { begin, end }, location, status,
+      },
+    } = this.props;
+    return (
+      <View style={{ padding: 20 }}>
+        <Container>
+          <WrapperTitle>
+            <Image source={ORANGE_CIRCLE} />
+            <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
+          </WrapperTitle>
+          <WrapperTime>
+            <WrapperInnerTime>
+              <Image source={CALENDER_DAY_SOLID} />
+              <DateStyled>{date}</DateStyled>
+            </WrapperInnerTime>
+            <WrapperInnerTime>
+              <Image source={CLOCK_SOLID} />
+              <TimeStyled>{begin} - {end}</TimeStyled>
+            </WrapperInnerTime>
+          </WrapperTime>
+          <WrapperLocation>
+            <Image source={MAP_MARKER} />
+            <LocationStyled>{location}</LocationStyled>
+          </WrapperLocation>
+          <WrapperButton>
+            <WrapperImage>
+              <ImageStyled source={LOCATION} />
+            </WrapperImage>
+            <ButtonStyled>
+              <ButtonUI
+                type={Types.SETSTATUS}
+                title={setStatusLable[status]}
+                onPress={() => {
+                  this.setState({
+                    isModalVisible: true,
+                  });
+                }}
+              />
+            </ButtonStyled>
+          </WrapperButton>
+        </Container>
+        {this.state.isModalVisible && (
+          <SetStatusModal
+            onPress={() => null}
+            statusLabel={setStatusModalLabel[status]}
+            closeModal={() => {
+              this.setState({
+                isModalVisible: false,
+              });
+            }}
+          />
+        )}
+      </View>
+    );
+  };
 };

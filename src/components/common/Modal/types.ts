@@ -1,10 +1,13 @@
-export interface ModalUIProps {
+export interface BaseModalProps {
+  title: string | null;
   submitActionName: string;
-  title?: string;
-  modalName: string;
-  onPress: () => void;
+  cancelActionName: string | null;
 }
 
-export interface ModalUIState {
-  isModalVisible: boolean;
+export interface ExtraModalLayoutProps {
+  onPress: () => void;
+  closeModal: () => void;
+}
+export interface ModalUIProps extends BaseModalProps, ExtraModalLayoutProps {
+  children: any;
 }

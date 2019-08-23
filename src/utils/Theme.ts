@@ -3,24 +3,25 @@ export enum ThemeType {
   DARK = 'DARK',
 }
 
-export interface colorsType{
-  white: string,
-  alizarin: string,
-  iron: string,
-  paleSky: string,
-  skyBlue: string,
-  whiteGray: string,
-  chateauGreen: string,
-  dusk: string,
-  green: string,
-  greenBlue: string,
-  mediumGray: string,
-  paleGray: string,
-  lightBackground: string,
-  lightBackgroundLight: string,
-  darkBackground: string,
-  darkBackgroundLight: string,
-  capeCod: string,
+export interface colorsType {
+  white: string;
+  alizarin: string;
+  iron: string;
+  paleSky: string;
+  skyBlue: string;
+  whiteGray: string;
+  chateauGreen: string;
+  dusk: string;
+  green: string;
+  greenBlue: string;
+  mediumGray: string;
+  paleGray: string;
+  lightBackground: string;
+  lightBackgroundLight: string;
+  darkBackground: string;
+  darkBackgroundLight: string;
+  capeCod: string;
+  aquaHaze: string;
 }
 
 export const colors: colorsType = {
@@ -41,6 +42,7 @@ export const colors: colorsType = {
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
   capeCod: '#3A3C3E',
+  aquaHaze: '#EDF1F5',
 };
 
 const theme = {

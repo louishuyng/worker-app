@@ -1,11 +1,10 @@
-
 import 'styled-components';
 
 import { colorsType } from 'utils/Theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: colorsType,
+    colors: colorsType;
     background: string;
     btnPrimary: string;
     btnPrimaryFont: string;
