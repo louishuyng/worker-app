@@ -26,7 +26,9 @@ const WrapperCheckBox = styled.TouchableOpacity`
 
 const CheckMark = styled.Image``;
 
-const WrapperTitle = styled.Text``;
+const WrapperTitle = styled.Text`
+  font-family: 'Roboto-Regular';
+`;
 
 interface CheckBoxUIProps {
   isChecked: boolean;

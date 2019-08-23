@@ -13,6 +13,7 @@ const Container = styled.View`
 const JobNameTitle = styled.Text`
   color: ${({ theme }) => theme.colors.capeCod}
   font-weight: 500;
+  font-family: 'Roboto-Regular';
 `;
 
 const WrapperLocation = styled.View`
@@ -22,6 +23,7 @@ const WrapperLocation = styled.View`
 
 const Location = styled.Text`
   padding-left: 3%;
+  font-family: 'Roboto-Regular';
   color: ${({ theme }) => theme.colors.capeCod}
 `;
 
@@ -32,6 +34,7 @@ const WrapperReason = styled.ScrollView`
 s`;
 
 const ReasonContent = styled.Text`
+  font-family: 'Roboto-Regular';
   color: ${({ theme }) => theme.colors.capeCod}
 `;
 

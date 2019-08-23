@@ -35,7 +35,9 @@ const ButtonWrapper = styled.View`
   padding-bottom: 10;
 `;
 
-const Title = styled.Text``;
+const Title = styled.Text`
+  font-family: 'Roboto-Regular';
+ `;
 
 const ModalLayout = (props: ModalUIProps) => {
   const {

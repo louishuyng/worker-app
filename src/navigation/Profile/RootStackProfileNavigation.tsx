@@ -13,6 +13,22 @@ import { WorkHoursScreen } from 'screens/WorkHours';
 const routeConfig: NavigationRouteConfig = {
   [RouteName.WORK_HOURS]: {
     screen: WorkHoursScreen,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => {
+      const { theme } = screenProps;
+      return ({
+        title: navigation.state.routeName,
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
+        headerTitleStyle: {
+          color: theme.fontColor,
+          fontSize: 17,
+        },
+        headerTintColor: theme.tintColor,
+      });
+    },
   },
 };
 
