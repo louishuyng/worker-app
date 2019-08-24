@@ -19,7 +19,7 @@ const strings: any = new LocalizedStrings({
       DEPARTMENT: 'Department',
       SUGGESTION_SIGN_UP: 'Already have an account?',
       SUGGESTION_SIGN_IN: 'Don’t have an account?',
-      SIGNUP_BUTTON_LABLE_STEP_ONE: 'Next  →',
+      SIGNUP_BUTTON_LABLE_STEP_ONE: 'Next  ',
       SIGNUP_BUTTON_LABLE_STEP_TWO: 'Create Account',
       LOGIN_BUTTON_LABLE: 'Log In',
     },
@@ -33,6 +33,7 @@ const strings: any = new LocalizedStrings({
       RESET_PASSWORD: 'ResetPassword',
       JOB_LIST: 'Job List',
       WORK_HOURS: 'Work Hours',
+      CALENDAR: 'Calendar',
       PROFILE: 'Profile',
     },
     recovery: {

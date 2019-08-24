@@ -1,5 +1,3 @@
-export const IC_MASK = require('../../assets/icons/mask.png');
-
 // Bottom Navigation Icons
 export const IC_JOBLIST_ACTIVE = require('../../assets/icons/bottomBar/JobListActive.png');
 export const IC_JOBLIST_UN_ACTIVE = require('../../assets/icons/bottomBar/JobListUnActive.png');
@@ -13,15 +11,11 @@ export const IC_USER_UN_ACTIVE = require('../../assets/icons/bottomBar/UserUnAct
 // Auth Icons
 export const IC_STEP_ONE_SIGN_UP = require('../../assets/icons/auth/Step1.png');
 export const IC_STEP_TWO_SIGN_UP = require('../../assets/icons/auth/Step2.png');
+export const IC_ICON_RIGHT_ARROW = require('../../assets/icons/auth/arrow-right-solid.png');
 
 // Others
 export const CLOSE_ICON = require('../../assets/icons/close.png');
 export const HELP_ICON = require('../../assets/icons/help-circle.png');
-export const ELLIPSE_FILLED = require('../../assets/icons/EllipseFilled.png');
-export const ELLIPSE_DONE = require('../../assets/icons/EllipseDone.png');
-export const ELLIPSE_NOT_YET = require('../../assets/icons/EllipseNotYet.png');
-export const LINE_STEP1 = require('../../assets/icons/LineStep1.png');
-export const LINE_STEP2 = require('../../assets/icons/LineStep2.png');
 
 // Job List
 export const ORANGE_CIRCLE = require('../../assets/icons/joblist/orange-circle.png');

@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from 'react-native';
+
 export enum AuthStage {
   SIGNUP_STEP_ONE,
   SIGNUP_STEP_TWO,
@@ -21,4 +23,6 @@ export interface AuthScreenConfig {
   navigatorTitle: string;
   navigator: string;
   subNavigator: string;
+  afterIconData: ImageSourcePropType | undefined;
+
 }

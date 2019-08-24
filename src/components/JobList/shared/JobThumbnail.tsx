@@ -16,6 +16,7 @@ import { Types } from 'components/common/Button/types';
 import { JobDetail } from '../type';
 import { getString } from 'locales';
 import { setStatusLable, setStatusModalLabel } from '../models/jobListModels';
+import { convertWidth } from 'utils/convertSize';
 
 const Container = styled.View`
   padding-top: 3%;
@@ -33,7 +34,7 @@ const WrapperTitle = styled.View`
 `;
 
 const TitleStyled = styled.Text`
-  font-size: 18;
+  font-size: ${convertWidth(18)};
   padding-left: 5;
   font-family: 'Roboto-Regular';
 `;
@@ -50,12 +51,12 @@ const WrapperInnerTime = styled.View`
 `;
 
 const DateStyled = styled.Text`
-  font-size: 16;
+  font-size: ${convertWidth(16)};
   font-family: 'Roboto-Regular';
   padding-horizontal: 5;
 `;
 const TimeStyled = styled.Text`
-  font-size: 16;
+  font-size: ${convertWidth(16)};
   padding-horizontal: 5;
   font-family: 'Roboto-Regular';
 `;
@@ -91,7 +92,7 @@ const ButtonStyled = styled.View`
 `;
 
 const LocationStyled = styled.Text`
-  font-size: 16;
+  font-size: ${convertWidth(16)};
   margin-horizontal: 5;
   font-family: 'Roboto-Regular';
 `;

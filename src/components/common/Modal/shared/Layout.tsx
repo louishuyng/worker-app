@@ -7,6 +7,7 @@ import { ModalUIProps } from '../types';
 import { CLOSE_ICON } from 'utils/Icons';
 import { Types } from '../../Button/types';
 import { ButtonUI } from '../..';
+import { convertWidth } from 'utils/convertSize';
 
 const ModalWrapper = styled.View`
   background-color: white;
@@ -36,6 +37,7 @@ const ButtonWrapper = styled.View`
 `;
 
 const Title = styled.Text`
+  font-size: ${convertWidth(16)};
   font-family: 'Roboto-Regular';
  `;
 

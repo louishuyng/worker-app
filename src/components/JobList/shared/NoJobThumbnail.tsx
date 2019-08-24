@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Image, Text, Alert } from 'react-native';
+import { Image } from 'react-native';
 
 import { ALERT_CIRCLE } from 'utils/Icons';
-import { TimeFormat } from '../type';
 import { getString } from 'locales';
+import { convertWidth } from 'utils/convertSize';
+import { TimeWorkHourFormat } from 'components/workHours/type';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -20,29 +21,32 @@ const Container = styled.View`
 `;
 
 const NotificationText = styled.Text`
-  font-size: 16;
+  font-size: ${convertWidth(16)};
   padding: 3%;
   font-family: 'Roboto-Regular';
 `;
 
 const Description = styled.Text`
-  font-size: 16;
-  padding: 3%;
+  font-size: ${convertWidth(16)};
+  padding: 5%;
   text-align: center;
   font-family: 'Roboto-Regular';
 `;
 
 const FormatedTime = styled.Text`
   padding: 3%;
-  font-family: 'Roboto-Regular';
+  font-size: ${convertWidth(16)}
+  font-family: 'Roboto-Bold';
 `;
 
 const WrapperRecommed = styled.View`
   padding: 3%;
   flex-direction: row;
+  align-items: center;
 `;
 
 const RecommendNavigate = styled.Text`
+  font-size: ${convertWidth(16)}
   text-decoration: underline;
   font-family: 'Roboto-Regular';
   text-decoration-color: ${({ theme }) => theme.colors.chateauGreen};
@@ -50,19 +54,22 @@ const RecommendNavigate = styled.Text`
 `;
 
 const RecommendText = styled.Text`
+  font-size: ${convertWidth(16)};
   font-family: 'Roboto-Regular';
 `;
 
 interface JobAssignProps {
-  hourWorkingData: [] | Array<TimeFormat>;
+  hourWorkingData: [] | Array<TimeWorkHourFormat>;
   navigation: { navigate: Function }
 }
 
 export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) => {
   const dataLength = hourWorkingData.length;
   const isEmpty = dataLength === 0;
-  const begin = !isEmpty && hourWorkingData[0].begin;
-  const end = !isEmpty && hourWorkingData[dataLength - 1].end;
+  const beginHour = !isEmpty && hourWorkingData[0].beginHour;
+  const beginMinute = !isEmpty && hourWorkingData[0].beginMinute;
+  const endHour = !isEmpty && hourWorkingData[dataLength - 1].endHour;
+  const endMinute = !isEmpty && hourWorkingData[dataLength - 1].endMinute;
 
   return (
     <Wrapper>
@@ -71,8 +78,8 @@ export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) 
         <NotificationText>{getString('jobList', 'noJobTitle')}</NotificationText>
         {!isEmpty
           ? <Description>{getString('jobList', 'noJobSubTitle')}
-            <FormatedTime>{begin}</FormatedTime>{getString('jobList', 'and')}
-            <FormatedTime>{end}</FormatedTime>{getString('jobList', 'today')}
+            <FormatedTime>{beginHour}: {beginMinute}0</FormatedTime>{getString('jobList', 'and')}
+            <FormatedTime>{endHour}: {endMinute}0</FormatedTime>{getString('jobList', 'today')}
           </Description> : null}
         <WrapperRecommed>
           <RecommendNavigate onPress={() => {
