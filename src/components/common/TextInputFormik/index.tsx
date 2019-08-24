@@ -12,7 +12,7 @@ const LableStyled = styled.Text`
   font-size: ${convertWidth(14)};
   padding-bottom: 5;
   font-weight: 300;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const InputStyled = styled.TextInput<{ isError: any, placeholder: any }>`
@@ -22,7 +22,7 @@ const InputStyled = styled.TextInput<{ isError: any, placeholder: any }>`
   font-size: ${convertWidth(14)};
   height: ${convertHeight(42)};
   margin-bottom: 5%;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
   background-color: ${({ theme }) => theme.colors.white};
   ${(props) => {
     const { isError, theme: { colors } } = props;

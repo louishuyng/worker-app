@@ -4,14 +4,15 @@ import {
   StackNavigatorConfig,
 } from 'react-navigation';
 
-import Calendar from 'components/Calendar';
+import { CalendarList, Agenda } from 'components/Calendar';
 import { RouteName } from 'constant';
 import { withDefaultStackNavigationConfig } from 'navigation/shared';
 import { IC_CALENDAR_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
+import { convertWidth } from 'utils/convertSize';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.CALENDAR]: {
-    screen: Calendar,
+    screen: CalendarList,
     navigationOptions: (
       { navigation, screenProps }: { navigation: any, screenProps: any }
     ) => {
@@ -23,11 +24,15 @@ const routeConfig: NavigationRouteConfig = {
         },
         headerTitleStyle: {
           color: theme.fontColor,
-          fontSize: 17,
+          fontSize: convertWidth(17),
+          fontFamily: theme.fontFamily.medium,
         },
         headerTintColor: theme.tintColor,
       });
     },
+  },
+  [RouteName.AGENDA]: {
+    screen: Agenda,
   },
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({

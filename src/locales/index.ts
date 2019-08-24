@@ -35,6 +35,7 @@ const strings: any = new LocalizedStrings({
       WORK_HOURS: 'Work Hours',
       CALENDAR: 'Calendar',
       PROFILE: 'Profile',
+      AGENDA: 'Agenda',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',

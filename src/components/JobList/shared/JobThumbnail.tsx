@@ -36,7 +36,7 @@ const WrapperTitle = styled.View`
 const TitleStyled = styled.Text`
   font-size: ${convertWidth(18)};
   padding-left: 5;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const WrapperTime = styled.View`
@@ -52,13 +52,13 @@ const WrapperInnerTime = styled.View`
 
 const DateStyled = styled.Text`
   font-size: ${convertWidth(16)};
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
   padding-horizontal: 5;
 `;
 const TimeStyled = styled.Text`
   font-size: ${convertWidth(16)};
   padding-horizontal: 5;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const WrapperLocation = styled.View`
@@ -94,7 +94,7 @@ const ButtonStyled = styled.View`
 const LocationStyled = styled.Text`
   font-size: ${convertWidth(16)};
   margin-horizontal: 5;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 interface JobThumbNailProps {

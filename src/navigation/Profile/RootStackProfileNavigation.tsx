@@ -1,4 +1,4 @@
-
+import React from 'react';
 import {
   createStackNavigator,
   NavigationRouteConfig,
@@ -8,9 +8,10 @@ import {
 import { RouteName } from 'constant';
 import { withDefaultStackNavigationConfig } from 'navigation/shared';
 import { IC_USER_ACTIVE, IC_USER_UN_ACTIVE } from 'utils/Icons';
-import { WorkHoursScreen } from 'screens/WorkHours';
 import { ProfileScreen } from 'screens/Profile';
 import { convertWidth } from 'utils/convertSize';
+import { WorkHoursScreen } from 'screens/WorkHours';
+import BackButtonUI from 'components/common/ButtonBack';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.PROFILE]: {
@@ -27,7 +28,7 @@ const routeConfig: NavigationRouteConfig = {
         headerTitleStyle: {
           color: theme.fontColor,
           fontSize: convertWidth(17),
-          fontFamily: 'Roboto-Medium',
+          fontFamily: theme.fontFamily.medium,
         },
         headerTintColor: theme.tintColor,
       });
@@ -47,9 +48,10 @@ const routeConfig: NavigationRouteConfig = {
         headerTitleStyle: {
           color: theme.fontColor,
           fontSize: convertWidth(17),
-          fontFamily: 'Roboto-Medium',
+          fontFamily: theme.fontFamily.medium,
         },
         headerTintColor: theme.tintColor,
+        headerLeft: <BackButtonUI onPress={() => navigation.pop()}/>,
       });
     },
   },

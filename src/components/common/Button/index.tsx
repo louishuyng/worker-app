@@ -54,7 +54,7 @@ const TouchableOpacity = styled.TouchableOpacity`
 
 const TitleStyled = styled.Text`
   text-transform: capitalize;
-  font-family: 'Roboto-Bold';
+  font-family: ${({ theme }) => theme.fontFamily.bold};
   color: ${({ type }: { type: Types }) => handleTextColors(type)};
   font-size: ${convertWidth(17)};
 `;

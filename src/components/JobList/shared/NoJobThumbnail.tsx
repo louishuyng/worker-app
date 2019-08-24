@@ -23,20 +23,20 @@ const Container = styled.View`
 const NotificationText = styled.Text`
   font-size: ${convertWidth(16)};
   padding: 3%;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const Description = styled.Text`
   font-size: ${convertWidth(16)};
   padding: 5%;
   text-align: center;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const FormatedTime = styled.Text`
   padding: 3%;
-  font-size: ${convertWidth(16)}
-  font-family: 'Roboto-Bold';
+  font-size: ${convertWidth(16)};
+  font-family: ${({ theme }) => theme.fontFamily.bold};
 `;
 
 const WrapperRecommed = styled.View`
@@ -46,16 +46,16 @@ const WrapperRecommed = styled.View`
 `;
 
 const RecommendNavigate = styled.Text`
-  font-size: ${convertWidth(16)}
+  font-size: ${convertWidth(16)};
   text-decoration: underline;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
   text-decoration-color: ${({ theme }) => theme.colors.chateauGreen};
   color: ${({ theme }) => theme.colors.chateauGreen};
 `;
 
 const RecommendText = styled.Text`
   font-size: ${convertWidth(16)};
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular}
 `;
 
 interface JobAssignProps {

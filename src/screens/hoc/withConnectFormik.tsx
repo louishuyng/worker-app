@@ -20,9 +20,7 @@ export interface ConnectFormikAuthParamaters {
   handleSubmit: handleSubmitFormikInterface,
 }
 
-interface Props {
-  navigation: Object
-}
+interface Props {}
 
 export const withConnectFormik = ({
   Component, displayName, customSchema, initMapProps, handleSubmit,

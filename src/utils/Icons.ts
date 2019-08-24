@@ -1,4 +1,5 @@
 // Bottom Navigation Icons
+export const IC_BACK = require('../../assets/icons/backIcon.png');
 export const IC_JOBLIST_ACTIVE = require('../../assets/icons/bottomBar/JobListActive.png');
 export const IC_JOBLIST_UN_ACTIVE = require('../../assets/icons/bottomBar/JobListUnActive.png');
 export const IC_CALENDAR_ACTIVE = require('../../assets/icons/bottomBar/CalendarActive.png');

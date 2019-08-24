@@ -19,7 +19,7 @@ const Container = styled.View`
 `;
 
 const WrapperGroupInput = styled.ScrollView`
-  max-height: ${screenHeight / 1.8}
+  max-height: ${screenHeight / 1.8};
 `;
 
 const WrapperTextInput = styled.View`
@@ -70,7 +70,6 @@ export default class WorkHoursComponent extends Component<Props, State> {
   };
 
   handleAddHours = () => {
-
   };
 
   renderForm(workHours: any) {

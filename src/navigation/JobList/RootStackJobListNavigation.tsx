@@ -8,6 +8,7 @@ import JobList from 'components/JobList';
 import { RouteName } from 'constant';
 import { IC_JOBLIST_ACTIVE, IC_JOBLIST_UN_ACTIVE } from 'utils/Icons';
 import { withDefaultStackNavigationConfig } from 'navigation/shared';
+import { convertWidth } from 'utils/convertSize';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
@@ -23,7 +24,8 @@ const routeConfig: NavigationRouteConfig = {
         },
         headerTitleStyle: {
           color: theme.fontColor,
-          fontSize: 17,
+          fontSize: convertWidth(17),
+          fontFamily: theme.fontFamily.medium,
         },
         headerTintColor: theme.tintColor,
       });

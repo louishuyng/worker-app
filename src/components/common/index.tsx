@@ -4,3 +4,4 @@ export { default as ModalUI } from './Modal';
 export { default as TextInputUI } from './TextInput';
 export { default as TextInputFormikUI } from './TextInputFormik';
 export { default as CheckBoxUI } from './CheckBox';
+export { default as ButtonBackUI } from './ButtonBack';

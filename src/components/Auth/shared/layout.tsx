@@ -72,13 +72,13 @@ const WrapperFooter = styled.View`
 const Title = styled.Text`
   margin-top: 5%;
   font-size: ${convertWidth(34)};
-  font-family: 'Roboto-Bold';
+  font-family: ${({ theme }) => theme.fontFamily.bold};
 `;
 
 const ForgetPasswordLabel = styled.Text`
   font-size: ${convertWidth(14)};
   text-align: right;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const StepIcon = styled.Image`
@@ -88,7 +88,7 @@ const StepIcon = styled.Image`
 const StepLabel = styled.Text`
   font-size: ${convertWidth(13)};
   margin-top: 2%;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 const fontSize = (14 / 375) * screenWidth;
 const SuggestionTitle = styled.Text`
@@ -96,13 +96,13 @@ const SuggestionTitle = styled.Text`
   align-self: center;
   margin-top: 10%;
   margin-bottom: 2%;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const NavigationTitle = styled.Text`
   font-size: ${convertWidth(17)};
   align-self: center;
-  font-family: 'Roboto-Bold';
+  font-family: ${({ theme }) => theme.fontFamily.bold};
   color: ${({ theme }) => theme.colors.skyBlue}
 `;
 
