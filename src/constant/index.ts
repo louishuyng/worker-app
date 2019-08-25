@@ -19,4 +19,5 @@ export const RouteName = {
   PROFILE: getString('screen', 'PROFILE'),
   CALENDAR: getString('screen', 'CALENDAR'),
   AGENDA: getString('screen', 'AGENDA'),
+  NOTIFICATION: getString('screen', 'NOTIFICATION'),
 };

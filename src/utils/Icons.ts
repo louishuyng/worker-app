@@ -32,3 +32,8 @@ export const CHECK_MARK = require('../../assets/icons/checkbox/check-mark.png');
 // Profile
 export const AVATAR = require('../../assets/icons/profile/Avatar.jpeg');
 export const IC_ARROW = require('../../assets/icons/profile/chevron-right.png');
+
+// notification
+
+export const IC_JOB_CANCELLED = require('../../assets/icons/notification/job-cancelled.png');
+export const IC_JOB_ASSIGN = require('../../assets/icons/notification/job-assign.png');
