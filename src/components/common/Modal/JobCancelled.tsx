@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { MAP_MARKER } from 'utils/Icons';
 import { screenHeight } from 'utils/Styles';
 import { JobCancelledProps } from './createModal';
+import { convertWidth } from 'utils/convertSize';
 const Wrapper = styled.View``;
 
 const Container = styled.View`
@@ -13,6 +14,7 @@ const Container = styled.View`
 const JobNameTitle = styled.Text`
   color: ${({ theme }) => theme.colors.capeCod}
   font-weight: 500;
+  font-size: ${convertWidth(16)};
   font-family: 'Roboto-Regular';
 `;
 
@@ -24,6 +26,7 @@ const WrapperLocation = styled.View`
 const Location = styled.Text`
   padding-left: 3%;
   font-family: 'Roboto-Regular';
+  font-size: ${convertWidth(16)};
   color: ${({ theme }) => theme.colors.capeCod}
 `;
 
@@ -35,6 +38,7 @@ s`;
 
 const ReasonContent = styled.Text`
   font-family: 'Roboto-Regular';
+  font-size: ${convertWidth(14)};
   color: ${({ theme }) => theme.colors.capeCod}
 `;
 

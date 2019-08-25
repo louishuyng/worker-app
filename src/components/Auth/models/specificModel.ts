@@ -2,10 +2,14 @@ import { AuthStage, InputAuthData } from './authScreenConfig';
 
 import { getString } from 'locales';
 import { RouteName } from 'constant';
+import { ImageSourcePropType } from 'react-native';
+import { IC_ICON_RIGHT_ARROW } from 'utils/Icons';
 
 type AuthForm = { [key in AuthStage]: Array<InputAuthData> };
 
 type AuthTitle = { [key in AuthStage]: string };
+
+type AuthIcon = { [key in AuthStage]?: ImageSourcePropType | undefined };
 
 export const autFormData: AuthForm = {
   [AuthStage.SIGNUP_STEP_ONE]: [
@@ -97,6 +101,12 @@ export const authNavigatorTitleData: AuthTitle = {
   [AuthStage.SIGNUP_STEP_ONE]: getString('auth', 'LOGIN_TITLE'),
   [AuthStage.SIGNUP_STEP_TWO]: getString('auth', 'LOGIN_TITLE'),
   [AuthStage.LOGIN]: getString('auth', 'SIGNUP_TITLE'),
+};
+
+export const authAfterIconData: AuthIcon = {
+  [AuthStage.SIGNUP_STEP_ONE]: IC_ICON_RIGHT_ARROW,
+  [AuthStage.SIGNUP_STEP_TWO]: undefined,
+  [AuthStage.LOGIN]: undefined,
 };
 
 export const authNavigatorData: AuthTitle = {

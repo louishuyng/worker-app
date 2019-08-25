@@ -1,9 +1,10 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { ImageSourcePropType } from 'react-native';
 import styled from 'styled-components/native';
 
 import { colors } from 'utils/Theme';
 import { Types, ButtonUIProps } from './types';
+import { convertWidth } from 'utils/convertSize';
 
 const handleBackgroundColors = (type: Types) => {
   switch (type) {
@@ -46,21 +47,38 @@ const ContainerStyled = styled.View`
   border-color: ${({ type }: { type: Types }) => handleBorderColors(type)};
 `;
 
+const TouchableOpacity = styled.TouchableOpacity`
+  padding-vertical: 5%;
+  align-items: center;
+`;
+
 const TitleStyled = styled.Text`
   text-transform: capitalize;
   font-family: 'Roboto-Bold';
   color: ${({ type }: { type: Types }) => handleTextColors(type)};
+  font-size: ${convertWidth(17)};
+`;
+
+const AfterIcon = styled.Image``;
+
+const WrapperTitle = styled.View`
+  flex-direction: row;
+  align-items: center;
 `;
 
 const ButtonUI = (props: ButtonUIProps) => {
-  const { type, title, onPress } = props;
+  const { type, title, onPress, afterIcon } = props;
   return (
     <ContainerStyled type={type}>
       <TouchableOpacity
-        style={{ alignItems: 'center', paddingVertical: 16 }}
-        onPress={props.onPress}
+        onPress={onPress}
       >
-        <TitleStyled type={type}>{title}</TitleStyled>
+        <WrapperTitle>
+          <TitleStyled type={type}>
+            {title}
+          </TitleStyled>
+          {afterIcon && <AfterIcon source={afterIcon as ImageSourcePropType} />}
+        </WrapperTitle>
       </TouchableOpacity>
     </ContainerStyled>
   );

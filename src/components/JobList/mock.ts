@@ -1,4 +1,5 @@
 import { JobStatus, JobDetail, WorkingHourInterface } from './type';
+import { TimeWorkHourFormat } from 'components/workHours/type';
 
 const mockDate = new Date();
 export const mockJobData: Array<JobDetail> = [
@@ -18,9 +19,13 @@ export const mockJobData: Array<JobDetail> = [
   },
 ];
 
-export const mockCurrentWorkingHour: Array<WorkingHourInterface> = [
-  // {
-  //   begin: '02:00',
-  //   end: '18:00',
-  // },
+export const mockCurrentWorkingHour: Array<TimeWorkHourFormat> = [
+  {
+    beginHour: 2,
+    beginMinute: 0,
+    endHour: 18,
+    endMinute: 0,
+    fieldNameBegin: 'From',
+    fieldNameEnd: 'To',
+  },
 ];

@@ -9,6 +9,7 @@ import {
   authNavigatorData,
   authSubNavigatorData,
   authStepData,
+  authAfterIconData,
 } from './specificModel';
 
 export const AuthScreenModel = (status: AuthStage): AuthScreenConfig => ({
@@ -18,6 +19,7 @@ export const AuthScreenModel = (status: AuthStage): AuthScreenConfig => ({
   buttonLabel: authButtonLabelData[status],
   suggestionTitle: authSuggestionTitleData[status],
   navigatorTitle: authNavigatorTitleData[status],
+  afterIconData: authAfterIconData[status],
   navigator: authNavigatorData[status],
   subNavigator: authSubNavigatorData[status],
   stepLabel: authStepData[status],

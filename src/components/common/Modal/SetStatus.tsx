@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 
 import { SetStatusProps } from './createModal';
 import { HELP_ICON } from 'utils/Icons';
+import { convertWidth } from 'utils/convertSize';
 
 const Wrapper = styled.View`
   display: flex;
@@ -17,7 +18,7 @@ const MainIcon = styled.Image`
 const StatusLabel = styled.Text`
   padding: 5%;
   font-family: 'Roboto-Regular';
-  font-size: 17;
+  font-size: ${convertWidth(17)};
 `;
 
 const SetStatus = (props: SetStatusProps) => {

@@ -5,9 +5,11 @@ import styled, { css } from 'styled-components/native';
 
 import { TextInputUIProps } from './types';
 import { colors } from 'utils/Theme';
+import { screenWidth, screenHeight } from 'utils/Styles';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 
 const LableStyled = styled.Text`
-  font-size: 18;
+  font-size: ${convertWidth(14)};
   padding-bottom: 5;
   font-weight: 300;
   font-family: 'Roboto-Regular';
@@ -17,7 +19,8 @@ const InputStyled = styled.TextInput<{ isError: any, placeholder: any }>`
   border-width: 1;
   border-radius: 6;
   padding: 8px;
-  font-size: 17px;
+  font-size: ${convertWidth(14)};
+  height: ${convertHeight(42)};
   margin-bottom: 5%;
   font-family: 'Roboto-Regular';
   background-color: ${({ theme }) => theme.colors.white};

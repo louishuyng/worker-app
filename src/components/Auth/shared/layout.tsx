@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Field } from 'formik';
@@ -12,6 +12,8 @@ import { IC_STEP_ONE_SIGN_UP, IC_STEP_TWO_SIGN_UP } from 'utils/Icons';
 import { getString } from 'locales';
 import { FormikAuthValues } from 'screens/Auth/models';
 import { RouteName } from 'constant';
+import { screenHeight, screenWidth } from 'utils/Styles';
+import { convertWidth } from 'utils/convertSize';
 
 interface Props {
   stage: AuthStage;
@@ -29,37 +31,52 @@ const Container = styled.SafeAreaView`
   flex: 1;
 `;
 
-const WrapperTitle = styled.View`
+const WrapperTitle = styled.View<{isLogin: any}>`
   padding-left: 5%;
+  flex: 1 0 ${screenHeight * 0.2}px;
+  justify-content: space-around;
+  ${({ isLogin }) => {
+    if (isLogin) {
+      return css`
+        flex: 1 0 ${screenHeight * 0.15}px;
+      `
+      ;
+    };
+  }}
 `;
 
-const KeyboardAvoidingView = styled(KeyboardAwareScrollView)`
-  flex: 0.8;
+const KeyboardAvoidingView = styled(KeyboardAwareScrollView)<{isLogin: any}>`
+  flex: 1 0 ${screenHeight * 0.5}px;
   padding: 0% 5%;
+
+  ${({ isLogin }) => {
+    if (isLogin) {
+      return css`
+        flex: 1 0 ${screenHeight * 0.55}px;
+      `
+      ;
+    };
+  }}
 `;
 
-const WrapperStatus = styled.View`
-  margin-top: 5%;
-`;
+const WrapperStatus = styled.View``;
 
-const WrapperForm = styled.View`
-  margin-top: 10%;
-`;
+const WrapperForm = styled.View``;
 
 const WrapperFooter = styled.View`
-  flex: 0.2;
+  flex: 1 0 ${screenHeight * 0.3}px;
   padding: 5%;
   justify-content: center;
 `;
 
 const Title = styled.Text`
   margin-top: 5%;
-  font-size: 34px;
+  font-size: ${convertWidth(34)};
   font-family: 'Roboto-Bold';
 `;
 
 const ForgetPasswordLabel = styled.Text`
-  font-size: 14px;
+  font-size: ${convertWidth(14)};
   text-align: right;
   font-family: 'Roboto-Regular';
 `;
@@ -69,13 +86,13 @@ const StepIcon = styled.Image`
 `;
 
 const StepLabel = styled.Text`
-  font-size: 13;
+  font-size: ${convertWidth(13)};
   margin-top: 2%;
   font-family: 'Roboto-Regular';
 `;
-
+const fontSize = (14 / 375) * screenWidth;
 const SuggestionTitle = styled.Text`
-  font-size: 14px;
+  font-size: ${fontSize};
   align-self: center;
   margin-top: 10%;
   margin-bottom: 2%;
@@ -83,7 +100,7 @@ const SuggestionTitle = styled.Text`
 `;
 
 const NavigationTitle = styled.Text`
-  font-size: 17px;
+  font-size: ${convertWidth(17)};
   align-self: center;
   font-family: 'Roboto-Bold';
   color: ${({ theme }) => theme.colors.skyBlue}
@@ -115,7 +132,7 @@ export default class AuthScreen extends Component<Props, State> {
   render() {
     const {
       title, form, buttonLabel, suggestionTitle, stepLabel,
-      navigatorTitle, status, navigator, subNavigator,
+      navigatorTitle, status, navigator, subNavigator, afterIconData,
     } = AuthScreenModel(this.props.stage);
     const {
       navigation: { navigate },
@@ -126,7 +143,7 @@ export default class AuthScreen extends Component<Props, State> {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <Container>
-          <WrapperTitle>
+          <WrapperTitle isLogin={isLogin}>
             <Title>{title}</Title>
             {isLogin || (
               <WrapperStatus>
@@ -139,7 +156,7 @@ export default class AuthScreen extends Component<Props, State> {
               </WrapperStatus>
             )}
           </WrapperTitle>
-          <KeyboardAvoidingView>
+          <KeyboardAvoidingView isLogin={isLogin} showsVerticalScrollIndicator={false}>
             <WrapperForm>
               {this.displayForm(form)}
               {isLogin && <ForgetPasswordLabel onPress={() => navigate(RouteName.SEND_MAIL)}>
@@ -148,7 +165,12 @@ export default class AuthScreen extends Component<Props, State> {
             </WrapperForm>
           </KeyboardAvoidingView>
           <WrapperFooter>
-            <ButtonUI type={Types.SUBMIT} title={buttonLabel} onPress={() => navigate(navigator)}/>
+            <ButtonUI
+              type={Types.SUBMIT}
+              title={buttonLabel}
+              onPress={() => navigate(navigator)}
+              afterIcon={afterIconData}
+            />
             <SuggestionTitle>{suggestionTitle}</SuggestionTitle>
             <NavigationTitle onPress={() => navigate(subNavigator)}>{navigatorTitle}</NavigationTitle>
           </WrapperFooter>

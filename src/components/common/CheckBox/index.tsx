@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { DefaultTheme } from 'styled-components/native';
 
 import { CHECK_MARK } from 'utils/Icons';
+import { convertWidth } from 'utils/convertSize';
 
 const Container = styled.View`
   flex-direction: row;
@@ -28,6 +29,7 @@ const CheckMark = styled.Image``;
 
 const WrapperTitle = styled.Text`
   font-family: 'Roboto-Regular';
+  font-size: ${convertWidth(16)};
 `;
 
 interface CheckBoxUIProps {

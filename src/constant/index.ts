@@ -3,6 +3,8 @@ import { getString } from 'locales';
 export const nameRegExp = /^[a-zA-Z0-9]+$/;
 export const emailRegExp = /\S+@\S+\.\S+/;
 export const passRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+export const baseScreenWidth = 375;
+export const baseScreenHeight = 733;
 
 export const RouteName = {
   SIGN_IN: getString('screen', 'LOGIN'),
@@ -15,4 +17,5 @@ export const RouteName = {
   JOB_LIST: getString('screen', 'JOB_LIST'),
   WORK_HOURS: getString('screen', 'WORK_HOURS'),
   PROFILE: getString('screen', 'PROFILE'),
+  CALENDAR: getString('screen', 'CALENDAR'),
 };

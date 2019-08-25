@@ -9,8 +9,30 @@ import { RouteName } from 'constant';
 import { withDefaultStackNavigationConfig } from 'navigation/shared';
 import { IC_USER_ACTIVE, IC_USER_UN_ACTIVE } from 'utils/Icons';
 import { WorkHoursScreen } from 'screens/WorkHours';
+import { ProfileScreen } from 'screens/Profile';
+import { convertWidth } from 'utils/convertSize';
 
 const routeConfig: NavigationRouteConfig = {
+  [RouteName.PROFILE]: {
+    screen: ProfileScreen,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => {
+      const { theme } = screenProps;
+      return ({
+        title: navigation.state.routeName,
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
+        headerTitleStyle: {
+          color: theme.fontColor,
+          fontSize: convertWidth(17),
+          fontFamily: 'Roboto-Medium',
+        },
+        headerTintColor: theme.tintColor,
+      });
+    },
+  },
   [RouteName.WORK_HOURS]: {
     screen: WorkHoursScreen,
     navigationOptions: (
@@ -24,7 +46,8 @@ const routeConfig: NavigationRouteConfig = {
         },
         headerTitleStyle: {
           color: theme.fontColor,
-          fontSize: 17,
+          fontSize: convertWidth(17),
+          fontFamily: 'Roboto-Medium',
         },
         headerTintColor: theme.tintColor,
       });
@@ -35,7 +58,7 @@ const routeConfig: NavigationRouteConfig = {
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({
   activeIcon: IC_USER_ACTIVE,
   unActiveIcon: IC_USER_UN_ACTIVE,
-  initialRouteName: RouteName.WORK_HOURS,
+  initialRouteName: RouteName.PROFILE,
 });
 
 export default createStackNavigator(routeConfig, navigatorConfig);
