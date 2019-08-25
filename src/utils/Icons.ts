@@ -27,3 +27,7 @@ export const ALERT_CIRCLE = require('../../assets/icons/joblist/alert-circle.png
 
 // Checkbox
 export const CHECK_MARK = require('../../assets/icons/checkbox/check-mark.png');
+
+// Profile
+export const AVATAR = require('../../assets/icons/profile/Avatar.jpeg');
+export const IC_ARROW = require('../../assets/icons/profile/chevron-right.png');

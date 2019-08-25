@@ -87,6 +87,16 @@ const strings: any = new LocalizedStrings({
       from: 'From',
       to: 'To',
     },
+    profile: {
+      availabelTitle: 'Available for Work',
+      cannotChange: 'You cannot change the data because you are assigned to a job',
+      from: 'From',
+      to: 'to',
+      personalInfo: 'PERSONAL INFORMATION',
+      email: 'Email',
+      phone: 'Phone',
+      settings: 'Settings',
+    },
   },
 });
 

@@ -99,6 +99,7 @@ const LocationStyled = styled.Text`
 
 interface JobThumbNailProps {
   jobData: JobDetail;
+  isButtonAppear: boolean;
 }
 
 interface JobThumbNailState {
@@ -121,6 +122,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
         location,
         status,
       },
+      isButtonAppear,
     } = this.props;
     return (
       <View style={{ padding: 20 }}>
@@ -145,7 +147,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
             <Image source={MAP_MARKER} />
             <LocationStyled>{location}</LocationStyled>
           </WrapperLocation>
-          <WrapperButton>
+          {isButtonAppear && <WrapperButton>
             <WrapperImage>
               <ImageStyled source={LOCATION} />
             </WrapperImage>
@@ -160,9 +162,9 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
                 }}
               />
             </ButtonStyled>
-          </WrapperButton>
+          </WrapperButton>}
         </Container>
-        {this.state.isModalVisible && (
+        { isButtonAppear && this.state.isModalVisible && (
           <SetStatusModal
             onPress={() => null}
             statusLabel={setStatusModalLabel[status]}

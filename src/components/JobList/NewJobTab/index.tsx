@@ -25,7 +25,7 @@ const NewJobTab = (props: NewJobTabProps) => {
   const isEmptyJob = jobData.length === 0;
   const displayJobThumnail = (data: Array<JobDetail>) => {
     return data.map((value: JobDetail, index: number) => (
-      <JobThumbnail key={index} jobData={value} />
+      <JobThumbnail isButtonAppear key={index} jobData={value} />
     ));
   };
 
