@@ -1,7 +1,4 @@
-export enum TypeNotifcation {
-  JOB_CANCALLED,
-  JOB_ASSIGN,
-}
+import { TypeNotifcation } from './type';
 
 export const mockData = [
   {

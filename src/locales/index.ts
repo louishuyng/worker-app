@@ -99,6 +99,10 @@ const strings: any = new LocalizedStrings({
       phone: 'Phone',
       settings: 'Settings',
     },
+    notification: {
+      new: 'New',
+      seen: 'Seen',
+    },
   },
 });
 
