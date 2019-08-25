@@ -36,6 +36,7 @@ const strings: any = new LocalizedStrings({
       CALENDAR: 'Calendar',
       PROFILE: 'Profile',
       AGENDA: 'Agenda',
+      NOTIFICATION: 'Notification',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',
@@ -97,6 +98,10 @@ const strings: any = new LocalizedStrings({
       email: 'Email',
       phone: 'Phone',
       settings: 'Settings',
+    },
+    notification: {
+      new: 'New',
+      seen: 'Seen',
     },
   },
 });

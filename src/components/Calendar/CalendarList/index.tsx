@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { CalendarList, DayComponentProps } from 'react-native-calendars';
 import { NavigationScreenProp } from 'react-navigation';
-import moment from 'moment';
 
 import LocaleConfig from '../config';
 import DayComponent from 'components/Calendar/CalendarList/DayComponent';
 import { convertHeight, convertWidth } from 'utils/convertSize';
 import HeaderCalendar from '../shared';
+import { colors } from 'utils/Theme';
 
 LocaleConfig.defaultLocale = 'en';
 
@@ -27,16 +27,17 @@ export default class CalendarListComponent extends React.Component<Props, State>
   }
 
   render() {
-    const currentDate: string = moment().format('YYYY-MM-DD');
+    const currentDate: string = '2019-08-26';
     return (
       <SafeAreaView>
         <HeaderCalendar />
         <CalendarList
           hideDayNames={true}
           firstDay={1}
+          monthFormat={'MMMM'}
           markedDates={
             {
-              '2019-08-25': {
+              '2019-08-26': {
                 selected: true,
                 marked: true,
                 selectedColor: 'blue',
@@ -44,23 +45,23 @@ export default class CalendarListComponent extends React.Component<Props, State>
               },
             }
           }
-          calendarHeight={convertHeight(280)}
           theme={{
+            'stylesheet.calendar-list.main': {
+              calendar: {
+                height: convertHeight(280),
+              },
+            },
             'stylesheet.calendar.header': {
               header: {
-                justifyContent: 'center',
-                marginBottom: convertHeight(10),
               },
               monthText: {
+                color: colors.paleSky,
                 fontSize: convertWidth(17),
-                alignContent: 'space-between',
               },
             },
             'stylesheet.calendar.main': {
               week: {
-                marginBottom: convertHeight(15),
                 flexDirection: 'row',
-                justifyContent: 'space-around',
               },
             },
           }}

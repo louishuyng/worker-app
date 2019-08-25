@@ -3,6 +3,7 @@ import { routeConfig } from 'navigation/models/routeConfig';
 import RootStackProfileNavigation from 'navigation/Profile/RootStackProfileNavigation';
 import RootStackCalendarNavigation from 'navigation/Calendar/RootStackCalendarNavigation';
 import { RouteName } from 'constant';
+import RootStackNotificationNavigation from 'navigation/Notification/RootStackNotificationNavigation';
 
 interface ListBottomBar extends Array<routeConfig> {
   [index: number]: routeConfig;
@@ -16,6 +17,10 @@ const bottomBarRouteLists: ListBottomBar = [
   {
     key: RouteName.CALENDAR,
     screen: RootStackCalendarNavigation,
+  },
+  {
+    key: RouteName.NOTIFICATION,
+    screen: RootStackNotificationNavigation,
   },
   {
     key: RouteName.PROFILE,
