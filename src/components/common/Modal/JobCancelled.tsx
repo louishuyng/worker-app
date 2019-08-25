@@ -12,10 +12,10 @@ const Container = styled.View`
 `;
 
 const JobNameTitle = styled.Text`
-  color: ${({ theme }) => theme.colors.capeCod}
+  color: ${({ theme }) => theme.colors.capeCod};
   font-weight: 500;
   font-size: ${convertWidth(16)};
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const WrapperLocation = styled.View`
@@ -25,19 +25,19 @@ const WrapperLocation = styled.View`
 
 const Location = styled.Text`
   padding-left: 3%;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
   font-size: ${convertWidth(16)};
-  color: ${({ theme }) => theme.colors.capeCod}
+  color: ${({ theme }) => theme.colors.capeCod};
 `;
 
 const WrapperReason = styled.ScrollView`
-  background-color: ${({ theme }) => theme.colors.aquaHaze}
+  background-color: ${({ theme }) => theme.colors.aquaHaze};
   padding: 5%;
   max-height: ${screenHeight / 3};
-s`;
+`;
 
 const ReasonContent = styled.Text`
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
   font-size: ${convertWidth(14)};
   color: ${({ theme }) => theme.colors.capeCod}
 `;

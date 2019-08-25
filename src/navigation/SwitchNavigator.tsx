@@ -3,7 +3,6 @@ import {
   createAppContainer,
   NavigationRouteConfigMap,
   createSwitchNavigator,
-  SwitchNavigatorConfig,
 } from 'react-navigation';
 
 import { ThemeProvider } from 'styled-components';

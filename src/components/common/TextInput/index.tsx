@@ -9,7 +9,7 @@ const LableStyled = styled.Text`
   font-size: ${convertWidth(14)};
   padding-bottom: 5;
   font-weight: 300;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const InputStyled = styled.TextInput`
@@ -18,7 +18,7 @@ const InputStyled = styled.TextInput`
   padding: 8px;
   font-size: ${convertWidth(14)};
   margin-bottom: 5%;
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
   background-color: ${({ theme }) => theme.colors.white};
   border-color: #dbdede;
 `;

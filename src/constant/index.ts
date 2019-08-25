@@ -18,4 +18,5 @@ export const RouteName = {
   WORK_HOURS: getString('screen', 'WORK_HOURS'),
   PROFILE: getString('screen', 'PROFILE'),
   CALENDAR: getString('screen', 'CALENDAR'),
+  AGENDA: getString('screen', 'AGENDA'),
 };

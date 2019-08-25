@@ -18,17 +18,7 @@ export const withDefaultStackNavigationConfig = (config: StackNavigationConfigIn
     navigationOptions: ({ navigation, screenProps }: {
     navigation: any, screenProps: any
   }) => {
-      const { theme } = screenProps;
       return {
-        title: navigation.state.routeName,
-        headerStyle: {
-          backgroundColor: theme.background,
-        },
-        headerTitleStyle: {
-          color: theme.fontColor,
-          fontSize: 17,
-        },
-        headerTintColor: theme.tintColor,
         tabBarIcon: ({ focused }: TabBarIconProps) => {
           if (focused) return BottomBarIconUI({ source: activeIcon });
           return BottomBarIconUI({ source: unActiveIcon });

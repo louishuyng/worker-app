@@ -20,12 +20,12 @@ const Container = styled.KeyboardAvoidingView`
 const DescriptionWrapper = styled.Text`
   padding-vertical: 15;
   font-size: ${convertWidth(14)};
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const TitleWrapper = styled(DescriptionWrapper)`
   font-size: ${convertWidth(34)};
-  font-family: 'Roboto-Bold';
+  font-family: ${({ theme }) => theme.fontFamily.bold};
 `;
 
 const WrapperTitle = styled.View`

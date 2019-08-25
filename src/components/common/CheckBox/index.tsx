@@ -28,7 +28,7 @@ const WrapperCheckBox = styled.TouchableOpacity`
 const CheckMark = styled.Image``;
 
 const WrapperTitle = styled.Text`
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
   font-size: ${convertWidth(16)};
 `;
 

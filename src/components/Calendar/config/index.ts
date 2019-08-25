@@ -1,5 +1,7 @@
 import { LocaleConfig } from 'react-native-calendars';
 
+export const weekDayShortNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
 LocaleConfig.locales['en'] = {
   monthNames: [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -9,7 +11,7 @@ LocaleConfig.locales['en'] = {
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',
   ],
   dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+  dayNamesShort: weekDayShortNames,
 };
 
 export default LocaleConfig;

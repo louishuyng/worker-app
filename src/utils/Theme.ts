@@ -5,6 +5,7 @@ export enum ThemeType {
 
 export interface colorsType {
   white: string;
+  black: string;
   alizarin: string;
   iron: string;
   paleSky: string;
@@ -22,10 +23,20 @@ export interface colorsType {
   darkBackgroundLight: string;
   capeCod: string;
   aquaHaze: string;
+  silver: string;
+  cerulean: string;
+  mineShaft: string;
+}
+
+export interface fontFamilyType {
+  medium: string,
+  regular: string,
+  bold: string,
 }
 
 export const colors: colorsType = {
   white: '#FFFFFF',
+  black: '#000000',
   alizarin: '#e74c3c',
   iron: '#DBDEDE',
   paleSky: '#6F7780',
@@ -43,6 +54,15 @@ export const colors: colorsType = {
   darkBackgroundLight: '#393241',
   capeCod: '#3A3C3E',
   aquaHaze: '#EDF1F5',
+  silver: '#C3C3C3',
+  cerulean: '#009ADA',
+  mineShaft: '#333333',
+};
+
+export const fontFamily: fontFamilyType = {
+  medium: 'Roboto-Medium',
+  regular: 'Roboto-Regular',
+  bold: 'Roboto-Bold',
 };
 
 const theme = {
@@ -56,6 +76,7 @@ const theme = {
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'black',
     tintColor: '#333333',
+    fontFamily,
     colors,
   },
   dark: {
@@ -68,6 +89,7 @@ const theme = {
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'white',
     tintColor: '#a3a3a3',
+    fontFamily,
     colors,
   },
 };

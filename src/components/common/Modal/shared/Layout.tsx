@@ -38,7 +38,7 @@ const ButtonWrapper = styled.View`
 
 const Title = styled.Text`
   font-size: ${convertWidth(16)};
-  font-family: 'Roboto-Regular';
+  font-family: ${({ theme }) => theme.fontFamily.regular};
  `;
 
 const ModalLayout = (props: ModalUIProps) => {
