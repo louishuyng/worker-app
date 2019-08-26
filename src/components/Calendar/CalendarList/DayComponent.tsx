@@ -17,9 +17,9 @@ interface Props {
 interface State {}
 
 const WrapperDay = styled.TouchableOpacity<{isCurrentDate: boolean}>`
-  width: ${convertWidth(38)};
-  height: ${convertWidth(38)};
-  border-radius: ${convertWidth(19)};
+  width: ${convertWidth(50)};
+  height: ${convertWidth(50)};
+  border-radius: ${convertWidth(25)};
   justify-content: center;
   align-items: center;
   ${({ isCurrentDate, theme }) => {

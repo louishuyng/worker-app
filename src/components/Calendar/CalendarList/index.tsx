@@ -34,7 +34,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
         <CalendarList
           hideDayNames={true}
           firstDay={1}
-          monthFormat={'MMMM'}
+          monthFormat={'MMMM, yyyy'}
           markedDates={
             {
               '2019-08-26': {
@@ -47,16 +47,14 @@ export default class CalendarListComponent extends React.Component<Props, State>
           }
           theme={{
             'stylesheet.calendar-list.main': {
-              calendar: {
-                height: convertHeight(280),
-              },
             },
             'stylesheet.calendar.header': {
-              header: {
-              },
               monthText: {
                 color: colors.paleSky,
                 fontSize: convertWidth(17),
+              },
+              currentMonthText: {
+                color: colors.skyBlue,
               },
             },
             'stylesheet.calendar.main': {

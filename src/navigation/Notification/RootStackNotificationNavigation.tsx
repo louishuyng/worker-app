@@ -6,7 +6,7 @@ import {
 } from 'react-navigation';
 
 import { RouteName } from 'constant';
-import { withDefaultStackNavigationConfig } from 'navigation/shared';
+import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 import { IC_USER_ACTIVE, IC_USER_UN_ACTIVE, IC_NOTIFICATION_ACITVE, IC_NOTIFICATION_UN_ACITVE } from 'utils/Icons';
 import { ProfileScreen } from 'screens/Profile';
 import { convertWidth } from 'utils/convertSize';
@@ -19,21 +19,7 @@ const routeConfig: NavigationRouteConfig = {
     screen: NotificationUI,
     navigationOptions: (
       { navigation, screenProps }: { navigation: any, screenProps: any }
-    ) => {
-      const { theme } = screenProps;
-      return ({
-        title: navigation.state.routeName,
-        headerStyle: {
-          backgroundColor: theme.background,
-        },
-        headerTitleStyle: {
-          color: theme.fontColor,
-          fontSize: convertWidth(17),
-          fontFamily: theme.fontFamily.medium,
-        },
-        headerTintColor: theme.tintColor,
-      });
-    },
+    ) => wihtDefaultNavigtaionConfig({ navigation, screenProps }),
   },
 };
 

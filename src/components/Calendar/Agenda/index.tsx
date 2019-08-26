@@ -33,6 +33,8 @@ export default class Agenda extends React.Component<Props, State> {
       headerTitleStyle: {
         color: colors.black,
         fontSize: convertWidth(17),
+        width: '75%',
+        textAlign: 'center',
         fontFamily: fontFamily.medium,
       },
       headerLeft: <BackButtonUI label={monthName} onPress={() => navigation.pop()}/>,
