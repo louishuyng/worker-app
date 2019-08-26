@@ -6,17 +6,16 @@ import HeaderCalendar from '../shared';
 import { colors, fontFamily } from 'utils/Theme';
 import { RouteName } from 'constant';
 import BackButtonUI from 'components/common/ButtonBack';
-import { convertWidth } from 'utils/convertSize';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 import ListAgenda from './ListAgenda';
-import { getDateOfWeek } from 'utils/getDateOfWeek';
+import { View } from 'react-native';
+import { screenHeight } from 'utils/Styles';
 
 interface Props {
   navigation: NavigationScreenProp<any>;
 }
 
 interface State { }
-
-const SafeAreaView = styled.SafeAreaView``;
 
 export default class Agenda extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -49,10 +48,10 @@ export default class Agenda extends React.Component<Props, State> {
 
   render() {
     return (
-      <SafeAreaView>
+      <View style={{ height: screenHeight, paddingBottom: convertHeight(180) }}>
         <HeaderCalendar datePicked={this.props.navigation.getParam('datePicked')} isShowController />
         <ListAgenda />
-      </SafeAreaView>
+      </View>
     );
   }
 }

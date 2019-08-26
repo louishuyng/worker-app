@@ -13,9 +13,10 @@ const Wrapper = styled.View`
 `;
 
 const Container = styled.View`
-  padding-top: 3%;
+  padding-vertical: 6%;
   border-width: 1;
   border-color: ${({ theme }) => theme.colors.iron};
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 7;
   align-items: center;
 `;
@@ -23,12 +24,14 @@ const Container = styled.View`
 const NotificationText = styled.Text`
   font-size: ${convertWidth(16)};
   padding: 3%;
+  color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 const Description = styled.Text`
   font-size: ${convertWidth(16)};
-  padding: 5%;
+  color: ${({ theme }) => theme.colors.capeCod};
+  padding: 4%;
   text-align: center;
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
@@ -36,7 +39,8 @@ const Description = styled.Text`
 const FormatedTime = styled.Text`
   padding: 3%;
   font-size: ${convertWidth(16)};
-  font-family: ${({ theme }) => theme.fontFamily.bold};
+  color: ${({ theme }) => theme.colors.capeCod};
+  font-family: ${({ theme }) => theme.fontFamily.medium};
 `;
 
 const WrapperRecommed = styled.View`
@@ -55,7 +59,8 @@ const RecommendNavigate = styled.Text`
 
 const RecommendText = styled.Text`
   font-size: ${convertWidth(16)};
-  font-family: ${({ theme }) => theme.fontFamily.regular}
+  color:  ${({ theme }) => theme.colors.capeCod};
+  font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
 interface JobAssignProps {
