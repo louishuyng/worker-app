@@ -2,6 +2,7 @@ import { JobStatus, JobDetail, WorkingHourInterface } from './type';
 import { TimeWorkHourFormat } from 'components/workHours/type';
 
 const mockDate = new Date();
+
 export const mockJobData: Array<JobDetail> = [
   {
     timeAvaliable: {
@@ -14,7 +15,7 @@ export const mockJobData: Array<JobDetail> = [
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
-    date: '03/04/2019',
+    date: mockDate,
     status: JobStatus.ENROUTE,
   },
 ];

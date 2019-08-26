@@ -7,6 +7,7 @@ import { colors, fontFamily } from 'utils/Theme';
 import { RouteName } from 'constant';
 import BackButtonUI from 'components/common/ButtonBack';
 import { convertWidth } from 'utils/convertSize';
+import ListAgenda from './ListAgenda';
 
 interface Props {}
 
@@ -24,7 +25,7 @@ export default class Agenda extends React.Component<Props, State> {
     { navigation }: {navigation: NavigationScreenProp<any>
   }): NavigationStackScreenOptions => {
     const { getParam } = navigation;
-    const monthName = navigation.getParam('month');
+    const monthName = getParam('month');
     return {
       title: RouteName.CALENDAR,
       headerStyle: {
@@ -46,6 +47,7 @@ export default class Agenda extends React.Component<Props, State> {
     return (
       <SafeAreaView>
         <HeaderCalendar />
+        <ListAgenda />
       </SafeAreaView>
     );
   }

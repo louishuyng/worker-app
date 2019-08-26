@@ -103,6 +103,9 @@ const strings: any = new LocalizedStrings({
       new: 'New',
       seen: 'Seen',
     },
+    calendar: {
+      goJobPage: 'Go to Job Page  ',
+    },
   },
 });
 
