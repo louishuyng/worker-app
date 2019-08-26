@@ -38,10 +38,10 @@ const TextDay = styled.Text<{isWeekend: boolean}>`
   ${({ theme, isWeekend }) => {
     if (isWeekend) {
       return css`
-        color: ${theme.colors.silver}; 
+        color: ${theme.colors.silver};
     `;
     }
-  }} 
+  }}
 `;
 
 const WrapperDot = styled.View`
@@ -85,6 +85,7 @@ export default class DayComponent extends React.Component<Props, State> {
          isCurrentDate={isCurrentDate}
          onPress={() => navigate(RouteName.AGENDA, {
            month: moment(date.month, 'MM').format('MMMM'),
+           datePicked: date.dateString,
          })}
        >
          <TextDay isWeekend={isWeekend}>
