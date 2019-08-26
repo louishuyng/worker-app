@@ -8,7 +8,6 @@ import {
   CLOCK_SOLID,
   MAP_MARKER,
   LOCATION,
-  HELP_ICON,
 } from 'utils/Icons';
 import { ButtonUI } from 'components/common';
 import { SetStatusModal } from 'components/common/Modal';
@@ -124,6 +123,9 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
       },
       isButtonAppear,
     } = this.props;
+
+    const formatDate = date.toLocaleDateString('en-US');
+
     return (
       <View style={{ padding: 20 }}>
         <Container>
@@ -134,7 +136,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
           <WrapperTime>
             <WrapperInnerTime>
               <Image source={CALENDER_DAY_SOLID} />
-              <DateStyled>{date}</DateStyled>
+              <DateStyled>{formatDate}</DateStyled>
             </WrapperInnerTime>
             <WrapperInnerTime>
               <Image source={CLOCK_SOLID} />

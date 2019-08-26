@@ -41,7 +41,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
                 selected: true,
                 marked: true,
                 selectedColor: 'blue',
-                dots: ['1', '2'],
+                dots: [2, 2],
               },
             }
           }

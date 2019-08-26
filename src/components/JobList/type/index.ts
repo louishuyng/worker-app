@@ -13,8 +13,8 @@ export interface WorkingHourInterface {
 }
 
 export interface JobDetail {
-  date: string;
-  location: string;
+  date: Date;
+  location?: string;
   jobName: string,
   timeAvaliable: TimeWorkHourFormat;
   status: JobStatus,
