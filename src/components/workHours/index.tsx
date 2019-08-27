@@ -16,6 +16,7 @@ const Container = styled.View`
   padding-horizontal: 5%;
   padding-vertical: 2%;
   justify-content: space-between;
+  background: ${({ theme }) => theme.colors.aquaHaze};
 `;
 
 const WrapperGroupInput = styled.ScrollView`

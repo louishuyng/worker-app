@@ -17,8 +17,7 @@ interface Props {
 
 interface State { }
 
-const SafeAreaView = styled.SafeAreaView`
-`;
+const SafeAreaView = styled.SafeAreaView` `;
 
 export default class CalendarListComponent extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -47,6 +46,9 @@ export default class CalendarListComponent extends React.Component<Props, State>
           }
           theme={{
             'stylesheet.calendar-list.main': {
+              container: {
+                backgroundColor: colors.aquaHaze,
+              },
             },
             'stylesheet.calendar.header': {
               monthText: {

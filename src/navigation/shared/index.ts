@@ -1,4 +1,5 @@
-import { StackNavigatorConfig, TabBarIconProps, NavigationScreenProp } from 'react-navigation';
+import { StackNavigatorConfig, TabBarIconProps, NavigationScreenProp, NavigationScreenConfig } from 'react-navigation';
+
 import { BottomBarIconUI } from 'components/common';
 import { ImageSourcePropType } from 'react-native';
 import { convertWidth } from 'utils/convertSize';
@@ -12,7 +13,7 @@ interface StackNavigationConfigInterface {
 export const wihtDefaultNavigtaionConfig = (
   { navigation, screenProps, headLeftComponent, widthTitle }:
   { navigation: NavigationScreenProp<any>, screenProps: any, headLeftComponent?: any, widthTitle?: any }
-) => {
+): NavigationScreenConfig<any> => {
   const { theme } = screenProps;
   return {
     title: navigation.state.routeName,
@@ -26,6 +27,7 @@ export const wihtDefaultNavigtaionConfig = (
       textAlign: 'center',
       fontFamily: theme.fontFamily.medium,
     },
+    backgroundColor: theme.colors.aquaHaze,
     headerTintColor: theme.tintColor,
     headerLeft: headLeftComponent,
   };

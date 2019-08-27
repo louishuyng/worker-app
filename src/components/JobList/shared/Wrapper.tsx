@@ -8,4 +8,5 @@ export const WrapperJobList = styled.ScrollView`
   padding-bottom: ${convertHeight(17)};
   padding-right: ${convertWidth(28)};
   padding-left: ${convertWidth(28)};
+  background: ${({ theme }) => theme.colors.aquaHaze};
 `;
