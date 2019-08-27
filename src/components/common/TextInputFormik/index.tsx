@@ -5,13 +5,12 @@ import styled, { css } from 'styled-components/native';
 
 import { TextInputUIProps } from './types';
 import { colors } from 'utils/Theme';
-import { screenWidth, screenHeight } from 'utils/Styles';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
 const LableStyled = styled.Text`
   font-size: ${convertWidth(14)};
   padding-bottom: 5;
-  font-weight: 300;
+  color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 

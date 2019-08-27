@@ -29,6 +29,7 @@ interface State {
 const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
+  background-color: ${({ theme }) => theme.colors.aquaHaze};
 `;
 
 const WrapperTitle = styled.View<{isLogin: any}>`
@@ -78,6 +79,7 @@ const Title = styled.Text`
 const ForgetPasswordLabel = styled.Text`
   font-size: ${convertWidth(14)};
   text-align: right;
+  color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
@@ -88,14 +90,16 @@ const StepIcon = styled.Image`
 const StepLabel = styled.Text`
   font-size: ${convertWidth(13)};
   margin-top: 2%;
+  color: ${({ theme }) => theme.colors.paleSky};
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
-const fontSize = (14 / 375) * screenWidth;
+
 const SuggestionTitle = styled.Text`
-  font-size: ${fontSize};
+  font-size: ${convertWidth(14)};
   align-self: center;
   margin-top: 10%;
   margin-bottom: 2%;
+  color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
@@ -176,7 +180,6 @@ export default class AuthScreen extends Component<Props, State> {
           </WrapperFooter>
         </Container>
       </TouchableWithoutFeedback>
-
     );
   }
 }

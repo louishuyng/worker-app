@@ -78,6 +78,7 @@ const StatusLabel = styled.Text`
   color: ${({ theme }) => theme.colors.paleSky};
   padding-vertical: 2%;
   padding-horizontal: 3%;
+  text-transform: uppercase;
 `;
 
 interface Props {}
@@ -94,7 +95,7 @@ export default class NotificationUI extends Component<Props, State> {
     return data.filter((item) => item.isRead === isRead).map((item, i) => {
       const { title, jobName, location, type, timestamp } = item;
       const icon = type === TypeNotifcation.JOB_ASSIGN ? IC_JOB_ASSIGN : IC_JOB_CANCELLED;
-      const timeFormat = moment(timestamp).startOf('hours').fromNow();
+      const timeFormat = moment().startOf('hours').fromNow();
       return (
         <View key={i}>
           <WrapperCard>

@@ -15,7 +15,7 @@ interface Props {
   navigation: NavigationScreenProp<any>;
 }
 
-interface State {}
+interface State { }
 
 const SafeAreaView = styled.SafeAreaView`
 `;
@@ -30,7 +30,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
     const currentDate: string = '2019-08-26';
     return (
       <SafeAreaView>
-        <HeaderCalendar />
+        <HeaderCalendar isShowController={false} datePicked={'1970-01-01T00:00:00.140Z'} />
         <CalendarList
           hideDayNames={true}
           firstDay={1}

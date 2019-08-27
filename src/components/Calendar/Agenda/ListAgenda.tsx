@@ -13,6 +13,7 @@ interface Props {}
 interface State {}
 
 const WrapperView = styled.ScrollView`
+  padding-bottom: 150;
 `;
 
 const ExtendBox = styled.View`
@@ -58,7 +59,7 @@ export default class ListAgenda extends React.Component<Props, State> {
 
   render() {
     return (
-      <WrapperView>
+      <WrapperView showsVerticalScrollIndicator={false}>
         <ExtendBox />
         {this.renderList()}
       </WrapperView>

@@ -53,7 +53,7 @@ export const colors: colorsType = {
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
   capeCod: '#3A3C3E',
-  aquaHaze: '#EDF1F5',
+  aquaHaze: '#F7F9FA',
   silver: '#C3C3C3',
   cerulean: '#009ADA',
   mineShaft: '#333333',

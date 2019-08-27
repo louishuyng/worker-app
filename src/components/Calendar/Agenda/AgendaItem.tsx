@@ -59,7 +59,7 @@ const SelectedLine = styled.View`
   background: ${({ theme }) => theme.colors.cerulean};
 `;
 
-const MiddleText = styled.Text<{fontSize: any, color: any}>`
+const Description = styled.Text<{fontSize: any, color: any}>`
   position: absolute;
   left: ${convertWidth(25)}%;
   top: ${convertHeight(10)};
@@ -70,13 +70,13 @@ const MiddleText = styled.Text<{fontSize: any, color: any}>`
   `};
 `;
 
-const BottomText = styled.Text<{fontSize: any, color: any}>`
+const JobName = styled.Text<{fontSize: any, color: any}>`
   position: absolute;
   left: ${convertWidth(25)}%;
-  top: ${convertHeight(15)};
+  top: ${convertHeight(10)};
   font-family: ${({ theme }) => theme.fontFamily.regular};
   ${({ fontSize, color }) => css`
-    font-size: ${convertWidth(fontSize)};
+    font-size: ${convertHeight(fontSize)};
     color: ${color};
   `};
 `;
@@ -86,13 +86,13 @@ const WrapperNavigation = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   left: ${convertWidth(25)}%;
-  top: ${convertHeight(15)};
+  top: ${convertHeight(10)};
 `;
 
 const NavigationText = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.regular};
   color: ${({ theme }) => theme.colors.cerulean};
-  font-size: ${convertWidth(14)};
+  font-size: ${convertHeight(14)};
 `;
 
 const NavigationIcon = styled.Image``;
@@ -113,11 +113,11 @@ export default class AgendaItem extends React.Component<Props, State> {
         </WrapperBackgroundJob>
         {
           marked === LabelBackgroundCalendar.TITLE &&
-            <BottomText fontSize={fontText} color={colorText}>{text}</BottomText>
+            <JobName fontSize={fontText} color={colorText}>{text}</JobName>
         }
         {
           marked === LabelBackgroundCalendar.LOCATION &&
-            <MiddleText fontSize={fontText} color={colorText}>{text}</MiddleText>
+            <Description fontSize={fontText} color={colorText}>{text}</Description>
         }
         {
           marked === LabelBackgroundCalendar.NAVIGATION && (

@@ -24,6 +24,7 @@ const Container = styled.View`
   border-radius: 7;
   padding-horizontal: 10;
   padding-vertical: 10;
+  background-color: ${({ theme }) => theme.colors.white};;
 `;
 
 const WrapperTitle = styled.View`
@@ -35,7 +36,8 @@ const WrapperTitle = styled.View`
 const TitleStyled = styled.Text`
   font-size: ${convertWidth(18)};
   padding-left: 5;
-  font-family: ${({ theme }) => theme.fontFamily.regular};
+  color: ${({ theme }) => theme.colors.capeCod};
+  font-family: ${({ theme }) => theme.fontFamily.medium};
 `;
 
 const WrapperTime = styled.View`
@@ -52,11 +54,13 @@ const WrapperInnerTime = styled.View`
 const DateStyled = styled.Text`
   font-size: ${convertWidth(16)};
   font-family: ${({ theme }) => theme.fontFamily.regular};
+  color: ${({ theme }) => theme.colors.capeCod};
   padding-horizontal: 5;
 `;
 const TimeStyled = styled.Text`
   font-size: ${convertWidth(16)};
   padding-horizontal: 5;
+  color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
@@ -93,6 +97,7 @@ const ButtonStyled = styled.View`
 const LocationStyled = styled.Text`
   font-size: ${convertWidth(16)};
   margin-horizontal: 5;
+  color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
@@ -166,7 +171,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
             </ButtonStyled>
           </WrapperButton>}
         </Container>
-        { isButtonAppear && this.state.isModalVisible && (
+        {isButtonAppear && this.state.isModalVisible && (
           <SetStatusModal
             onPress={() => null}
             statusLabel={setStatusModalLabel[status]}
