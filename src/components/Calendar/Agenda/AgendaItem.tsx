@@ -59,10 +59,13 @@ const SelectedLine = styled.View`
   background: ${({ theme }) => theme.colors.cerulean};
 `;
 
-const Description = styled.Text<{fontSize: any, color: any}>`
+const WrapperDescription = styled.View`
   position: absolute;
   left: ${convertWidth(25)}%;
-  top: ${convertHeight(10)};
+  height: ${convertHeight(32)};
+  justify-content: center;
+`;
+const Description = styled.Text<{fontSize: any, color: any}>`
   font-family: ${({ theme }) => theme.fontFamily.regular};
   ${({ fontSize, color }) => css`
     font-size: ${convertWidth(fontSize)};
@@ -70,23 +73,13 @@ const Description = styled.Text<{fontSize: any, color: any}>`
   `};
 `;
 
-const JobName = styled.Text<{fontSize: any, color: any}>`
-  position: absolute;
-  left: ${convertWidth(25)}%;
-  top: ${convertHeight(10)};
-  font-family: ${({ theme }) => theme.fontFamily.regular};
-  ${({ fontSize, color }) => css`
-    font-size: ${convertHeight(fontSize)};
-    color: ${color};
-  `};
-`;
-
 const WrapperNavigation = styled.TouchableOpacity`
   position: absolute;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   left: ${convertWidth(25)}%;
-  top: ${convertHeight(10)};
+  height: ${convertHeight(32)};
 `;
 
 const NavigationText = styled.Text`
@@ -112,12 +105,18 @@ export default class AgendaItem extends React.Component<Props, State> {
           <BackgroundJob isSelected={isSelected}/>
         </WrapperBackgroundJob>
         {
-          marked === LabelBackgroundCalendar.TITLE &&
-            <JobName fontSize={fontText} color={colorText}>{text}</JobName>
+          marked === LabelBackgroundCalendar.TITLE && (
+            <WrapperDescription>
+              <Description fontSize={fontText} color={colorText}>{text}</Description>
+            </WrapperDescription>
+          )
         }
         {
-          marked === LabelBackgroundCalendar.LOCATION &&
-            <Description fontSize={fontText} color={colorText}>{text}</Description>
+          marked === LabelBackgroundCalendar.LOCATION && (
+            <WrapperDescription>
+              <Description fontSize={fontText} color={colorText}>{text}</Description>
+            </WrapperDescription>
+          )
         }
         {
           marked === LabelBackgroundCalendar.NAVIGATION && (
