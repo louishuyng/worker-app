@@ -8,7 +8,7 @@ export enum Types {
 
 export interface ButtonUIProps {
   type: Types;
-  title: string;
+  title: string | undefined;
   afterIcon?: ImageSourcePropType;
   onPress: () => any;
 }

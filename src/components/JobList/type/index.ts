@@ -5,6 +5,13 @@ export enum JobStatus {
   LOCATION,
   SECURED,
   ENDOFSHIFT,
+  CREATETIMESHEET,
+}
+
+export enum ProgressStatus {
+  NEWJOB,
+  INPROGRESS,
+  REVIEW,
 }
 
 export interface WorkingHourInterface {

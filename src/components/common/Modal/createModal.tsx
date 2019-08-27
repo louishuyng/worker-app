@@ -14,7 +14,7 @@ export interface JobCancelledProps extends ExtraModalLayoutProps {
 }
 
 export interface SetStatusProps extends ExtraModalLayoutProps {
-  statusLabel: string
+  statusLabel: string | undefined,
 }
 
 export interface SkipSignatureProps extends ExtraModalLayoutProps {

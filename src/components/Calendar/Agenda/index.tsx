@@ -6,14 +6,16 @@ import HeaderCalendar from '../shared';
 import { colors, fontFamily } from 'utils/Theme';
 import { RouteName } from 'constant';
 import BackButtonUI from 'components/common/ButtonBack';
-import { convertWidth } from 'utils/convertSize';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 import ListAgenda from './ListAgenda';
+import { View } from 'react-native';
+import { screenHeight } from 'utils/Styles';
 
-interface Props {}
+interface Props {
+  navigation: NavigationScreenProp<any>;
+}
 
-interface State {}
-
-const SafeAreaView = styled.SafeAreaView``;
+interface State { }
 
 export default class Agenda extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -22,8 +24,9 @@ export default class Agenda extends React.Component<Props, State> {
   }
 
   static navigationOptions = (
-    { navigation }: {navigation: NavigationScreenProp<any>
-  }): NavigationStackScreenOptions => {
+    { navigation }: {
+      navigation: NavigationScreenProp<any>
+    }): NavigationStackScreenOptions => {
     const { getParam } = navigation;
     const monthName = getParam('month');
     return {
@@ -38,17 +41,17 @@ export default class Agenda extends React.Component<Props, State> {
         textAlign: 'center',
         fontFamily: fontFamily.medium,
       },
-      headerLeft: <BackButtonUI label={monthName} onPress={() => navigation.pop()}/>,
+      headerLeft: <BackButtonUI label={monthName} onPress={() => navigation.pop()} />,
       headerTintColor: colors.mineShaft,
     };
   }
 
   render() {
     return (
-      <SafeAreaView>
-        <HeaderCalendar />
+      <View style={{ height: screenHeight, paddingBottom: convertHeight(180) }}>
+        <HeaderCalendar datePicked={this.props.navigation.getParam('datePicked')} isShowController />
         <ListAgenda />
-      </SafeAreaView>
+      </View>
     );
   }
 }

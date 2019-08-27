@@ -1,13 +1,12 @@
 import React from 'react';
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view';
 
-import { colors } from 'utils/Theme';
+import { colors, fontFamily } from 'utils/Theme';
 import NewJobTab from './NewJobTab';
 import { mockCurrentWorkingHour, mockJobData } from './mock';
 import { getString } from 'locales';
-import { BottomBarIconUI } from 'components/common';
-import { IC_JOBLIST_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
-import { TabBarIconProps } from 'react-navigation';
+import InProgress from './InProgress';
+import { convertWidth } from 'utils/convertSize';
 
 interface State { }
 
@@ -31,13 +30,24 @@ export default class JobList extends React.Component<Props, State> {
           borderTopLeftRadius: 100,
           borderTopRightRadius: 100,
         }}
-        tabBarTextStyle={{ fontSize: 13, fontWeight: '400' }}
+        tabBarTextStyle={{
+          fontSize: convertWidth(13),
+          fontFamily: fontFamily.regular,
+          fontWeight: '400',
+        }}
         initialPage={0}
         renderTabBar={() => <ScrollableTabBar />}
       >
         <NewJobTab
           tabLabel={getString('jobList', 'newJobTabTitle')}
           key={1}
+          currentWorkingHour={mockCurrentWorkingHour}
+          jobData={[]}
+          {...this.props}
+        />
+        <InProgress
+          tabLabel={getString('jobList', 'inProgressTabTitle')}
+          key={2}
           currentWorkingHour={mockCurrentWorkingHour}
           jobData={mockJobData}
           {...this.props}

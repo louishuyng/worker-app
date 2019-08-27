@@ -25,7 +25,7 @@ const createRouteConfig = (): NavigationRouteConfigMap => {
 const routeConfigMap = createRouteConfig();
 
 const navigatorConfig: TabConfig = {
-  initialRouteName: RouteName.CALENDAR,
+  initialRouteName: RouteName.JOB_LIST,
   labeled: false,
   barStyle: {
     backgroundColor: colors.lightBackground,
