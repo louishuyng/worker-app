@@ -7,10 +7,10 @@ import { JobThumbnail, WrapperJobList } from '../shared';
 interface InProgressProps {
   tabLabel: string;
   jobData: Array<JobDetail>;
-  navigation: NavigationScreenProp<any>;
+  navigation: NavigationScreenProp<any> ;
 }
 
-const InProgress = (props: InProgressProps) => {
+const ReviewTimeSheet = (props: InProgressProps) => {
   const { jobData } = props;
 
   const displayJobThumnail = (data: Array<JobDetail>) => {
@@ -30,4 +30,4 @@ const InProgress = (props: InProgressProps) => {
   );
 };
 
-export default InProgress;
+export default ReviewTimeSheet;

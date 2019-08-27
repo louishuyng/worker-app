@@ -3,7 +3,52 @@ import { TimeWorkHourFormat } from 'components/workHours/type';
 
 const mockDate = new Date();
 
+export const mockJobDataReview: Array<JobDetail> = [
+  {
+    timeAvaliable: {
+      beginHour: mockDate.getHours(),
+      beginMinute: mockDate.getMinutes(),
+      endHour: mockDate.getHours(),
+      endMinute: mockDate.getMinutes(),
+      fieldNameBegin: 'mock1',
+      fieldNameEnd: 'mock2',
+    },
+    jobName: 'Parking',
+    location: '2569 Land Park Dr, Sacramentro, CA 95818',
+    date: mockDate,
+    status: JobStatus.REVIEW,
+  },
+  {
+    timeAvaliable: {
+      beginHour: mockDate.getHours(),
+      beginMinute: mockDate.getMinutes(),
+      endHour: mockDate.getHours(),
+      endMinute: mockDate.getMinutes(),
+      fieldNameBegin: 'mock1',
+      fieldNameEnd: 'mock2',
+    },
+    jobName: 'Parking',
+    location: '2569 Land Park Dr, Sacramentro, CA 95818',
+    date: mockDate,
+    status: JobStatus.REVIEW,
+  },
+];
+
 export const mockJobData: Array<JobDetail> = [
+  {
+    timeAvaliable: {
+      beginHour: mockDate.getHours(),
+      beginMinute: mockDate.getMinutes(),
+      endHour: mockDate.getHours(),
+      endMinute: mockDate.getMinutes(),
+      fieldNameBegin: 'mock1',
+      fieldNameEnd: 'mock2',
+    },
+    jobName: 'Parking',
+    location: '2569 Land Park Dr, Sacramentro, CA 95818',
+    date: mockDate,
+    status: JobStatus.ENROUTE,
+  },
   {
     timeAvaliable: {
       beginHour: mockDate.getHours(),
@@ -45,20 +90,6 @@ export const mockJobData: Array<JobDetail> = [
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
     date: mockDate,
     status: JobStatus.ENDOFSHIFT,
-  },
-  {
-    timeAvaliable: {
-      beginHour: mockDate.getHours(),
-      beginMinute: mockDate.getMinutes(),
-      endHour: mockDate.getHours(),
-      endMinute: mockDate.getMinutes(),
-      fieldNameBegin: 'mock1',
-      fieldNameEnd: 'mock2',
-    },
-    jobName: 'Parking',
-    location: '2569 Land Park Dr, Sacramentro, CA 95818',
-    date: mockDate,
-    status: JobStatus.CREATETIMESHEET,
   },
 ];
 

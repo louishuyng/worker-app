@@ -1,6 +1,7 @@
 import React from 'react';
+import { NavigationScreenProp } from 'react-navigation';
 
-import { JobDetail, ProgressStatus } from '../type';
+import { JobDetail } from '../type';
 import { JobThumbnail, NoJobThumbnail, WrapperJobList } from '../shared';
 import { TimeWorkHourFormat } from 'components/workHours/type';
 
@@ -8,7 +9,7 @@ interface NewJobTabProps {
   tabLabel: string;
   jobData: Array<JobDetail>;
   currentWorkingHour: Array<TimeWorkHourFormat>;
-  navigation: { navigate: Function }
+  navigation: NavigationScreenProp<any>;
 }
 
 const NewJobTab = (props: NewJobTabProps) => {
@@ -19,7 +20,6 @@ const NewJobTab = (props: NewJobTabProps) => {
       <JobThumbnail
         isButtonAppear key={index}
         jobData={value}
-        progressStatus={ProgressStatus.NEWJOB}
       />
     ));
   };

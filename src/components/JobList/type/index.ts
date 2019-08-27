@@ -1,16 +1,11 @@
 import { TimeWorkHourFormat } from 'components/workHours/type';
 
 export enum JobStatus {
+  NEW,
   ENROUTE,
   LOCATION,
   SECURED,
   ENDOFSHIFT,
-  CREATETIMESHEET,
-}
-
-export enum ProgressStatus {
-  NEWJOB,
-  INPROGRESS,
   REVIEW,
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View } from 'react-native';
+import { Image, View, ImageSourcePropType } from 'react-native';
 import styled from 'styled-components/native';
 
 import {
@@ -12,9 +12,9 @@ import {
 import { ButtonUI } from 'components/common';
 import { SetStatusModal } from 'components/common/Modal';
 import { Types } from 'components/common/Button/types';
-import { JobDetail, ProgressStatus } from '../type';
+import { JobDetail, JobStatus } from '../type';
 import { getString } from 'locales';
-import { setStatusLable, setStatusModalLabel } from '../models/jobListModels';
+import { setStatusLable, setStatusModalLabel, setStatusIcon } from '../models/jobListModels';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
 const Container = styled.View`
@@ -24,12 +24,17 @@ const Container = styled.View`
   border-radius: ${convertWidth(7)};
   padding-horizontal: ${convertWidth(11)};
   padding-vertical: ${convertHeight(11)};
+  background: ${({ theme }) => theme.colors.lightBackground};
+`;
+
+const WrapperHeader = styled.View`
+  padding-vertical: 10;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const WrapperTitle = styled.View`
-  flex-direction: row;
-  align-items: center;
-  padding-vertical: 10;
 `;
 
 const TitleStyled = styled.Text`
@@ -37,6 +42,23 @@ const TitleStyled = styled.Text`
   padding-left: 5;
   color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.medium};
+`;
+
+const WrapperStatusIcon = styled.View`
+  width: ${convertHeight(35)};
+  height: ${convertHeight(35)};
+  justify-content: center;
+  align-items: center;
+`;
+
+const BackgroundStatusIcon = styled.View`
+  position: absolute;
+  width: ${convertHeight(35)};
+  height: ${convertHeight(35)};
+  border-radius: ${convertHeight(25)};
+  border-color: ${({ theme }) => theme.colors.paleSky};
+  border-width: ${convertWidth(1)};
+  opacity: 0.1;
 `;
 
 const WrapperTime = styled.View`
@@ -103,7 +125,6 @@ const LocationStyled = styled.Text`
 interface JobThumbNailProps {
   jobData: JobDetail;
   isButtonAppear: boolean;
-  progressStatus: ProgressStatus;
 }
 
 interface JobThumbNailState {
@@ -127,13 +148,12 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
         status,
       },
       isButtonAppear,
-      progressStatus,
     } = this.props;
 
     const formatDate = date.toLocaleDateString('en-US');
 
     const renderButton = () => {
-      return isButtonAppear && (
+      return status !== JobStatus.REVIEW && (
         <WrapperButton>
           <WrapperImage>
             <ImageStyled source={LOCATION} />
@@ -166,17 +186,29 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
       );
     };
 
+    const isInProgress = status !== JobStatus.NEW && status !== JobStatus.REVIEW;
     return (
       <View style={{
         paddingBottom: convertHeight(8),
       }}>
         <Container>
-          <WrapperTitle>
-            {progressStatus === ProgressStatus.NEWJOB && (
-              <Image source={ORANGE_CIRCLE} />
+          <WrapperHeader>
+            <WrapperTitle>
+              {status === JobStatus.NEW && (
+                <Image source={ORANGE_CIRCLE} />
+              )}
+              <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
+            </WrapperTitle>
+            { isInProgress && (
+              <WrapperStatusIcon>
+                <BackgroundStatusIcon />
+                <Image
+                  style={{ resizeMode: 'contain' }}
+                  source={setStatusIcon[status] as ImageSourcePropType}
+                />
+              </WrapperStatusIcon>
             )}
-            <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
-          </WrapperTitle>
+          </WrapperHeader>
           <WrapperTime>
             <WrapperInnerTime>
               <Image source={CALENDER_DAY_SOLID} />
