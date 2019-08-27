@@ -1,4 +1,4 @@
-import { TimeWorkHourFormat } from 'components/workHours/type';
+import { TimeFormat } from 'components/workHours/type';
 
 export enum JobStatus {
   NEW,
@@ -18,6 +18,6 @@ export interface JobDetail {
   date: Date;
   location?: string;
   jobName: string,
-  timeAvaliable: TimeWorkHourFormat;
+  timeAvaliable: TimeFormat;
   status: JobStatus,
 }

@@ -48,7 +48,8 @@ const ContainerStyled = styled.View`
 `;
 
 const TouchableOpacity = styled.TouchableOpacity`
-  padding-vertical: 5%;
+  height: 100%;
+  justify-content: center;
   align-items: center;
 `;
 

@@ -1,4 +1,4 @@
-interface TimeDefined {
+export interface TimeDefined {
   hour: string;
   minute: string;
 }

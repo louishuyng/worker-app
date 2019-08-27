@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createStackNavigator,
   NavigationRouteConfig,
@@ -8,7 +9,9 @@ import JobList from 'components/JobList';
 import { RouteName } from 'constant';
 import { IC_JOBLIST_ACTIVE, IC_JOBLIST_UN_ACTIVE } from 'utils/Icons';
 import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
-import { convertWidth } from 'utils/convertSize';
+import JobDetail from 'components/JobDetail';
+import { colors, colorsType } from 'utils/Theme';
+import BackButtonUI from 'components/common/ButtonBack';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
@@ -16,6 +19,18 @@ const routeConfig: NavigationRouteConfig = {
     navigationOptions: (
       { navigation, screenProps }: { navigation: any, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({ screenProps, navigation }),
+  },
+  [RouteName.JOB]: {
+    screen: JobDetail,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      widthTitle: '75%',
+    }),
   },
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({

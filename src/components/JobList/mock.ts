@@ -1,17 +1,19 @@
 import { JobStatus, JobDetail, WorkingHourInterface } from './type';
-import { TimeWorkHourFormat } from 'components/workHours/type';
+import { TimeFormat } from 'components/workHours/type';
 
 const mockDate = new Date();
 
 export const mockJobDataReview: Array<JobDetail> = [
   {
     timeAvaliable: {
-      beginHour: mockDate.getHours(),
-      beginMinute: mockDate.getMinutes(),
-      endHour: mockDate.getHours(),
-      endMinute: mockDate.getMinutes(),
-      fieldNameBegin: 'mock1',
-      fieldNameEnd: 'mock2',
+      begin: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
+      end: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
@@ -20,12 +22,14 @@ export const mockJobDataReview: Array<JobDetail> = [
   },
   {
     timeAvaliable: {
-      beginHour: mockDate.getHours(),
-      beginMinute: mockDate.getMinutes(),
-      endHour: mockDate.getHours(),
-      endMinute: mockDate.getMinutes(),
-      fieldNameBegin: 'mock1',
-      fieldNameEnd: 'mock2',
+      begin: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
+      end: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
@@ -37,12 +41,14 @@ export const mockJobDataReview: Array<JobDetail> = [
 export const mockJobData: Array<JobDetail> = [
   {
     timeAvaliable: {
-      beginHour: mockDate.getHours(),
-      beginMinute: mockDate.getMinutes(),
-      endHour: mockDate.getHours(),
-      endMinute: mockDate.getMinutes(),
-      fieldNameBegin: 'mock1',
-      fieldNameEnd: 'mock2',
+      begin: {
+        hour: 9,
+        minute: 30,
+      },
+      end: {
+        hour: 18,
+        minute: 30,
+      },
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
@@ -51,12 +57,15 @@ export const mockJobData: Array<JobDetail> = [
   },
   {
     timeAvaliable: {
-      beginHour: mockDate.getHours(),
-      beginMinute: mockDate.getMinutes(),
-      endHour: mockDate.getHours(),
-      endMinute: mockDate.getMinutes(),
-      fieldNameBegin: 'mock1',
-      fieldNameEnd: 'mock2',
+      begin: {
+        hour: 19,
+        minute: 30,
+      },
+      end: {
+        hour: 24,
+        minute: 30,
+      },
+
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
@@ -65,12 +74,14 @@ export const mockJobData: Array<JobDetail> = [
   },
   {
     timeAvaliable: {
-      beginHour: mockDate.getHours(),
-      beginMinute: mockDate.getMinutes(),
-      endHour: mockDate.getHours(),
-      endMinute: mockDate.getMinutes(),
-      fieldNameBegin: 'mock1',
-      fieldNameEnd: 'mock2',
+      begin: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
+      end: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
@@ -79,12 +90,14 @@ export const mockJobData: Array<JobDetail> = [
   },
   {
     timeAvaliable: {
-      beginHour: mockDate.getHours(),
-      beginMinute: mockDate.getMinutes(),
-      endHour: mockDate.getHours(),
-      endMinute: mockDate.getMinutes(),
-      fieldNameBegin: 'mock1',
-      fieldNameEnd: 'mock2',
+      begin: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
+      end: {
+        hour: mockDate.getHours(),
+        minute: mockDate.getMinutes(),
+      },
     },
     jobName: 'Parking',
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
@@ -93,13 +106,15 @@ export const mockJobData: Array<JobDetail> = [
   },
 ];
 
-export const mockCurrentWorkingHour: Array<TimeWorkHourFormat> = [
+export const mockCurrentWorkingHour: Array<TimeFormat> = [
   {
-    beginHour: 2,
-    beginMinute: 0,
-    endHour: 18,
-    endMinute: 0,
-    fieldNameBegin: 'From',
-    fieldNameEnd: 'To',
+    begin: {
+      hour: 2,
+      minute: 0,
+    },
+    end: {
+      hour: 18,
+      minute: 0,
+    },
   },
 ];

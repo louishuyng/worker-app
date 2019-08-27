@@ -1,16 +1,19 @@
 
 import React from 'react';
 import styled, { css } from 'styled-components/native';
+import { NavigationScreenProp } from 'react-navigation';
 
 import { convertWidth, convertHeight } from 'utils/convertSize';
 import { SelectedAgendaProps, LabelBackgroundCalendar } from './type';
 import { getString } from 'locales';
 import { IC_ARROW_RIGHT } from 'utils/Icons';
+import { RouteName } from 'constant';
 
 interface Props {
   hour: number,
   hourText: string,
   selected: SelectedAgendaProps,
+  navigation: NavigationScreenProp<any>;
 }
 
 interface State {}
@@ -97,7 +100,11 @@ export default class AgendaItem extends React.Component<Props, State> {
   }
 
   render() {
-    const { hourText, selected: { isSelected, marked, text, fontText, colorText } } = this.props;
+    const {
+      hourText,
+      selected: { isSelected, marked, text, fontText, colorText },
+      navigation,
+    } = this.props;
     return (
       <Wrapper>
         <HourText>{hourText}</HourText>
@@ -120,7 +127,7 @@ export default class AgendaItem extends React.Component<Props, State> {
         }
         {
           marked === LabelBackgroundCalendar.NAVIGATION && (
-            <WrapperNavigation>
+            <WrapperNavigation onPress={() => navigation.navigate(RouteName.JOB)} >
               <NavigationText>{getString('calendar', 'goJobPage')}</NavigationText>
               <NavigationIcon source={IC_ARROW_RIGHT}/>
             </WrapperNavigation>

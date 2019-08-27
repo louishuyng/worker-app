@@ -23,6 +23,7 @@ export interface colorsType {
   darkBackgroundLight: string;
   capeCod: string;
   aquaHaze: string;
+  auqaHazeTwo: string;
   silver: string;
   cerulean: string;
   mineShaft: string;
@@ -54,6 +55,7 @@ export const colors: colorsType = {
   darkBackgroundLight: '#393241',
   capeCod: '#3A3C3E',
   aquaHaze: '#F7F9FA',
+  auqaHazeTwo: '#EDF1F5',
   silver: '#C3C3C3',
   cerulean: '#009ADA',
   mineShaft: '#333333',
