@@ -70,6 +70,7 @@ const strings: any = new LocalizedStrings({
       setLocation: 'Set to OnLocation',
       setSecured: 'Set to Secured',
       setEndOfShift: 'Set to End Of Shift',
+      createTimeSheet: 'Create Timesheet',
     },
     modal: {
       jobCancelledTitle: 'Job has been cancelled!',

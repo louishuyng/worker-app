@@ -9,7 +9,6 @@ import { TimeWorkHourFormat } from 'components/workHours/type';
 
 const Wrapper = styled.View`
   flex: 1;
-  padding: 3%;
 `;
 
 const Container = styled.View`

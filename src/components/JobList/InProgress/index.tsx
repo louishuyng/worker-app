@@ -1,34 +1,38 @@
+
 import React from 'react';
 
 import { JobDetail, ProgressStatus } from '../type';
 import { JobThumbnail, NoJobThumbnail, WrapperJobList } from '../shared';
 import { TimeWorkHourFormat } from 'components/workHours/type';
 
-interface NewJobTabProps {
+interface InProgressProps {
   tabLabel: string;
   jobData: Array<JobDetail>;
   currentWorkingHour: Array<TimeWorkHourFormat>;
   navigation: { navigate: Function }
 }
 
-const NewJobTab = (props: NewJobTabProps) => {
+const InProgress = (props: InProgressProps) => {
   const { jobData, currentWorkingHour } = props;
-  const isEmptyJob = true;
+  const isEmptyJob = jobData.length === 0;
   const displayJobThumnail = (data: Array<JobDetail>) => {
     return data.map((value: JobDetail, index: number) => (
       <JobThumbnail
-        isButtonAppear key={index}
+        isButtonAppear
+        key={index}
         jobData={value}
-        progressStatus={ProgressStatus.NEWJOB}
+        progressStatus={ProgressStatus.INPROGRESS}
       />
     ));
   };
 
   return (
     <WrapperJobList>
-      {!isEmptyJob ? displayJobThumnail(jobData) : <NoJobThumbnail hourWorkingData={currentWorkingHour} {...props} />}
+      {!isEmptyJob
+        ? displayJobThumnail(jobData)
+        : <NoJobThumbnail hourWorkingData={currentWorkingHour} {...props} />}
     </WrapperJobList>
   );
 };
 
-export default NewJobTab;
+export default InProgress;

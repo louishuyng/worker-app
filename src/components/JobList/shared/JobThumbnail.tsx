@@ -12,19 +12,18 @@ import {
 import { ButtonUI } from 'components/common';
 import { SetStatusModal } from 'components/common/Modal';
 import { Types } from 'components/common/Button/types';
-import { JobDetail } from '../type';
+import { JobDetail, ProgressStatus } from '../type';
 import { getString } from 'locales';
 import { setStatusLable, setStatusModalLabel } from '../models/jobListModels';
-import { convertWidth } from 'utils/convertSize';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 
 const Container = styled.View`
   padding-top: 3%;
-  border-width: 1;
+  border-width: ${convertWidth(1)};
   border-color: ${({ theme }) => theme.colors.iron};
-  border-radius: 7;
-  padding-horizontal: 10;
-  padding-vertical: 10;
-  background-color: ${({ theme }) => theme.colors.white};;
+  border-radius: ${convertWidth(7)};
+  padding-horizontal: ${convertWidth(11)};
+  padding-vertical: ${convertHeight(11)};
 `;
 
 const WrapperTitle = styled.View`
@@ -104,6 +103,7 @@ const LocationStyled = styled.Text`
 interface JobThumbNailProps {
   jobData: JobDetail;
   isButtonAppear: boolean;
+  progressStatus: ProgressStatus;
 }
 
 interface JobThumbNailState {
@@ -127,15 +127,54 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
         status,
       },
       isButtonAppear,
+      progressStatus,
     } = this.props;
 
     const formatDate = date.toLocaleDateString('en-US');
 
+    const renderButton = () => {
+      return isButtonAppear && (
+        <WrapperButton>
+          <WrapperImage>
+            <ImageStyled source={LOCATION} />
+          </WrapperImage>
+          <ButtonStyled>
+            <ButtonUI
+              type={Types.SETSTATUS}
+              title={setStatusLable[status]}
+              onPress={() => {
+                this.setState({
+                  isModalVisible: true,
+                });
+              }}
+            />
+          </ButtonStyled>
+        </WrapperButton>);
+    };
+
+    const renderModal = () => {
+      return isButtonAppear && this.state.isModalVisible && (
+        <SetStatusModal
+          onPress={() => null}
+          statusLabel={setStatusModalLabel[status]}
+          closeModal={() => {
+            this.setState({
+              isModalVisible: false,
+            });
+          }}
+        />
+      );
+    };
+
     return (
-      <View style={{ padding: 20 }}>
+      <View style={{
+        paddingBottom: convertHeight(8),
+      }}>
         <Container>
           <WrapperTitle>
-            <Image source={ORANGE_CIRCLE} />
+            {progressStatus === ProgressStatus.NEWJOB && (
+              <Image source={ORANGE_CIRCLE} />
+            )}
             <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
           </WrapperTitle>
           <WrapperTime>
@@ -154,34 +193,9 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
             <Image source={MAP_MARKER} />
             <LocationStyled>{location}</LocationStyled>
           </WrapperLocation>
-          {isButtonAppear && <WrapperButton>
-            <WrapperImage>
-              <ImageStyled source={LOCATION} />
-            </WrapperImage>
-            <ButtonStyled>
-              <ButtonUI
-                type={Types.SETSTATUS}
-                title={setStatusLable[status]}
-                onPress={() => {
-                  this.setState({
-                    isModalVisible: true,
-                  });
-                }}
-              />
-            </ButtonStyled>
-          </WrapperButton>}
+          {renderButton()}
         </Container>
-        {isButtonAppear && this.state.isModalVisible && (
-          <SetStatusModal
-            onPress={() => null}
-            statusLabel={setStatusModalLabel[status]}
-            closeModal={() => {
-              this.setState({
-                isModalVisible: false,
-              });
-            }}
-          />
-        )}
+        {renderModal()}
       </View>
     );
   };
