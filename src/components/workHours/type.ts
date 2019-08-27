@@ -1,8 +1,10 @@
-export interface TimeWorkHourFormat {
-  beginHour: number;
-  beginMinute: number;
-  endHour: number;
-  endMinute: number;
-  fieldNameBegin: string;
-  fieldNameEnd: string;
+export interface TimeFormat {
+  begin: {
+    hour: string;
+    minute: string;
+  };
+  end: {
+    hour: string;
+    minute: string;
+  }
 }

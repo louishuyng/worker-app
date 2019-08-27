@@ -17,8 +17,8 @@ const LableStyled = styled.Text`
 const InputStyled = styled.TextInput<{ isError: any, placeholder: any }>`
   border-width: 1;
   border-radius: 6;
-  padding: 8px;
-  font-size: ${convertWidth(14)};
+  padding-left: 20;
+  font-size: ${convertWidth(16)};
   height: ${convertHeight(42)};
   margin-bottom: 5%;
   font-family: ${({ theme }) => theme.fontFamily.regular};
@@ -39,6 +39,7 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
     placeholder,
     isHideKeyboard,
     onTouch,
+    value,
     field: { name },
     form: { setFieldValue, submitCount, errors, touched, setFieldTouched },
   } = props;
@@ -48,6 +49,7 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
     <View>
       <LableStyled>{label}</LableStyled>
       <InputStyled
+        value={value.hour !== '' && value.minute !== '' ? `${value.hour}:${value.minute}` : ''}
         isError={isError}
         onTouchStart={() => onTouch}
         secureTextEntry={type === 'password' && true}

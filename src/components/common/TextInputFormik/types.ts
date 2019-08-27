@@ -13,7 +13,10 @@ export interface TextInputUIProps {
   label: string;
   onTouch?: () => void;
   onchange: () => void;
-  values: string;
+  value: {
+    hour: string,
+    minute: string,
+  };
   field: fieldProps;
   form: FormikProps<any>;
   isHideKeyboard?: boolean;
