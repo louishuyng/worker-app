@@ -1,12 +1,14 @@
-import { TimeWorkHourFormat } from './type';
+import { TimeFormat } from './type';
 
-export const mockDataWorkHours: Array<TimeWorkHourFormat> = [
+export const mockDataWorkHours: TimeFormat[] = [
   {
-    beginHour: 7,
-    beginMinute: 30,
-    endHour: 17,
-    endMinute: 30,
-    fieldNameBegin: 'dataBegin1',
-    fieldNameEnd: 'dataEnd1',
+    begin: {
+      hour: '09',
+      minute: '00',
+    },
+    end: {
+      hour: '18',
+      minute: '00',
+    },
   },
 ];

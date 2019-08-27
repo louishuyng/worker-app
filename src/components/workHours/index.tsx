@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import styled from 'styled-components/native';
 import { Field } from 'formik';
+import moment from 'moment';
 
 import { TextInputFormikUI, ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { screenHeight } from 'utils/Styles';
 import { getString } from 'locales';
-import { TimeWorkHourFormat } from './type';
+import { TimeFormat } from './type';
 import { mockDataWorkHours } from './mock';
+import { isValidDate } from './helper';
 
 const Container = styled.View`
   flex: 1;
@@ -42,10 +44,20 @@ const WrapperButton = styled.View`
 interface Props {
 }
 
+enum TimeMark {
+  FROM,
+  TO,
+}
+
+interface CurrentInput {
+  index: number;
+  timeMark: TimeMark;
+}
 interface State {
   isDateTimePickerVisible: boolean;
   currentDate: any;
-  data: Array<TimeWorkHourFormat>;
+  currentInput: CurrentInput | undefined;
+  date: TimeFormat[];
 }
 
 export default class WorkHoursComponent extends Component<Props, State> {
@@ -54,48 +66,121 @@ export default class WorkHoursComponent extends Component<Props, State> {
     this.state = {
       isDateTimePickerVisible: false,
       currentDate: null,
-      data: mockDataWorkHours,
+      currentInput: undefined,
+      date: mockDataWorkHours,
     };
   }
 
-  showDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: true });
+  showDateTimePicker = (currentInput: any) => {
+    this.setState({
+      ...this.state,
+      currentInput,
+      isDateTimePickerVisible: true,
+    });
   };
 
   hideDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: false });
+    this.setState({ ...this.state, isDateTimePickerVisible: false });
   };
 
-  handleDatePicked = (date: Date) => {
-    this.hideDateTimePicker();
+  handleDatePicked = (date: Date, currentInput: CurrentInput) => {
+    const hour = moment(date).hour().toString();
+    const minute = moment(date).minute().toString();
+
+    const cloneDate = [...this.state.date];
+    if (currentInput.timeMark === TimeMark.FROM) {
+      if (currentInput.index > 0) {
+        if (!isValidDate(cloneDate[currentInput.index - 1].end, {
+          hour,
+          minute,
+        })) {
+          Alert.alert('You can not set time, please try again!');
+          return null;
+        }
+      }
+      cloneDate[currentInput.index].begin = {
+        hour,
+        minute,
+      };
+    }
+    if (currentInput.timeMark === TimeMark.TO) {
+      if (cloneDate[currentInput.index].begin.hour === '') {
+        Alert.alert('You need to set time for from field first!');
+        return null;
+      }
+
+      if (!isValidDate(cloneDate[currentInput.index].begin, {
+        hour,
+        minute,
+      })) {
+        Alert.alert('You can not set time, please try again!');
+        return null;
+      }
+      cloneDate[currentInput.index].end = {
+        hour,
+        minute,
+      };
+    }
+
+    this.setState({
+      ...this.state,
+      isDateTimePickerVisible: false,
+      date: cloneDate,
+    });
   };
 
   handleAddHours = () => {
+    const lastFrom = this.state.date[this.state.date.length - 1];
+    if (lastFrom.begin.hour !== '' && lastFrom.end.hour !== '') {
+      this.setState({
+        ...this.state,
+        date: this.state.date.concat({
+          begin: {
+            hour: '',
+            minute: '',
+          },
+          end: {
+            hour: '',
+            minute: '',
+          },
+        }),
+      });
+    }
   };
 
   renderForm(workHours: any) {
-    return workHours.map((item: TimeWorkHourFormat, i: number) => {
+    return workHours.map((item: TimeFormat, i: number) => {
       return (
         <WrapperTextInput key={i}>
-          <TextInputStyled onPress={() => this.showDateTimePicker()} >
+          <TextInputStyled onPress={() => {
+            this.showDateTimePicker({
+              timeMark: TimeMark.FROM,
+              index: i,
+            });
+          }} >
             <Field
-              name={item.fieldNameBegin}
+              name={`from${i}`}
               label={getString('workHours', 'from')}
-              value={item.beginHour}
+              value={item.begin}
               isHideKeyboard={true}
               component={TextInputFormikUI}
             />
           </TextInputStyled>
-          <TextInputStyled >
+          <TextInputStyled onPress={() => {
+            this.showDateTimePicker({
+              timeMark: TimeMark.TO,
+              index: i,
+            });
+          }}>
             <Field
-              name={item.fieldNameEnd}
+              name={`to${i}`}
               label={getString('workHours', 'to')}
-              value={item.beginMinute}
+              value={item.end}
               isHideKeyboard={true}
               component={TextInputFormikUI}
             />
           </TextInputStyled>
-        </WrapperTextInput>
+        </WrapperTextInput >
       );
     });
   }
@@ -107,25 +192,25 @@ export default class WorkHoursComponent extends Component<Props, State> {
           <WrapperBody>
             <WrapperGroupInput showsVerticalScrollIndicator={false}>
               {
-                this.renderForm(this.state.data)
+                this.renderForm(this.state.date)
               }
             </WrapperGroupInput>
             <WrapperButton>
               <ButtonUI
-                onPress={() => null}
+                onPress={this.handleAddHours}
                 title={getString('workHours', 'add')}
                 type={Types.ADD}
               />
             </WrapperButton>
           </WrapperBody>
           <ButtonUI
-            onPress={() => this.showDateTimePicker()}
+            onPress={() => null}
             title={getString('workHours', 'save')}
             type={Types.SUBMIT}
           />
           <DateTimePicker
             isVisible={this.state.isDateTimePickerVisible}
-            onConfirm={this.handleDatePicked}
+            onConfirm={(date) => this.handleDatePicked(date, this.state.currentInput as CurrentInput)}
             onCancel={this.hideDateTimePicker}
             mode="time"
           />
