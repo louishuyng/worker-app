@@ -1,5 +1,6 @@
 import { JobStatus, JobDetail, WorkingHourInterface } from './type';
 import { TimeFormat } from 'components/workHours/type';
+import { TypeNotifcation } from 'components/Notification/type';
 
 const mockDate = new Date();
 
@@ -19,6 +20,8 @@ export const mockJobDataReview: Array<JobDetail> = [
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
     date: mockDate,
     status: JobStatus.REVIEW,
+    type: TypeNotifcation.JOB_CANCALLED,
+    isRead: true,
   },
   {
     timeAvaliable: {
@@ -35,6 +38,8 @@ export const mockJobDataReview: Array<JobDetail> = [
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
     date: mockDate,
     status: JobStatus.REVIEW,
+    type: TypeNotifcation.JOB_ASSIGN,
+    isRead: true,
   },
 ];
 
@@ -54,6 +59,8 @@ export const mockJobData: Array<JobDetail> = [
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
     date: mockDate,
     status: JobStatus.ENROUTE,
+    type: TypeNotifcation.JOB_CANCALLED,
+    isRead: true,
   },
   {
     timeAvaliable: {
@@ -71,6 +78,8 @@ export const mockJobData: Array<JobDetail> = [
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
     date: mockDate,
     status: JobStatus.LOCATION,
+    type: TypeNotifcation.JOB_ASSIGN,
+    isRead: true,
   },
   {
     timeAvaliable: {
@@ -87,6 +96,8 @@ export const mockJobData: Array<JobDetail> = [
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
     date: mockDate,
     status: JobStatus.SECURED,
+    type: TypeNotifcation.JOB_ASSIGN,
+    isRead: false,
   },
   {
     timeAvaliable: {
@@ -103,6 +114,8 @@ export const mockJobData: Array<JobDetail> = [
     location: '2569 Land Park Dr, Sacramentro, CA 95818',
     date: mockDate,
     status: JobStatus.ENDOFSHIFT,
+    type: TypeNotifcation.JOB_CANCALLED,
+    isRead: false,
   },
 ];
 

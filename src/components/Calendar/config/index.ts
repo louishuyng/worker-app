@@ -22,7 +22,7 @@ export const processTimeData = (timeData: any, jobData: Array<JobDetail>) => {
     const startHour = value.timeAvaliable.begin.hour;
     const endHour = value.timeAvaliable.end.hour;
 
-    for (let i = startHour; i < endHour; i++) {
+    for (let i = startHour as number; i < endHour; i++) {
       switch (i) {
         case startHour:
           timeData[i] = LabelBackgroundCalendar.TITLE;
@@ -31,14 +31,14 @@ export const processTimeData = (timeData: any, jobData: Array<JobDetail>) => {
           timeData[`${i}Selected`] = true;
           timeData[`${i}Font`] = 16;
           break;
-        case startHour + 1:
+        case startHour as number + 1:
           timeData[i] = LabelBackgroundCalendar.LOCATION;
           timeData[`${i}Text`] = value.location;
           timeData[`${i}Color`] = colors.paleSky;
           timeData[`${i}Selected`] = true;
           timeData[`${i}Font`] = 14;
           break;
-        case startHour + 2:
+        case startHour as number + 2:
           timeData[i] = LabelBackgroundCalendar.NAVIGATION;
           timeData[`${i}Selected`] = true;
           break;

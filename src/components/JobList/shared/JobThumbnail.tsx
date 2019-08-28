@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Image, View, ImageSourcePropType } from 'react-native';
+import { Image, View, ImageSourcePropType, Animated } from 'react-native';
 import styled from 'styled-components/native';
+import { NavigationScreenProp, AnimatedValue } from 'react-navigation';
+import { Tooltip } from 'react-native-ui-kitten';
 
 import {
   ORANGE_CIRCLE,
@@ -13,11 +15,14 @@ import { SetStatusModal } from 'components/common/Modal';
 import { Types } from 'components/common/Button/types';
 import { JobDetail, JobStatus } from '../type';
 import { getString } from 'locales';
-import { setStatusLable, setStatusModalLabel, setStatusIcon } from '../models/jobListModels';
+import { setStatusLable, setStatusModalLabel, setStatusIcon, setStatusHint } from '../models/jobListModels';
 import { convertWidth, convertHeight } from 'utils/convertSize';
+import { RouteName } from 'constant';
+import { colors } from 'utils/Theme';
 
-const Container = styled.View<{isFlat: boolean}>`
+const Container = styled.TouchableOpacity<{isFlat: boolean}>`
   padding-top: 3%;
+  z-index: 1;
   border-width: ${convertWidth(1)};
   border-color: ${({ theme }) => theme.colors.iron};
   border-radius: ${({ isFlat }) => {
@@ -45,31 +50,26 @@ const TitleStyled = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.medium};
 `;
 
-const WrapperStatusIcon = styled.View`
+const WrapperStatusIcon = styled.TouchableOpacity`
   width: ${convertHeight(35)};
   height: ${convertHeight(35)};
   justify-content: center;
   align-items: center;
 `;
 
-const BackgroundStatusIcon = styled.View`
-  position: absolute;
-  width: ${convertHeight(35)};
-  height: ${convertHeight(35)};
-  border-radius: ${convertHeight(25)};
-  border-color: ${({ theme }) => theme.colors.paleSky};
-  border-width: ${convertWidth(1)};
-  opacity: 0.1;
-`;
-
 const WrapperTime = styled.View`
   flex-direction: row;
-  padding-vertical: 10;
-  align-items: center;
+  align-items: flex-start;
+`;
+
+const WrapperImageTime = styled.View`
+  height: ${convertHeight(16)};
+  justify-content: center;
 `;
 
 const WrapperInnerTime = styled.View`
   flex-direction: row;
+  justify-content: center;
   margin-right: 5%;
 `;
 
@@ -79,6 +79,7 @@ const DateStyled = styled.Text`
   color: ${({ theme }) => theme.colors.capeCod};
   padding-horizontal: 5;
 `;
+
 const TimeStyled = styled.Text`
   font-size: ${convertWidth(16)};
   padding-horizontal: 5;
@@ -93,16 +94,13 @@ const WrapperLocation = styled.View`
 
 const WrapperButton = styled.View`
   flex-direction: row;
-  height: ${convertHeight(39)};
+  height: ${convertHeight(37)};
 `;
 
 const WrapperImage = styled.TouchableOpacity`
-  flex: 0.15;
-  border-width: ${convertWidth(1)};
+  flex: 0.1;
   align-items: center;
-  border-radius: ${convertWidth(5)};
-  margin-right: ${convertWidth(11)};
-  borderColor: ${({ theme }) => theme.colors.paleSky};
+  margin-right: ${convertWidth(12)};
 `;
 
 const ImageStyled = styled(Image)`
@@ -111,7 +109,7 @@ const ImageStyled = styled(Image)`
 `;
 
 const ButtonStyled = styled.View`
-  flex: 0.8;
+  flex: 0.9;
 `;
 
 const LocationStyled = styled.Text`
@@ -127,10 +125,12 @@ interface JobThumbNailProps {
   isFlat?: boolean;
   isHideIcon?: boolean;
   ButtonIcon: ImageSourcePropType;
+  navigation?: NavigationScreenProp<any>;
 }
 
 interface JobThumbNailState {
   isModalVisible: boolean;
+  isVisibleToolTip: boolean;
 }
 
 export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState> {
@@ -138,6 +138,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
     super(props);
     this.state = {
       isModalVisible: false,
+      isVisibleToolTip: false,
     };
   };
 
@@ -156,9 +157,20 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
       isFlat,
       isHideLocation,
       isHideIcon,
+      navigation,
     } = this.props;
 
     const formatDate = date.toLocaleDateString('en-US');
+
+    const handleClickSetStatus = (status: JobStatus) => {
+      if (status !== JobStatus.ENDOFSHIFT) {
+        return this.setState({
+          isModalVisible: true,
+        });
+      } else {
+        navigation && navigation.navigate(RouteName.JOB, { data: this.props.jobData });
+      }
+    };
 
     const renderButton = () => {
       return status !== JobStatus.REVIEW && (
@@ -174,11 +186,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
             <ButtonUI
               type={Types.SETSTATUS}
               title={setStatusLable[status]}
-              onPress={() => {
-                this.setState({
-                  isModalVisible: true,
-                });
-              }}
+              onPress={() => handleClickSetStatus(status)}
             />
           </ButtonStyled>
         </WrapperButton>
@@ -200,12 +208,33 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
       );
     };
 
+    const goToJobDetail = (data: JobDetail) => {
+      navigation && navigation.navigate(RouteName.JOB, { data });
+    };
+
+    const toggleTooltip = () => {
+      this.setState({
+        isVisibleToolTip: !this.state.isVisibleToolTip,
+      });
+
+      setTimeout(() => {
+        this.setState({
+          isVisibleToolTip: !this.state.isVisibleToolTip,
+        });
+      }, 1000);
+    };
+
     const isInProgress = status !== JobStatus.NEW && status !== JobStatus.REVIEW;
+
     return (
       <View style={{
         paddingBottom: isHideLocation ? 0 : convertHeight(8),
       }}>
-        <Container isFlat={isFlat as boolean}>
+        <Container
+          disabled={isHideIcon}
+          isFlat={isFlat as boolean}
+          onPress={() => goToJobDetail(this.props.jobData)}
+        >
           <WrapperHeader>
             <WrapperTitle>
               {status === JobStatus.NEW && (
@@ -214,22 +243,42 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
               <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
             </WrapperTitle>
             { isInProgress && !isHideIcon && (
-              <WrapperStatusIcon>
-                <BackgroundStatusIcon />
-                <Image
-                  style={{ resizeMode: 'contain' }}
-                  source={setStatusIcon[status] as ImageSourcePropType}
-                />
+              <WrapperStatusIcon
+                onLongPress={() => toggleTooltip()}
+              >
+                <Tooltip
+                  visible={this.state.isVisibleToolTip}
+                  text={setStatusHint[status] as string}
+                  onBackdropPress={() => null}
+                  placement="left start"
+                  indicatorStyle = {{
+                    left: status === JobStatus.ENDOFSHIFT ? convertWidth(70) : convertWidth(55),
+                    backgroundColor: colors.doveGray,
+                  }}
+                  style={{
+                    left: status === JobStatus.ENDOFSHIFT ? convertWidth(70) : convertWidth(55),
+                    backgroundColor: colors.doveGray,
+                  }}
+                >
+                  <Image
+                    style={{ resizeMode: 'contain' }}
+                    source={setStatusIcon[status] as ImageSourcePropType}
+                  />
+                </Tooltip>
               </WrapperStatusIcon>
             )}
           </WrapperHeader>
           <WrapperTime>
             <WrapperInnerTime>
-              <Image source={CALENDER_DAY_SOLID} />
+              <WrapperImageTime>
+                <Image source={CALENDER_DAY_SOLID} />
+              </WrapperImageTime>
               <DateStyled>{formatDate}</DateStyled>
             </WrapperInnerTime>
             <WrapperInnerTime>
-              <Image source={CLOCK_SOLID} />
+              <WrapperImageTime>
+                <Image source={CLOCK_SOLID} />
+              </WrapperImageTime>
               <TimeStyled>
                 {beginHour}:{beginMinute} - {endHour}:{endMinute}
               </TimeStyled>

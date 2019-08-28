@@ -37,5 +37,13 @@ export const setStatusIcon: setStatusIconInterface = {
   [JobStatus.SECURED]: IC_SECURED,
   [JobStatus.ENDOFSHIFT]: IC_END_OF_SHIFT,
   [JobStatus.REVIEW]: undefined,
-}
-;
+};
+
+export const setStatusHint: setStatusLableInterface = {
+  [JobStatus.NEW]: undefined,
+  [JobStatus.ENROUTE]: getString('jobList', 'enrouteHint'),
+  [JobStatus.LOCATION]: getString('jobList', 'locationHint'),
+  [JobStatus.SECURED]: getString('jobList', 'securedHint'),
+  [JobStatus.ENDOFSHIFT]: getString('jobList', 'endOfShiftHint'),
+  [JobStatus.REVIEW]: undefined,
+};

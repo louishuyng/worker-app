@@ -12,7 +12,7 @@ import { getString } from 'locales';
 import { TimeFormat } from './type';
 import { mockDataWorkHours } from './mock';
 import { isValidDate, TimeDefined } from './helper';
-import { convertHeight } from 'utils/convertSize';
+import { convertHeight, convertWidth } from 'utils/convertSize';
 
 const Container = styled.View`
   flex: 1;
@@ -28,11 +28,11 @@ const WrapperGroupInput = styled.ScrollView`
 
 const WrapperTextInput = styled.View`
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 const TextInputStyled = styled.TouchableOpacity`
-  flex: 1;
-  padding-horizontal: 1%;
+  width: ${convertWidth(160)};
 `;
 
 const WrapperBody = styled.View``;

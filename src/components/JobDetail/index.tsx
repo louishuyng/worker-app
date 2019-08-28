@@ -14,8 +14,12 @@ import DisplayBox from './content/DisplayBox';
 import { ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { convertHeight, convertWidth } from 'utils/convertSize';
+import { NavigationScreenProp } from 'react-navigation';
+import Map from './content/Map';
 
-interface Props {}
+interface Props {
+  navigation: NavigationScreenProp<any>;
+}
 
 interface State {}
 
@@ -45,12 +49,19 @@ export default class JobDetail extends React.Component<Props, State> {
   }
 
   render() {
+    const { navigation: { getParam } } = this.props;
+
     return (
       <ScrollView>
         <JobThumbnail
-          jobData={mockJobData[0]} isFlat={true} isHideIcon={true}
+          jobData={getParam('data')} isFlat={true} isHideIcon={true}
           isHideLocation={true}
           ButtonIcon={IC_CAMERA}
+        />
+        <SectionJobDetail
+          titleHeader={getString('jobDetail', 'address')}
+          Content={
+            () => (<Map locationTitle={mockJobData[0].location as string}/>)}
         />
         <SectionJobDetail
           titleHeader={getString('jobDetail', 'time')}

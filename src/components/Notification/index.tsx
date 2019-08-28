@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
+import { NavigationScreenProp } from 'react-navigation';
 
-import { mockData } from './mock';
 import { IC_JOB_ASSIGN, IC_JOB_CANCELLED } from 'utils/Icons';
 import { convertHeight, convertWidth } from 'utils/convertSize';
 import { View } from 'react-native';
-import { Notification, TypeNotifcation } from './type';
+import { TypeNotifcation } from './type';
 import { getString } from 'locales';
+import { mockJobData } from 'components/JobList/mock';
+import { JobDetail } from 'components/JobList/type';
+import { RouteName } from 'constant';
+import { notificationTitleModel } from './model';
 
 const Container = styled.ScrollView`
   flex: 1;
@@ -81,7 +85,9 @@ const StatusLabel = styled.Text`
   text-transform: uppercase;
 `;
 
-interface Props {}
+interface Props {
+  navigation: NavigationScreenProp<any>;
+}
 
 interface State {}
 
@@ -91,18 +97,18 @@ export default class NotificationUI extends Component<Props, State> {
     this.state = {};
   }
 
-  renderNotification = (data: Notification[], isRead: boolean) => {
+  renderNotification = (data: Array<JobDetail>, isRead: boolean) => {
     return data.filter((item) => item.isRead === isRead).map((item, i) => {
-      const { title, jobName, location, type, timestamp } = item;
+      const { jobName, location, type } = item;
       const icon = type === TypeNotifcation.JOB_ASSIGN ? IC_JOB_ASSIGN : IC_JOB_CANCELLED;
       const timeFormat = moment().startOf('hours').fromNow();
       return (
         <View key={i}>
-          <WrapperCard>
+          <WrapperCard onPress={() => this.goToJobDetail(item)}>
             <WrapperDetail>
               <WrapperIcon source={icon} />
               <WrapperContent>
-                <TitileStyled>{title}</TitileStyled>
+                <TitileStyled>{notificationTitleModel[type]}</TitileStyled>
                 <JobNameStyled>{jobName}</JobNameStyled>
                 <LocationStyled>{location}</LocationStyled>
               </WrapperContent>
@@ -115,18 +121,22 @@ export default class NotificationUI extends Component<Props, State> {
     });
   };
 
-  render() {
-    return (
-      <Container>
-        <StatusLabel>{getString('notification', 'new')}</StatusLabel>
-        <WrapperNotification>
-          {this.renderNotification(mockData, false)}
-        </WrapperNotification>
-        <StatusLabel>{getString('notification', 'seen')}</StatusLabel>
-        <WrapperNotification>
-          {this.renderNotification(mockData, true)}
-        </WrapperNotification>
-      </Container>
-    );
-  };
+   goToJobDetail = (data: JobDetail) => {
+     this.props.navigation.navigate(RouteName.JOB, { data });
+   };
+
+   render() {
+     return (
+       <Container>
+         <StatusLabel>{getString('notification', 'new')}</StatusLabel>
+         <WrapperNotification>
+           {this.renderNotification(mockJobData, false)}
+         </WrapperNotification>
+         <StatusLabel>{getString('notification', 'seen')}</StatusLabel>
+         <WrapperNotification>
+           {this.renderNotification(mockJobData, true)}
+         </WrapperNotification>
+       </Container>
+     );
+   };
 };
