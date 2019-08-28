@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import { IC_BACK } from 'utils/Icons';
-import { convertWidth } from 'utils/convertSize';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 
 interface Props {
   label?: string;
@@ -40,7 +40,12 @@ export default class BackButtonUI extends React.Component<Props, State> {
     const { label, onPress } = this.props;
     return (
       <Wrapper >
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={onPress} hitSlop={{
+          top: convertHeight(5),
+          bottom: convertHeight(5),
+          left: convertWidth(20),
+          right: convertWidth(20),
+        }}>
           <BackButton source={IC_BACK} />
           {label && <LabelText>{label}</LabelText>}
         </TouchableOpacity>

@@ -27,6 +27,7 @@ export interface colorsType {
   silver: string;
   cerulean: string;
   mineShaft: string;
+  doveGray: string;
 }
 
 export interface fontFamilyType {
@@ -59,6 +60,7 @@ export const colors: colorsType = {
   silver: '#C3C3C3',
   cerulean: '#009ADA',
   mineShaft: '#333333',
+  doveGray: '#707070',
 };
 
 export const fontFamily: fontFamilyType = {

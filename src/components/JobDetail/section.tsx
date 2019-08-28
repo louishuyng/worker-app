@@ -1,4 +1,4 @@
-import React, { ReactComponentElement } from 'react';
+import React from 'react';
 import styled from 'styled-components/native';
 
 import { convertHeight, convertWidth } from 'utils/convertSize';

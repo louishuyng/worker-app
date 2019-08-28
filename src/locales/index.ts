@@ -37,7 +37,7 @@ const strings: any = new LocalizedStrings({
       CALENDAR: 'Calendar',
       PROFILE: 'Profile',
       AGENDA: 'Agenda',
-      NOTIFICATION: 'Notification',
+      NOTIFICATION: 'Notifications',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',
@@ -53,11 +53,11 @@ const strings: any = new LocalizedStrings({
       RESET_PASSWORD: 'Reset Password',
     },
     jobList: {
-      newJobTabTitle: 'New Job',
-      inProgressTabTitle: 'In Progress',
-      complitedTabTitle: 'Complited',
-      billedTabTitle: 'Billed',
-      paidTabTitle: 'Paid',
+      newJobTabTitle: 'NEW JOBS',
+      inProgressTabTitle: 'IN PROGRESS',
+      complitedTabTitle: 'COMPLITED',
+      billedTabTitle: 'BILLED',
+      paidTabTitle: 'PAID',
       reviewTimeSheetTabTitle: 'Review TimeSheet',
       noJobTitle: 'No jobs assigned',
       noJobSubTitle: 'You are set as available for work',
@@ -73,6 +73,10 @@ const strings: any = new LocalizedStrings({
       setSecured: 'Set to Secured',
       setEndOfShift: 'Set to End Of Shift',
       createTimeSheet: 'Create Timesheet',
+      locationHint: 'OnLocation',
+      enrouteHint: 'OnEnroute',
+      securedHint: 'OnSecured',
+      endOfShiftHint: 'OnEndOfShift',
     },
     modal: {
       jobCancelledTitle: 'Job has been cancelled!',
@@ -105,6 +109,8 @@ const strings: any = new LocalizedStrings({
     notification: {
       new: 'New',
       seen: 'Seen',
+      cancelledTitle: 'Job has been cancelled',
+      assignedJob: 'Assigned new job',
     },
     calendar: {
       goJobPage: 'Go to Job Page  ',

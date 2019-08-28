@@ -12,7 +12,7 @@ interface InProgressProps {
 }
 
 const InProgress = (props: InProgressProps) => {
-  const { jobData } = props;
+  const { jobData, navigation } = props;
 
   const displayJobThumnail = (data: Array<JobDetail>) => {
     return data.map((value: JobDetail, index: number) => (
@@ -20,6 +20,7 @@ const InProgress = (props: InProgressProps) => {
         ButtonIcon={LOCATION}
         key={index}
         jobData={value}
+        navigation={navigation}
       />
     ));
   };

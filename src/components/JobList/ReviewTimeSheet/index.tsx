@@ -12,7 +12,7 @@ interface InProgressProps {
 }
 
 const ReviewTimeSheet = (props: InProgressProps) => {
-  const { jobData } = props;
+  const { jobData, navigation } = props;
 
   const displayJobThumnail = (data: Array<JobDetail>) => {
     return data.map((value: JobDetail, index: number) => (
@@ -20,6 +20,7 @@ const ReviewTimeSheet = (props: InProgressProps) => {
         ButtonIcon={LOCATION}
         key={index}
         jobData={value}
+        navigation={navigation}
       />
     ));
   };

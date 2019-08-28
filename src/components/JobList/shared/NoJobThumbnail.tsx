@@ -85,8 +85,8 @@ export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) 
               <Description>{getString('jobList', 'noJobSubTitle')}</Description>
               <Description>
                 {getString('jobList', 'between')}
-                <FormatedTime>{beginHour}: {beginMinute}0</FormatedTime>{getString('jobList', 'and')}
-                <FormatedTime>{endHour}: {endMinute}0</FormatedTime>{getString('jobList', 'today')}
+                <FormatedTime>{beginHour}:{beginMinute}0</FormatedTime>{getString('jobList', 'and')}
+                <FormatedTime>{endHour}:{endMinute}0</FormatedTime>{getString('jobList', 'today')}
               </Description>
             </>
           ) : null

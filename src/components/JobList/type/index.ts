@@ -1,4 +1,5 @@
 import { TimeFormat } from 'components/workHours/type';
+import { TypeNotifcation } from 'components/Notification/type';
 
 export enum JobStatus {
   NEW,
@@ -20,4 +21,6 @@ export interface JobDetail {
   jobName: string,
   timeAvaliable: TimeFormat;
   status: JobStatus,
+  isRead: boolean,
+  type: TypeNotifcation,
 }

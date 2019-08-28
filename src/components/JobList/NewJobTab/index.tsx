@@ -14,7 +14,7 @@ interface NewJobTabProps {
 }
 
 const NewJobTab = (props: NewJobTabProps) => {
-  const { jobData, currentWorkingHour } = props;
+  const { jobData, currentWorkingHour, navigation } = props;
   const isEmptyJob = true;
   const displayJobThumnail = (data: Array<JobDetail>) => {
     return data.map((value: JobDetail, index: number) => (
@@ -22,6 +22,7 @@ const NewJobTab = (props: NewJobTabProps) => {
         ButtonIcon={LOCATION}
         key={index}
         jobData={value}
+        navigation={navigation}
       />
     ));
   };

@@ -7,4 +7,5 @@ export interface TimeFormat {
     hour: number | string;
     minute: number| string;
   }
+  date?: Date;
 }
