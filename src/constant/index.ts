@@ -21,6 +21,7 @@ export const RouteName = {
   CALENDAR: getString('screen', 'CALENDAR'),
   AGENDA: getString('screen', 'AGENDA'),
   NOTIFICATION: getString('screen', 'NOTIFICATION'),
+  TIMESHEET: getString('screen', 'TIMESHEET'),
 };
 
 export const listNumberHour = [

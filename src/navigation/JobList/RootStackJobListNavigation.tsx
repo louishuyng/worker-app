@@ -10,8 +10,9 @@ import { RouteName } from 'constant';
 import { IC_JOBLIST_ACTIVE, IC_JOBLIST_UN_ACTIVE } from 'utils/Icons';
 import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 import JobDetail from 'components/JobDetail';
-import { colors, colorsType } from 'utils/Theme';
+import { colors } from 'utils/Theme';
 import BackButtonUI from 'components/common/ButtonBack';
+import { TimeSheetScreen } from 'screens/TimeSheet';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
@@ -22,6 +23,18 @@ const routeConfig: NavigationRouteConfig = {
   },
   [RouteName.JOB]: {
     screen: JobDetail,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      widthTitle: '75%',
+    }),
+  },
+  [RouteName.TIMESHEET]: {
+    screen: TimeSheetScreen,
     navigationOptions: (
       { navigation, screenProps }: { navigation: any, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({

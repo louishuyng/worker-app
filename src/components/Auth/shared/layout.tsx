@@ -12,7 +12,7 @@ import { IC_STEP_ONE_SIGN_UP, IC_STEP_TWO_SIGN_UP } from 'utils/Icons';
 import { getString } from 'locales';
 import { FormikAuthValues } from 'screens/Auth/models';
 import { RouteName } from 'constant';
-import { screenHeight, screenWidth } from 'utils/Styles';
+import { screenHeight } from 'utils/Styles';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
 interface Props {

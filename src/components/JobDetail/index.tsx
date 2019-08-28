@@ -16,6 +16,7 @@ import { Types } from 'components/common/Button/types';
 import { convertHeight, convertWidth } from 'utils/convertSize';
 import { NavigationScreenProp } from 'react-navigation';
 import Map from './content/Map';
+import { RouteName } from 'constant';
 
 interface Props {
   navigation: NavigationScreenProp<any>;
@@ -106,10 +107,11 @@ export default class JobDetail extends React.Component<Props, State> {
           <WrapperButton >
             <ButtonUI
               title={getString('jobList', 'createTimeSheet')}
-              onPress={() => null}
+              onPress={() => this.props.navigation.navigate(RouteName.TIMESHEET)}
               type={Types.SUBMIT}
             />
           </WrapperButton>
+          <ExtendFooterBox />
         </WrapperFooter>
       </ScrollView>
     );
