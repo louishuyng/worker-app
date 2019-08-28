@@ -29,6 +29,7 @@ export const IC_ENROUTE = require('../../assets/icons/joblist/enroute-icon.png')
 export const IC_LOCATION = require('../../assets/icons/joblist/location-icon.png');
 export const IC_SECURED = require('../../assets/icons/joblist/secured-icon.png');
 export const IC_END_OF_SHIFT = require('../../assets/icons/joblist/end-of-shift-icon.png');
+export const IC_CAMERA = require('../../assets/icons/joblist/camera.png');
 
 // Checkbox
 export const CHECK_MARK = require('../../assets/icons/checkbox/check-mark.png');

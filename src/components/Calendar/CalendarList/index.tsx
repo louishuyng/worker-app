@@ -5,7 +5,7 @@ import { NavigationScreenProp } from 'react-navigation';
 
 import LocaleConfig from '../config';
 import DayComponent from 'components/Calendar/CalendarList/DayComponent';
-import { convertHeight, convertWidth } from 'utils/convertSize';
+import { convertWidth } from 'utils/convertSize';
 import HeaderCalendar from '../shared';
 import { colors } from 'utils/Theme';
 

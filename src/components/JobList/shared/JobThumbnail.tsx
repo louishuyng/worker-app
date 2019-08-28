@@ -7,7 +7,6 @@ import {
   CALENDER_DAY_SOLID,
   CLOCK_SOLID,
   MAP_MARKER,
-  LOCATION,
 } from 'utils/Icons';
 import { ButtonUI } from 'components/common';
 import { SetStatusModal } from 'components/common/Modal';
@@ -17,18 +16,21 @@ import { getString } from 'locales';
 import { setStatusLable, setStatusModalLabel, setStatusIcon } from '../models/jobListModels';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
-const Container = styled.View`
+const Container = styled.View<{isFlat: boolean}>`
   padding-top: 3%;
   border-width: ${convertWidth(1)};
   border-color: ${({ theme }) => theme.colors.iron};
-  border-radius: ${convertWidth(7)};
+  border-radius: ${({ isFlat }) => {
+    if (isFlat) return 0;
+    return convertWidth(7);
+  }};
   padding-horizontal: ${convertWidth(11)};
   padding-vertical: ${convertHeight(11)};
   background: ${({ theme }) => theme.colors.lightBackground};
 `;
 
 const WrapperHeader = styled.View`
-  padding-vertical: 10;
+  padding-vertical: ${convertWidth(10)};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -39,7 +41,6 @@ const WrapperTitle = styled.View`
 
 const TitleStyled = styled.Text`
   font-size: ${convertWidth(18)};
-  padding-left: 5;
   color: ${({ theme }) => theme.colors.capeCod};
   font-family: ${({ theme }) => theme.fontFamily.medium};
 `;
@@ -92,17 +93,16 @@ const WrapperLocation = styled.View`
 
 const WrapperButton = styled.View`
   flex-direction: row;
-  align-items: center;
+  height: ${convertHeight(39)};
 `;
 
 const WrapperImage = styled.TouchableOpacity`
-  height: 100%;
-  flex: 0.2;
-  border-width: 1;
+  flex: 0.15;
+  border-width: ${convertWidth(1)};
   align-items: center;
-  border-radius: 5;
-  margin-right: 5;
-  borderColor: ${({ theme }) => theme.colors.paleGray};
+  border-radius: ${convertWidth(5)};
+  margin-right: ${convertWidth(11)};
+  borderColor: ${({ theme }) => theme.colors.paleSky};
 `;
 
 const ImageStyled = styled(Image)`
@@ -112,7 +112,6 @@ const ImageStyled = styled(Image)`
 
 const ButtonStyled = styled.View`
   flex: 0.8;
-  height: 100%;
 `;
 
 const LocationStyled = styled.Text`
@@ -124,7 +123,10 @@ const LocationStyled = styled.Text`
 
 interface JobThumbNailProps {
   jobData: JobDetail;
-  isButtonAppear: boolean;
+  isHideLocation?: boolean;
+  isFlat?: boolean;
+  isHideIcon?: boolean;
+  ButtonIcon: ImageSourcePropType;
 }
 
 interface JobThumbNailState {
@@ -143,20 +145,30 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
     const {
       jobData: {
         date,
-        timeAvaliable: { beginHour, beginMinute, endHour, endMinute },
+        timeAvaliable: {
+          begin: { hour: beginHour, minute: beginMinute },
+          end: { hour: endHour, minute: endMinute },
+        },
         location,
         status,
       },
-      isButtonAppear,
+      ButtonIcon,
+      isFlat,
+      isHideLocation,
+      isHideIcon,
     } = this.props;
 
     const formatDate = date.toLocaleDateString('en-US');
 
     const renderButton = () => {
       return status !== JobStatus.REVIEW && (
+        <>
+        <View style={{
+          height: convertHeight(20),
+        }}/>
         <WrapperButton>
           <WrapperImage>
-            <ImageStyled source={LOCATION} />
+            <ImageStyled source={ButtonIcon} />
           </WrapperImage>
           <ButtonStyled>
             <ButtonUI
@@ -169,11 +181,13 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
               }}
             />
           </ButtonStyled>
-        </WrapperButton>);
+        </WrapperButton>
+        </>
+      );
     };
 
     const renderModal = () => {
-      return isButtonAppear && this.state.isModalVisible && (
+      return this.state.isModalVisible && (
         <SetStatusModal
           onPress={() => null}
           statusLabel={setStatusModalLabel[status]}
@@ -189,9 +203,9 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
     const isInProgress = status !== JobStatus.NEW && status !== JobStatus.REVIEW;
     return (
       <View style={{
-        paddingBottom: convertHeight(8),
+        paddingBottom: isHideLocation ? 0 : convertHeight(8),
       }}>
-        <Container>
+        <Container isFlat={isFlat as boolean}>
           <WrapperHeader>
             <WrapperTitle>
               {status === JobStatus.NEW && (
@@ -199,7 +213,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
               )}
               <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
             </WrapperTitle>
-            { isInProgress && (
+            { isInProgress && !isHideIcon && (
               <WrapperStatusIcon>
                 <BackgroundStatusIcon />
                 <Image
@@ -221,10 +235,11 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
               </TimeStyled>
             </WrapperInnerTime>
           </WrapperTime>
-          <WrapperLocation>
-            <Image source={MAP_MARKER} />
-            <LocationStyled>{location}</LocationStyled>
-          </WrapperLocation>
+          {!isHideLocation && (
+            <WrapperLocation>
+              <Image source={MAP_MARKER} />
+              <LocationStyled>{location}</LocationStyled>
+            </WrapperLocation>)}
           {renderButton()}
         </Container>
         {renderModal()}

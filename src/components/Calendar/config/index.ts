@@ -1,8 +1,8 @@
 import { LocaleConfig } from 'react-native-calendars';
 
-import { mockCalendarData } from '../mock';
 import { LabelBackgroundCalendar } from '../Agenda/type';
 import { colors } from 'utils/Theme';
+import { JobDetail } from 'components/JobList/type';
 
 export const weekDayShortNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 LocaleConfig.locales['en'] = {
@@ -17,16 +17,16 @@ LocaleConfig.locales['en'] = {
   dayNamesShort: weekDayShortNames,
 };
 
-export const processTimeData = (timeData: any) => {
-  mockCalendarData.map((value): any => {
-    const startHour = value.timeavaliable.beginhour;
-    const endHour = value.timeavaliable.endhour;
+export const processTimeData = (timeData: any, jobData: Array<JobDetail>) => {
+  jobData.map((value): any => {
+    const startHour = value.timeAvaliable.begin.hour;
+    const endHour = value.timeAvaliable.end.hour;
 
     for (let i = startHour; i < endHour; i++) {
       switch (i) {
         case startHour:
           timeData[i] = LabelBackgroundCalendar.TITLE;
-          timeData[`${i}Text`] = value.jobname;
+          timeData[`${i}Text`] = value.jobName;
           timeData[`${i}Color`] = colors.black;
           timeData[`${i}Selected`] = true;
           timeData[`${i}Font`] = 16;

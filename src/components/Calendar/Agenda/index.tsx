@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import { NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 
 import HeaderCalendar from '../shared';
@@ -50,7 +49,7 @@ export default class Agenda extends React.Component<Props, State> {
     return (
       <View style={{ height: screenHeight, paddingBottom: convertHeight(180) }}>
         <HeaderCalendar datePicked={this.props.navigation.getParam('datePicked')} isShowController />
-        <ListAgenda />
+        <ListAgenda navigation={this.props.navigation}/>
       </View>
     );
   }

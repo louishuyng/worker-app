@@ -13,7 +13,7 @@ import { getString } from 'locales';
 import { FormikAuthValues } from 'screens/Auth/models';
 import { RouteName } from 'constant';
 import { screenHeight, screenWidth } from 'utils/Styles';
-import { convertWidth } from 'utils/convertSize';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 
 interface Props {
   stage: AuthStage;
@@ -107,7 +107,11 @@ const NavigationTitle = styled.Text`
   font-size: ${convertWidth(17)};
   align-self: center;
   font-family: ${({ theme }) => theme.fontFamily.bold};
-  color: ${({ theme }) => theme.colors.skyBlue}
+  color: ${({ theme }) => theme.colors.skyBlue};
+`;
+
+const WrapperButton = styled.View`
+  height: ${convertHeight(56)};
 `;
 
 export default class AuthScreen extends Component<Props, State> {
@@ -169,12 +173,14 @@ export default class AuthScreen extends Component<Props, State> {
             </WrapperForm>
           </KeyboardAvoidingView>
           <WrapperFooter>
-            <ButtonUI
-              type={Types.SUBMIT}
-              title={buttonLabel}
-              onPress={() => navigate(navigator)}
-              afterIcon={afterIconData}
-            />
+            <WrapperButton>
+              <ButtonUI
+                type={Types.SUBMIT}
+                title={buttonLabel}
+                onPress={() => navigate(navigator)}
+                afterIcon={afterIconData}
+              />
+            </WrapperButton>
             <SuggestionTitle>{suggestionTitle}</SuggestionTitle>
             <NavigationTitle onPress={() => navigate(subNavigator)}>{navigatorTitle}</NavigationTitle>
           </WrapperFooter>

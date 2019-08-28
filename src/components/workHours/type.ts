@@ -1,10 +1,10 @@
 export interface TimeFormat {
   begin: {
-    hour: string;
-    minute: string;
+    hour: number | string;
+    minute: number | string;
   };
   end: {
-    hour: string;
-    minute: string;
+    hour: number | string;
+    minute: number| string;
   }
 }

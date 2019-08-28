@@ -3,12 +3,13 @@ import { NavigationScreenProp } from 'react-navigation';
 
 import { JobDetail } from '../type';
 import { JobThumbnail, NoJobThumbnail, WrapperJobList } from '../shared';
-import { TimeWorkHourFormat } from 'components/workHours/type';
+import { TimeFormat } from 'components/workHours/type';
+import { LOCATION } from 'utils/Icons';
 
 interface NewJobTabProps {
   tabLabel: string;
   jobData: Array<JobDetail>;
-  currentWorkingHour: Array<TimeWorkHourFormat>;
+  currentWorkingHour: Array<TimeFormat>;
   navigation: NavigationScreenProp<any>;
 }
 
@@ -18,7 +19,8 @@ const NewJobTab = (props: NewJobTabProps) => {
   const displayJobThumnail = (data: Array<JobDetail>) => {
     return data.map((value: JobDetail, index: number) => (
       <JobThumbnail
-        isButtonAppear key={index}
+        ButtonIcon={LOCATION}
+        key={index}
         jobData={value}
       />
     ));

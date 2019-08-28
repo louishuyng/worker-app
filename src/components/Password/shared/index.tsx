@@ -8,7 +8,7 @@ import { ButtonUI, TextInputFormikUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { InputData } from '../models/recoveryPasswordTypes';
 import { screenHeight } from 'utils/Styles';
-import { convertWidth } from 'utils/convertSize';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -39,8 +39,12 @@ const WrapperBody = styled.View`
   justify-content: space-between;
 `;
 
-const WrapperButton = styled.View`
+const WrapperFooter = styled.View`
   flex: 1 0 ${screenHeight * 0.2}px;
+`;
+
+const WrapperButton = styled.View`
+  height: ${convertHeight(56)};
 `;
 
 interface AboutPasswordScreenProps {
@@ -82,9 +86,11 @@ const LayoutPasswordScreen = (props: AboutPasswordScreenProps) => {
               : null}
           </KeyboardAwareScrollView>
         </WrapperBody>
-        <WrapperButton>
-          <ButtonUI onPress={() => onPress()} title={buttonTitle} type={Types.SUBMIT} />
-        </WrapperButton>
+        <WrapperFooter>
+          <WrapperButton>
+            <ButtonUI onPress={() => onPress()} title={buttonTitle} type={Types.SUBMIT} />
+          </WrapperButton>
+        </WrapperFooter>
       </Container>
     </TouchableWithoutFeedback>
   );

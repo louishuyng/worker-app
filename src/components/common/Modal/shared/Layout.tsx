@@ -7,7 +7,7 @@ import { ModalUIProps } from '../types';
 import { CLOSE_ICON } from 'utils/Icons';
 import { Types } from '../../Button/types';
 import { ButtonUI } from '../..';
-import { convertWidth } from 'utils/convertSize';
+import { convertWidth, convertHeight } from 'utils/convertSize';
 
 const ModalWrapper = styled.View`
   background-color: white;
@@ -71,15 +71,25 @@ const ModalLayout = (props: ModalUIProps) => {
           <ContentWrapper>{children}</ContentWrapper>
           <ButtonWrapper>
             {cancelActionName &&
-              <View style={{ paddingRight: 5, flex: 1 }}>
-                <ButtonUI
-                  title={cancelActionName}
-                  onPress={() => closeModal()}
-                  type={Types.ADD}
-                />
-              </View>
+            <View style={{
+              paddingLeft: 5,
+              flex: cancelActionName ? 1 : 0.5,
+              height: convertHeight(42),
+              width: convertWidth(152),
+            }}>
+              <ButtonUI
+                title={cancelActionName}
+                onPress={() => closeModal()}
+                type={Types.ADD}
+              />
+            </View>
             }
-            <View style={{ paddingLeft: 5, flex: cancelActionName ? 1 : 0.5 }}>
+            <View style={{
+              paddingLeft: 5,
+              flex: cancelActionName ? 1 : 0.5,
+              height: convertHeight(42),
+              width: convertWidth(152),
+            }}>
               <ButtonUI
                 title={submitActionName}
                 onPress={onPress}

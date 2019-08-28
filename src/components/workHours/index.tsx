@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, Alert, View } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import styled from 'styled-components/native';
 import { Field } from 'formik';
 import moment from 'moment';
 
-import { TextInputFormikUI, ButtonUI } from 'components/common';
+import { TextInputFormikHour, ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { screenHeight } from 'utils/Styles';
 import { getString } from 'locales';
 import { TimeFormat } from './type';
 import { mockDataWorkHours } from './mock';
-import { isValidDate } from './helper';
+import { isValidDate, TimeDefined } from './helper';
+import { convertHeight } from 'utils/convertSize';
 
 const Container = styled.View`
   flex: 1;
@@ -38,6 +39,7 @@ const WrapperBody = styled.View``;
 
 const WrapperButton = styled.View`
   width: 43%;
+  height: ${convertHeight(39)};
   align-self: flex-end;
 `;
 
@@ -90,7 +92,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
     const cloneDate = [...this.state.date];
     if (currentInput.timeMark === TimeMark.FROM) {
       if (currentInput.index > 0) {
-        if (!isValidDate(cloneDate[currentInput.index - 1].end, {
+        if (!isValidDate(cloneDate[currentInput.index - 1].end as TimeDefined, {
           hour,
           minute,
         })) {
@@ -109,7 +111,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
         return null;
       }
 
-      if (!isValidDate(cloneDate[currentInput.index].begin, {
+      if (!isValidDate(cloneDate[currentInput.index].begin as TimeDefined, {
         hour,
         minute,
       })) {
@@ -152,18 +154,18 @@ export default class WorkHoursComponent extends Component<Props, State> {
     return workHours.map((item: TimeFormat, i: number) => {
       return (
         <WrapperTextInput key={i}>
-          <TextInputStyled onPress={() => {
+          <TextInputStyled onPressIn={() => {
             this.showDateTimePicker({
               timeMark: TimeMark.FROM,
               index: i,
             });
-          }} >
+          }}>
             <Field
               name={`from${i}`}
               label={getString('workHours', 'from')}
               value={item.begin}
               isHideKeyboard={true}
-              component={TextInputFormikUI}
+              component={TextInputFormikHour}
             />
           </TextInputStyled>
           <TextInputStyled onPress={() => {
@@ -177,7 +179,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
               label={getString('workHours', 'to')}
               value={item.end}
               isHideKeyboard={true}
-              component={TextInputFormikUI}
+              component={TextInputFormikHour}
             />
           </TextInputStyled>
         </WrapperTextInput >
@@ -203,11 +205,13 @@ export default class WorkHoursComponent extends Component<Props, State> {
               />
             </WrapperButton>
           </WrapperBody>
-          <ButtonUI
-            onPress={() => null}
-            title={getString('workHours', 'save')}
-            type={Types.SUBMIT}
-          />
+          <View style={{ height: convertHeight(56) }}>
+            <ButtonUI
+              onPress={() => null}
+              title={getString('workHours', 'save')}
+              type={Types.SUBMIT}
+            />
+          </View>
           <DateTimePicker
             isVisible={this.state.isDateTimePickerVisible}
             onConfirm={(date) => this.handleDatePicked(date, this.state.currentInput as CurrentInput)}

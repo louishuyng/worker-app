@@ -5,7 +5,7 @@ import { Image } from 'react-native';
 import { ALERT_CIRCLE } from 'utils/Icons';
 import { getString } from 'locales';
 import { convertWidth } from 'utils/convertSize';
-import { TimeWorkHourFormat } from 'components/workHours/type';
+import { TimeFormat } from 'components/workHours/type';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -30,7 +30,6 @@ const NotificationText = styled.Text`
 const Description = styled.Text`
   font-size: ${convertWidth(16)};
   color: ${({ theme }) => theme.colors.capeCod};
-  padding: 4%;
   text-align: center;
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
@@ -63,17 +62,17 @@ const RecommendText = styled.Text`
 `;
 
 interface JobAssignProps {
-  hourWorkingData: [] | Array<TimeWorkHourFormat>;
+  hourWorkingData: [] | Array<TimeFormat>;
   navigation: { navigate: Function }
 }
 
 export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) => {
   const dataLength = hourWorkingData.length;
   const isEmpty = dataLength === 0;
-  const beginHour = !isEmpty && hourWorkingData[0].beginHour;
-  const beginMinute = !isEmpty && hourWorkingData[0].beginMinute;
-  const endHour = !isEmpty && hourWorkingData[dataLength - 1].endHour;
-  const endMinute = !isEmpty && hourWorkingData[dataLength - 1].endMinute;
+  const beginHour = !isEmpty && hourWorkingData[0].begin.hour;
+  const beginMinute = !isEmpty && hourWorkingData[0].begin.minute;
+  const endHour = !isEmpty && hourWorkingData[dataLength - 1].end.hour;
+  const endMinute = !isEmpty && hourWorkingData[dataLength - 1].end.minute;
 
   return (
     <Wrapper>
@@ -81,10 +80,17 @@ export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) 
         <Image source={ALERT_CIRCLE} />
         <NotificationText>{getString('jobList', 'noJobTitle')}</NotificationText>
         {!isEmpty
-          ? <Description>{getString('jobList', 'noJobSubTitle')}
-            <FormatedTime>{beginHour}: {beginMinute}0</FormatedTime>{getString('jobList', 'and')}
-            <FormatedTime>{endHour}: {endMinute}0</FormatedTime>{getString('jobList', 'today')}
-          </Description> : null}
+          ? (
+            <>
+              <Description>{getString('jobList', 'noJobSubTitle')}</Description>
+              <Description>
+                {getString('jobList', 'between')}
+                <FormatedTime>{beginHour}: {beginMinute}0</FormatedTime>{getString('jobList', 'and')}
+                <FormatedTime>{endHour}: {endMinute}0</FormatedTime>{getString('jobList', 'today')}
+              </Description>
+            </>
+          ) : null
+        }
         <WrapperRecommed>
           <RecommendNavigate onPress={() => {
             (navigation).navigate('workHour');

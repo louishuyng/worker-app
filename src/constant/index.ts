@@ -15,6 +15,7 @@ export const RouteName = {
   CONFIRM_MAIL: getString('screen', 'CONFIRM_MAIL'),
   RESET_PASSWORD: getString('screen', 'RESET_PASSWORD'),
   JOB_LIST: getString('screen', 'JOB_LIST'),
+  JOB: getString('screen', 'JOB'),
   WORK_HOURS: getString('screen', 'WORK_HOURS'),
   PROFILE: getString('screen', 'PROFILE'),
   CALENDAR: getString('screen', 'CALENDAR'),
