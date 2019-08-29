@@ -20,7 +20,7 @@ import { convertWidth, convertHeight } from 'utils/convertSize';
 import { RouteName } from 'constant';
 import { colors } from 'utils/Theme';
 
-const Container = styled.TouchableOpacity<{isFlat: boolean}>`
+const Container = styled.TouchableOpacity<{ isFlat: boolean }>`
   padding-top: 3%;
   z-index: 1;
   border-width: ${convertWidth(1)};
@@ -70,6 +70,7 @@ const WrapperImageTime = styled.View`
 const WrapperInnerTime = styled.View`
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   margin-right: 5%;
 `;
 
@@ -94,11 +95,12 @@ const WrapperLocation = styled.View`
 
 const WrapperButton = styled.View`
   flex-direction: row;
-  height: ${convertHeight(37)};
 `;
 
 const WrapperImage = styled.TouchableOpacity`
   flex: 0.1;
+  width: ${convertHeight(39)};
+  height: ${convertHeight(39)};
   align-items: center;
   margin-right: ${convertWidth(12)};
 `;
@@ -110,6 +112,8 @@ const ImageStyled = styled(Image)`
 
 const ButtonStyled = styled.View`
   flex: 0.9;
+  height: ${convertHeight(39)};
+  padding-vertical: 0;
 `;
 
 const LocationStyled = styled.Text`
@@ -183,21 +187,21 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
     const renderButton = () => {
       return status !== JobStatus.REVIEW && (
         <>
-        <View style={{
-          height: convertHeight(20),
-        }}/>
-        <WrapperButton>
-          <WrapperImage onPress={() => navigation && navigation.navigate(RouteName.MAPVIEW)}>
-            <ImageStyled source={ButtonIcon} />
-          </WrapperImage>
-          <ButtonStyled>
-            <ButtonUI
-              type={Types.SETSTATUS}
-              title={setStatusLable[status]}
-              onPress={() => handleClickSetStatus(status)}
-            />
-          </ButtonStyled>
-        </WrapperButton>
+          <View style={{
+            height: convertHeight(20),
+          }} />
+          <WrapperButton>
+            <WrapperImage onPress={() => navigation && navigation.navigate(RouteName.MAPVIEW)}>
+              <ImageStyled source={ButtonIcon} />
+            </WrapperImage>
+            <ButtonStyled>
+              <ButtonUI
+                type={Types.SETSTATUS}
+                title={setStatusLable[status]}
+                onPress={() => handleClickSetStatus(status)}
+              />
+            </ButtonStyled>
+          </WrapperButton>
         </>
       );
     };
@@ -246,7 +250,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
               )}
               <TitleStyled>{getString('jobList', 'parkingTitle')}</TitleStyled>
             </WrapperTitle>
-            { isInProgress && !isHideIcon && (
+            {isInProgress && !isHideIcon && (
               <WrapperStatusIcon
                 onPress={() => toggleTooltip()}
               >
@@ -255,7 +259,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
                   text={setStatusHint[status] as string}
                   onBackdropPress={() => null}
                   placement="left start"
-                  indicatorStyle = {{
+                  indicatorStyle={{
                     left: status === JobStatus.ENDOFSHIFT ? convertWidth(70) : convertWidth(55),
                     backgroundColor: colors.doveGray,
                   }}
@@ -296,7 +300,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
           {renderButton()}
         </Container>
         {renderModal()}
-      </View>
+      </View >
     );
   };
 };

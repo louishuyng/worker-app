@@ -41,7 +41,7 @@ const handleTextColors = (type: Types) => {
 
 const ContainerStyled = styled.View`
   border-width: 1;
-  border-radius: 7;
+  border-radius: 5;
   background-color: ${({ type }: { type: Types }) =>
     handleBackgroundColors(type)};
   border-color: ${({ type }: { type: Types }) => handleBorderColors(type)};

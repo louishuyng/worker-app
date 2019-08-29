@@ -97,17 +97,38 @@ export default class WorkHoursComponent extends Component<Props, State> {
           minute,
         })) {
           Alert.alert('You can not set time, please try again!');
+          this.setState({
+            ...this.state,
+            isDateTimePickerVisible: false,
+          });
           return null;
         }
       }
+
+      if (cloneDate[currentInput.index].end.hour !== '' &&
+        !isValidDate({ hour, minute }, cloneDate[currentInput.index].end as TimeDefined)
+      ) {
+        Alert.alert('You can not set time, please try again!');
+        this.setState({
+          ...this.state,
+          isDateTimePickerVisible: false,
+        });
+        return null;
+      }
+
       cloneDate[currentInput.index].begin = {
         hour,
         minute,
       };
     }
+
     if (currentInput.timeMark === TimeMark.TO) {
       if (cloneDate[currentInput.index].begin.hour === '') {
         Alert.alert('You need to set time for from field first!');
+        this.setState({
+          ...this.state,
+          isDateTimePickerVisible: false,
+        });
         return null;
       }
 
@@ -116,6 +137,24 @@ export default class WorkHoursComponent extends Component<Props, State> {
         minute,
       })) {
         Alert.alert('You can not set time, please try again!');
+        this.setState({
+          ...this.state,
+          isDateTimePickerVisible: false,
+        });
+        return null;
+      }
+
+      if (cloneDate[currentInput.index + 1] &&
+        cloneDate[currentInput.index + 1].begin.hour !== '' &&
+        !isValidDate({
+          hour,
+          minute,
+        }, cloneDate[currentInput.index + 1].begin as TimeDefined)) {
+        Alert.alert('You can not set time, please try again!');
+        this.setState({
+          ...this.state,
+          isDateTimePickerVisible: false,
+        });
         return null;
       }
       cloneDate[currentInput.index].end = {
