@@ -172,6 +172,14 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
       }
     };
 
+    const handleClickJobThumb = () => {
+      if (status !== JobStatus.REVIEW && navigation) {
+        navigation.navigate(RouteName.JOB, { data: this.props.jobData });
+      } else if (navigation) {
+        navigation.navigate(RouteName.REVIEW_TIMESHEET);
+      }
+    };
+
     const renderButton = () => {
       return status !== JobStatus.REVIEW && (
         <>
@@ -179,7 +187,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
           height: convertHeight(20),
         }}/>
         <WrapperButton>
-          <WrapperImage>
+          <WrapperImage onPress={() => navigation && navigation.navigate(RouteName.MAPVIEW)}>
             <ImageStyled source={ButtonIcon} />
           </WrapperImage>
           <ButtonStyled>
@@ -208,10 +216,6 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
       );
     };
 
-    const goToJobDetail = (data: JobDetail) => {
-      navigation && navigation.navigate(RouteName.JOB, { data });
-    };
-
     const toggleTooltip = () => {
       this.setState({
         isVisibleToolTip: !this.state.isVisibleToolTip,
@@ -233,7 +237,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
         <Container
           disabled={isHideIcon}
           isFlat={isFlat as boolean}
-          onPress={() => goToJobDetail(this.props.jobData)}
+          onPress={() => handleClickJobThumb()}
         >
           <WrapperHeader>
             <WrapperTitle>
@@ -244,7 +248,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
             </WrapperTitle>
             { isInProgress && !isHideIcon && (
               <WrapperStatusIcon
-                onLongPress={() => toggleTooltip()}
+                onPress={() => toggleTooltip()}
               >
                 <Tooltip
                   visible={this.state.isVisibleToolTip}

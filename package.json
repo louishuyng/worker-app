@@ -1,5 +1,5 @@
 {
-  "name": "dooboo",
+  "name": "coned_app",
   "version": "0.0.1",
   "description": "boilerplate for react-native by dooboolab!",
   "author": "hyochan <dooboolab@gmail.com>",
@@ -48,6 +48,7 @@
     "react-native-gesture-handler": "git://github.com/hyochan/react-native-gesture-handler.git#package-names",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-localization": "^2.1.5",
+    "react-native-maps": "0.25.0",
     "react-native-modal": "^11.3.1",
     "react-native-modal-datetime-picker": "^7.5.0",
     "react-native-paper": "^2.16.0",

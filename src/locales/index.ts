@@ -38,7 +38,9 @@ const strings: any = new LocalizedStrings({
       PROFILE: 'Profile',
       AGENDA: 'Agenda',
       NOTIFICATION: 'Notifications',
-      TIMESHEET: 'Create Time Sheet',
+      CREATE_TIMESHEET: 'Create Time Sheet',
+      REVIEW_TIMESHEET: 'Review Time Sheet',
+      MAP_VIEW: 'Map View',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',
@@ -164,6 +166,8 @@ const strings: any = new LocalizedStrings({
       finishTimePlaceholder: '00:00',
       totalHoursLabel: 'Total Hours',
       conEdisonTruckLabel: 'Con Edison Truck #',
+      skip: 'Skip Signature',
+      sign: 'Sign TimeSheet',
     },
   },
 });

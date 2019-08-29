@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-import { convertWidth } from 'utils/convertSize';
+import { convertHeight, convertWidth } from 'utils/convertSize';
 import { MAP_MARKER } from 'utils/Icons';
 
 interface Props {
@@ -20,11 +21,18 @@ const Wrapper = styled.View`
 `;
 
 const WrapperLocationTile = styled.View`
-  justify-content: space-around;
   flex-direction: row;
 `;
 
 const Image = styled.Image``;
+
+const ExtendedWidthBox = styled.View`
+   width: ${convertWidth(10)};
+`;
+
+const ExtendHeightBox = styled.View`
+   height: ${convertHeight(10)};
+`;
 
 const LocationText = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.regular};
@@ -44,8 +52,25 @@ export default class Map extends React.Component<Props, State> {
       <Wrapper>
         <WrapperLocationTile>
           <Image source={MAP_MARKER} />
+          <ExtendedWidthBox />
           <LocationText>{locationTitle}</LocationText>
         </WrapperLocationTile>
+        <ExtendHeightBox />
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={{
+            height: convertHeight(100),
+            width: '100%',
+          }}
+          region={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+          }}
+        >
+
+        </MapView>
       </Wrapper>
     );
   }

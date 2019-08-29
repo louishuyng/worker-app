@@ -12,7 +12,8 @@ import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'n
 import JobDetail from 'components/JobDetail';
 import { colors } from 'utils/Theme';
 import BackButtonUI from 'components/common/ButtonBack';
-import { TimeSheetScreen } from 'screens/TimeSheet';
+import { CreateReviewSheetScreen, CreateTimeSheetScreen } from 'screens/TimeSheet';
+import MapViewComponent from 'components/MapView';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
@@ -33,8 +34,32 @@ const routeConfig: NavigationRouteConfig = {
       widthTitle: '75%',
     }),
   },
-  [RouteName.TIMESHEET]: {
-    screen: TimeSheetScreen,
+  [RouteName.CREATE_TIMESHEET]: {
+    screen: CreateTimeSheetScreen,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      widthTitle: '75%',
+    }),
+  },
+  [RouteName.REVIEW_TIMESHEET]: {
+    screen: CreateReviewSheetScreen,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      widthTitle: '75%',
+    }),
+  },
+  [RouteName.MAPVIEW]: {
+    screen: MapViewComponent,
     navigationOptions: (
       { navigation, screenProps }: { navigation: any, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({

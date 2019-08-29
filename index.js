@@ -10,4 +10,4 @@ YellowBox.ignoreWarnings([
   'Module RCTImageLoader',
 ]);
 
-AppRegistry.registerComponent('ConEdApp', () => App);
+AppRegistry.registerComponent('coned_app', () => App);

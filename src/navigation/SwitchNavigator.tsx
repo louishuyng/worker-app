@@ -7,7 +7,7 @@ import {
 } from 'react-navigation';
 
 import { ThemeProvider } from 'styled-components';
-
+import MapViewComponent from 'components/MapView';
 import { createTheme, ThemeType } from 'utils/Theme';
 import BottomMaterialNavigator from './BottomMaterialNavigator';
 
@@ -26,7 +26,7 @@ const routeConfigMap: NavigationRouteConfigMap = {
 };
 
 const switchConfig: SwitchNavigatorConfig = {
-  initialRouteName: RouteName.MAIN,
+  initialRouteName: RouteName.SIGN_UP_STEP_ONE,
 };
 
 const SwitchAnimatedNavigator = createSwitchNavigator(

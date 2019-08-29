@@ -1,6 +1,6 @@
 {
-  "name": "dooboo",
-  "displayName": "dooboo",
+  "name": "coned_app",
+  "displayName": "coned_app",
   "entryPoint": "index.js",
   "packagerOpts": {
     "assetExts": [

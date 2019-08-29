@@ -10,10 +10,12 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import TotalHourForm from './form/TotalHourForm';
 import { ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
-import { getString } from 'locales/';
+import { getString } from 'locales';
+import { StageTimeSheet } from './type';
 
 interface Props {
   values: FormikTimeSheet,
+  stageTimeSheet: StageTimeSheet,
 }
 
 interface State {}
@@ -28,13 +30,14 @@ const WrapperForm = styled.View`
 `;
 
 const ExtendBox = styled.View`
-  background: transparent;
+  background-color: ${({ theme }) => theme.colors.aquaHaze};
   height: ${convertHeight(8)};
 `;
 
 const WrapperFooter = styled.View`
-  justify-content: center;
-  align-items: center;
+  padding-vertical: ${convertWidth(10)};
+  padding-horizontal: ${convertWidth(10)};
+  background-color: ${({ theme }) => theme.colors.aquaHaze};
 `;
 
 const ExtendFooterBox = styled.View`
@@ -42,9 +45,19 @@ const ExtendFooterBox = styled.View`
 `;
 
 const WrapperButton = styled.View`
+  flex: 1;
   height: ${convertHeight(56)};
-  width: 100%;
-  padding-horizontal: ${convertWidth(10)};
+`;
+
+const WrapperButtonInLine = styled.View`
+  height: ${convertHeight(56)};
+  width: ${convertWidth(168)};
+`;
+
+const WrapperButtonReivew = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  height: ${convertHeight(56)};
 `;
 
 export default class TimeSheet extends React.Component<Props, State> {
@@ -53,39 +66,67 @@ export default class TimeSheet extends React.Component<Props, State> {
     this.state = {};
   }
 
-  render() {
-    return (
-      <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-        <WrapperForm>
-          <RequestorForm data={requestorForm}/>
-        </WrapperForm>
-        <ExtendBox />
-        <WrapperForm>
-          <InformationForm data={formDataOne} />
-        </WrapperForm>
-        <ExtendBox />
-        <WrapperForm>
-          <InformationForm data={formDataTwo} />
-        </WrapperForm>
-        <ExtendBox />
-        <WrapperForm>
-          <InformationForm data={formDataThree} />
-        </WrapperForm>
-        <WrapperForm>
-          <TotalHourForm data={formDataFive} />
-        </WrapperForm>
-        <WrapperFooter>
-          <ExtendFooterBox />
-          <WrapperButton >
-            <ButtonUI
-              title={getString('jobList', 'createTimeSheet')}
-              onPress={() => null}
-              type={Types.SUBMIT}
-            />
-          </WrapperButton>
-          <ExtendFooterBox />
-        </WrapperFooter>
-      </KeyboardAwareScrollView>
-    );
-  }
+   renderCreateButton = () => (
+     <WrapperButton >
+       <ButtonUI
+         title={getString('jobList', 'createTimeSheet')}
+         onPress={() => null}
+         type={Types.SUBMIT}
+       />
+     </WrapperButton>
+   )
+
+   renderReviewButtonn = () => (
+     <WrapperButtonReivew>
+       <WrapperButtonInLine>
+         <ButtonUI
+           title={getString('timeSheet', 'skip')}
+           onPress={() => null}
+           type={Types.ADD}
+         />
+       </WrapperButtonInLine>
+       <WrapperButtonInLine>
+         <ButtonUI
+           title={getString('timeSheet', 'sign')}
+           onPress={() => null}
+           type={Types.SUBMIT}
+         />
+       </WrapperButtonInLine>
+     </WrapperButtonReivew>
+   )
+
+   render() {
+     const { stageTimeSheet } = this.props;
+     return (
+       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+         <WrapperForm>
+           <RequestorForm data={requestorForm}/>
+         </WrapperForm>
+         <ExtendBox />
+         <WrapperForm>
+           <InformationForm data={formDataOne} />
+         </WrapperForm>
+         <ExtendBox />
+         <WrapperForm>
+           <InformationForm data={formDataTwo} />
+         </WrapperForm>
+         <ExtendBox />
+         <WrapperForm>
+           <InformationForm data={formDataThree} />
+         </WrapperForm>
+         <WrapperForm>
+           <TotalHourForm data={formDataFive} />
+         </WrapperForm>
+         <WrapperFooter>
+           <ExtendFooterBox />
+           {
+             stageTimeSheet === StageTimeSheet.CREATE
+               ? this.renderCreateButton()
+               : this.renderReviewButtonn()
+           }
+           <ExtendFooterBox />
+         </WrapperFooter>
+       </KeyboardAwareScrollView>
+     );
+   }
 }

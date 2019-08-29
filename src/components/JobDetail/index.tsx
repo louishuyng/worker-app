@@ -107,7 +107,7 @@ export default class JobDetail extends React.Component<Props, State> {
           <WrapperButton >
             <ButtonUI
               title={getString('jobList', 'createTimeSheet')}
-              onPress={() => this.props.navigation.navigate(RouteName.TIMESHEET)}
+              onPress={() => this.props.navigation.navigate(RouteName.CREATE_TIMESHEET)}
               type={Types.SUBMIT}
             />
           </WrapperButton>
