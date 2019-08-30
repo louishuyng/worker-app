@@ -16,10 +16,8 @@ export const isValidDate = (firstTime: TimeDefined, lastTime: TimeDefined) => {
   if (parseInt(firstHour) > parseInt(lastHour)) {
     return false;
   }
-  if (parseInt(firstHour) === parseInt(lastHour)) {
-    if (firstMinute > lastMinute) {
-      return false;
-    }
+  if (parseInt(firstHour) === parseInt(lastHour) && firstMinute > lastMinute) {
+    return false;
   }
   return true;
 };

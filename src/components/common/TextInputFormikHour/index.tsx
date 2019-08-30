@@ -16,11 +16,14 @@ const LableStyled = styled.Text`
 const InputStyled = styled.TextInput<{ isError: any, placeholder: any }>`
   border-width: 1;
   border-radius: 6;
-  padding-left: 20;
-  font-size: ${convertWidth(16)};
   height: ${convertHeight(42)};
+  text-align-vertical: center;
+  font-size: ${convertHeight(16)};
   margin-bottom: 5%;
+  padding-vertical: 0;
+  padding-left: ${convertWidth(10)};
   font-family: ${({ theme }) => theme.fontFamily.regular};
+  color: ${({ theme }) => theme.colors.capeCod};
   background-color: ${({ theme }) => theme.colors.white};
   ${(props) => {
     const { isError, theme: { colors } } = props;

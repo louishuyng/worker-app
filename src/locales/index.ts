@@ -58,10 +58,10 @@ const strings: any = new LocalizedStrings({
     jobList: {
       newJobTabTitle: 'NEW JOBS',
       inProgressTabTitle: 'IN PROGRESS',
-      complitedTabTitle: 'COMPLITED',
+      complitedTabTitle: 'COMPLETED',
       billedTabTitle: 'BILLED',
       paidTabTitle: 'PAID',
-      reviewTimeSheetTabTitle: 'Review TimeSheet',
+      reviewTimeSheetTabTitle: 'REVIEW TIMESHEET',
       noJobTitle: 'No jobs assigned',
       noJobSubTitle: 'You are set as available for work',
       between: 'betwwen ',
