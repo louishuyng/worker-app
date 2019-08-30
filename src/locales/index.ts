@@ -22,6 +22,8 @@ const strings: any = new LocalizedStrings({
       SIGNUP_BUTTON_LABLE_STEP_ONE: 'Next  ',
       SIGNUP_BUTTON_LABLE_STEP_TWO: 'Create Account',
       LOGIN_BUTTON_LABLE: 'Log In',
+      TITLE_ERROR: 'Validation Error',
+      OK: 'OK',
     },
     screen: {
       LOGIN: 'SignIn',
@@ -41,6 +43,9 @@ const strings: any = new LocalizedStrings({
       CREATE_TIMESHEET: 'Create Time Sheet',
       REVIEW_TIMESHEET: 'Review Time Sheet',
       MAP_VIEW: 'Map View',
+      SIGNATURE: 'SUPERVISOR’s Signature',
+      EMAIL_PERSONAL: 'Email',
+      PHONE_PERSONAL: 'Phone',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',
@@ -178,6 +183,12 @@ const strings: any = new LocalizedStrings({
       year: 'year',
       ago: 'ago',
       s: 's',
+    },
+    personal: {
+      EMAIL_LABEL: 'New Email',
+      PHONE_LABEL: 'New Phone',
+      CURRENT_EMAIL: 'Current Email',
+      CURRENT_PHONE: 'Your Phone',
     },
   },
 });

@@ -24,6 +24,9 @@ export const RouteName = {
   CREATE_TIMESHEET: getString('screen', 'CREATE_TIMESHEET'),
   REVIEW_TIMESHEET: getString('screen', 'REVIEW_TIMESHEET'),
   MAPVIEW: getString('screen', 'MAP_VIEW'),
+  SIGNATURE: getString('screen', 'SIGNATURE'),
+  EMAIL_PERSONAL: getString('screen', 'EMAIL_PERSONAL'),
+  PHONE_PERSONAL: getString('screen', 'PHONE_PERSONAL'),
 };
 
 export const listNumberHour = [

@@ -14,6 +14,8 @@ import { colors } from 'utils/Theme';
 import BackButtonUI from 'components/common/ButtonBack';
 import { CreateReviewSheetScreen, CreateTimeSheetScreen } from 'screens/TimeSheet';
 import MapViewComponent from 'components/MapView';
+import SignaturePadUI from 'components/Signature';
+import HeadRightNav from 'components/Signature/HeadRightNav';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
@@ -67,6 +69,19 @@ const routeConfig: NavigationRouteConfig = {
       navigation,
       colorHeader: colors.auqaHazeTwo,
       headLeftComponent: <BackButtonUI navigation={navigation} />,
+      widthTitle: '75%',
+    }),
+  },
+  [RouteName.SIGNATURE]: {
+    screen: SignaturePadUI,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      navigation,
+      screenProps,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
+      headRightComponent: <HeadRightNav />,
+      colorHeader: screenProps.theme.colors.auqaHazeTwo,
       widthTitle: '75%',
     }),
   },

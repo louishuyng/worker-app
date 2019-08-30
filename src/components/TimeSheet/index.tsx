@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { NavigationScreenProp } from 'react-navigation';
 
 import { FormikTimeSheet } from 'screens/TimeSheet/models';
 import { convertWidth, convertHeight } from 'utils/convertSize';
@@ -12,13 +13,19 @@ import { ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { getString } from 'locales';
 import { StageTimeSheet } from './type';
+import { SafeAreaView } from 'react-native';
+import { SkipSignatureModal } from 'components/common/Modal';
+import { RouteName } from 'constant';
 
 interface Props {
   values: FormikTimeSheet,
   stageTimeSheet: StageTimeSheet,
+  navigation: NavigationScreenProp<any>
 }
 
-interface State {}
+interface State {
+  showModal: boolean,
+}
 
 const WrapperForm = styled.View`
   border-color: ${({ theme }) => theme.colors.iron};
@@ -63,7 +70,9 @@ const WrapperButtonReivew = styled.View`
 export default class TimeSheet extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showModal: false,
+    };
   }
 
    renderCreateButton = () => (
@@ -81,14 +90,14 @@ export default class TimeSheet extends React.Component<Props, State> {
        <WrapperButtonInLine>
          <ButtonUI
            title={getString('timeSheet', 'skip')}
-           onPress={() => null}
+           onPress={() => this.setState({ showModal: true })}
            type={Types.ADD}
          />
        </WrapperButtonInLine>
        <WrapperButtonInLine>
          <ButtonUI
            title={getString('timeSheet', 'sign')}
-           onPress={() => null}
+           onPress={() => this.props.navigation.navigate(RouteName.SIGNATURE)}
            type={Types.SUBMIT}
          />
        </WrapperButtonInLine>
@@ -98,35 +107,47 @@ export default class TimeSheet extends React.Component<Props, State> {
    render() {
      const { stageTimeSheet } = this.props;
      return (
-       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-         <WrapperForm>
-           <RequestorForm data={requestorForm}/>
-         </WrapperForm>
-         <ExtendBox />
-         <WrapperForm>
-           <InformationForm data={formDataOne} />
-         </WrapperForm>
-         <ExtendBox />
-         <WrapperForm>
-           <InformationForm data={formDataTwo} />
-         </WrapperForm>
-         <ExtendBox />
-         <WrapperForm>
-           <InformationForm data={formDataThree} />
-         </WrapperForm>
-         <WrapperForm>
-           <TotalHourForm data={formDataFive} />
-         </WrapperForm>
-         <WrapperFooter>
-           <ExtendFooterBox />
-           {
-             stageTimeSheet === StageTimeSheet.CREATE
-               ? this.renderCreateButton()
-               : this.renderReviewButtonn()
-           }
-           <ExtendFooterBox />
-         </WrapperFooter>
-       </KeyboardAwareScrollView>
+       <SafeAreaView>
+         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+           <WrapperForm>
+             <RequestorForm data={requestorForm}/>
+           </WrapperForm>
+           <ExtendBox />
+           <WrapperForm>
+             <InformationForm data={formDataOne} />
+           </WrapperForm>
+           <ExtendBox />
+           <WrapperForm>
+             <InformationForm data={formDataTwo} />
+           </WrapperForm>
+           <ExtendBox />
+           <WrapperForm>
+             <InformationForm data={formDataThree} />
+           </WrapperForm>
+           <WrapperForm>
+             <TotalHourForm data={formDataFive} />
+           </WrapperForm>
+           <WrapperFooter>
+             <ExtendFooterBox />
+             {
+               stageTimeSheet === StageTimeSheet.CREATE
+                 ? this.renderCreateButton()
+                 : this.renderReviewButtonn()
+             }
+             <ExtendFooterBox />
+           </WrapperFooter>
+         </KeyboardAwareScrollView>
+         {this.state.showModal && <SkipSignatureModal reasons={
+           [
+             'Supervisor is not on site',
+             'Reason 2',
+             'Reason 3',
+           ]
+         }
+         closeModal={() => this.setState({ showModal: false })}
+         onPress={() => this.props.navigation.navigate(RouteName.JOB_LIST)}
+         />}
+       </SafeAreaView>
      );
    }
 }

@@ -1,9 +1,15 @@
-import { StackNavigatorConfig, TabBarIconProps, NavigationScreenProp, NavigationScreenConfig } from 'react-navigation';
+import {
+  StackNavigatorConfig,
+  TabBarIconProps,
+  NavigationScreenProp,
+  NavigationScreenConfig,
+} from 'react-navigation';
 
 import { BottomBarIconUI } from 'components/common';
 import { ImageSourcePropType } from 'react-native';
 import { convertWidth } from 'utils/convertSize';
 import { colorsType } from 'utils/Theme';
+import { RouteName } from 'constant';
 
 interface StackNavigationConfigInterface {
   initialRouteName: string;
@@ -11,16 +17,23 @@ interface StackNavigationConfigInterface {
   unActiveIcon: ImageSourcePropType;
 }
 
-export const wihtDefaultNavigtaionConfig = (
-  { navigation, screenProps, headLeftComponent, widthTitle, colorHeader }:
-  {
-    navigation: NavigationScreenProp<any>,
-    screenProps: any,
-    headLeftComponent?: any,
-    widthTitle?: any,
-    colorHeader?: string,
-  }
-): NavigationScreenConfig<any> => {
+export const wihtDefaultNavigtaionConfig = ({
+  navigation,
+  screenProps,
+  headLeftComponent,
+  headRightComponent,
+  widthTitle,
+  colorHeader,
+  backgroundColor,
+}: {
+  navigation: NavigationScreenProp<any>;
+  screenProps: any;
+  headLeftComponent?: any;
+  headRightComponent?: any;
+  widthTitle?: any;
+  colorHeader?: string;
+  backgroundColor?: string;
+}): NavigationScreenConfig<any> => {
   const { theme } = screenProps;
   return {
     title: navigation.state.routeName,
@@ -37,24 +50,43 @@ export const wihtDefaultNavigtaionConfig = (
     backgroundColor: theme.colors.aquaHaze,
     headerTintColor: theme.tintColor,
     headerLeft: headLeftComponent,
+    headerRight: headRightComponent,
   };
 };
 
-export const withDefaultStackNavigationConfig = (config: StackNavigationConfigInterface): StackNavigatorConfig => {
+export const withDefaultStackNavigationConfig = (
+  config: StackNavigationConfigInterface
+): StackNavigatorConfig => {
   const { initialRouteName, activeIcon, unActiveIcon } = config;
 
   return {
     initialRouteName: initialRouteName,
     mode: 'card',
     headerMode: 'screen',
-    navigationOptions: ({ navigation, screenProps }: {
-    navigation: any, screenProps: any
-  }) => {
+    navigationOptions: ({
+      navigation,
+      screenProps,
+    }: {
+      navigation: NavigationScreenProp<any>;
+      screenProps: any;
+    }) => {
+      let tabBarVisible;
+      if (navigation.state.routes.length > 1) {
+        navigation.state.routes.map((route: any) => {
+          if (route.routeName === RouteName.SIGNATURE) {
+            tabBarVisible = false;
+          } else {
+            tabBarVisible = true;
+          }
+        });
+      }
+
       return {
         tabBarIcon: ({ focused }: TabBarIconProps) => {
           if (focused) return BottomBarIconUI({ source: activeIcon });
           return BottomBarIconUI({ source: unActiveIcon });
         },
+        tabBarVisible,
       };
     },
   };

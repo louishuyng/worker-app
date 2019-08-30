@@ -16,6 +16,7 @@ export const recoveryFormData: recoveryFormModel = {
       label: getString('recovery', 'EMAIL'),
       type: 'email',
       fieldName: 'email',
+      keyboardType: 'email-address',
     },
   ],
   [RecoveryPasswordStage.CONFIRM_MAIL]: undefined,
@@ -24,11 +25,13 @@ export const recoveryFormData: recoveryFormModel = {
       label: getString('recovery', 'NEW_PASSWORD'),
       type: 'password',
       fieldName: 'newPassword',
+      keyboardType: 'default',
     },
     {
       label: getString('recovery', 'CONFIRM_PASSWORD'),
       type: 'password',
       fieldName: 'confirmPassword',
+      keyboardType: 'default',
     },
   ],
 };

@@ -165,7 +165,6 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
     } = this.props;
 
     const formatDate = date.toLocaleDateString('en-US');
-
     const handleClickSetStatus = (status: JobStatus) => {
       if (status !== JobStatus.ENDOFSHIFT) {
         return this.setState({

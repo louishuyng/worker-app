@@ -1,3 +1,5 @@
+import { KeyboardType } from 'react-native';
+
 export enum RecoveryPasswordStage {
   SEND_MAIL,
   CONFIRM_MAIL,
@@ -9,6 +11,7 @@ export interface InputData {
   placeholder?: string;
   type: string;
   fieldName: string;
+  keyboardType: KeyboardType;
 }
 
 export interface RecoveryScreenConfig {

@@ -1,4 +1,4 @@
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, KeyboardType } from 'react-native';
 
 export enum AuthStage {
   SIGNUP_STEP_ONE,
@@ -11,6 +11,7 @@ export interface InputAuthData {
   placeholder?: string;
   fieldName: string;
   type: string;
+  keyboardType: KeyboardType;
 }
 
 export interface AuthScreenConfig {
@@ -24,5 +25,4 @@ export interface AuthScreenConfig {
   navigator: string;
   subNavigator: string;
   afterIconData: ImageSourcePropType | undefined;
-
 }

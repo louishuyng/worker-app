@@ -3825,7 +3825,7 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
-escape-string-regexp@^1.0.5:
+escape-string-regexp@1.0.5, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
@@ -5068,7 +5068,7 @@ install@^0.13.0:
   resolved "https://registry.yarnpkg.com/install/-/install-0.13.0.tgz#6af6e9da9dd0987de2ab420f78e60d9c17260776"
   integrity sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==
 
-invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -8374,6 +8374,13 @@ react-native-scrollable-tab-view@^0.10.0:
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.3"
 
+react-native-signature-pad@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature-pad/-/react-native-signature-pad-0.1.0.tgz#b921c290f06cce99664b5bff23aa3ec30f482c63"
+  integrity sha512-OFcvfdmrB+UdvHIyFYGtBpoDc0hR56T/9/s5+vpkqMJxqOWCSuCNIzzKKT8lWzsMB/KYhojs+dTfH8cIhTA+OA==
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-tab-view@^1.0.0, react-native-tab-view@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-1.4.1.tgz#f113cd87485808f0c991abec937f70fa380478b9"
@@ -8407,6 +8414,14 @@ react-native-vector-icons@^6.6.0:
     lodash "^4.0.0"
     prop-types "^15.6.2"
     yargs "^13.2.2"
+
+react-native-webview@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.0.1.tgz#ea2650d30acaa1fd443595d9f7f2a2648f54e0b5"
+  integrity sha512-KySHdf/nvGgFXwQEb7AH8id2dYdzSiIqWjMPdlql6+5Gi9kaEGiojGabXV2UYJRNk54Y8COFMDr65zdgdLlctw==
+  dependencies:
+    escape-string-regexp "1.0.5"
+    invariant "2.2.4"
 
 react-native@0.60.5:
   version "0.60.5"
