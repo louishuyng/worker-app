@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, Image } from 'react-native';
 import { Field } from 'formik';
 
 import { AuthStage, InputAuthData } from '../models/authScreenConfig';
 import { AuthScreenModel } from '../models/authScreenModel';
 import { ButtonUI, TextInputFormikUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
-import { IC_STEP_ONE_SIGN_UP, IC_STEP_TWO_SIGN_UP } from 'utils/Icons';
+import { IC_CHECKED, IC_UNCHECKED, IC_DOT_LINE } from 'utils/Icons';
 import { getString } from 'locales';
 import { FormikAuthValues } from 'screens/Auth/models';
 import { RouteName } from 'constant';
 import { screenHeight } from 'utils/Styles';
 import { convertWidth, convertHeight } from 'utils/convertSize';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface Props {
   stage: AuthStage;
@@ -44,6 +45,12 @@ const WrapperTitle = styled.View<{isLogin: any}>`
       ;
     };
   }}
+`;
+
+const WrapperStepIcon = styled.View`
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const KeyboardAvoidingView = styled(KeyboardAwareScrollView)<{isLogin: any}>`
@@ -142,11 +149,31 @@ export default class AuthScreen extends Component<Props, State> {
       title, form, buttonLabel, suggestionTitle, stepLabel,
       navigatorTitle, status, navigator, subNavigator, afterIconData,
     } = AuthScreenModel(this.props.stage);
+
     const {
       navigation: { navigate },
+      handleSubmit,
     } = this.props;
     const isLogin = status === AuthStage.LOGIN;
     const isStepOne = status === AuthStage.SIGNUP_STEP_ONE;
+
+    const displayStepIcon = () => (
+      <WrapperStepIcon>
+        <TouchableOpacity onPress={() => {
+          if (!isStepOne) navigate(RouteName.SIGN_UP_STEP_ONE);
+          return null;
+        }}>
+          {isStepOne ? <Image source={IC_CHECKED} /> : <Image source={IC_UNCHECKED} />}
+        </TouchableOpacity>
+        <Image source={IC_DOT_LINE} />
+        <TouchableOpacity onPress={() => {
+          if (isStepOne) navigate(RouteName.SIGN_UP_STEP_TWO);
+          return null;
+        }}>
+          {isStepOne ? <Image source={IC_UNCHECKED} /> : <Image source={IC_CHECKED} />}
+        </TouchableOpacity>
+      </WrapperStepIcon>
+    );
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -155,11 +182,7 @@ export default class AuthScreen extends Component<Props, State> {
             <Title>{title}</Title>
             {isLogin || (
               <WrapperStatus>
-                {isStepOne ? (
-                  <StepIcon source={IC_STEP_ONE_SIGN_UP} />
-                ) : (
-                  <StepIcon source={IC_STEP_TWO_SIGN_UP} />
-                )}
+                {displayStepIcon()}
                 <StepLabel>{stepLabel}</StepLabel>
               </WrapperStatus>
             )}

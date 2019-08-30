@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 import styled, { css } from 'styled-components/native';
+import Dialog from 'react-native-dialog';
 
 import { TextInputUIProps } from './types';
-import { colors } from 'utils/Theme';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
 const LableStyled = styled.Text`
@@ -42,7 +42,6 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
     form: { setFieldValue, submitCount, errors, touched, setFieldTouched },
   } = props;
   const isError = touched[name] && errors[name] && submitCount > 0;
-  const editPlaceHolder = isError ? errors[name] : placeholder;
   return (
     <View>
       <LableStyled>{label}</LableStyled>
@@ -53,9 +52,16 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
         onChangeText={(text) => setFieldValue(name, text)}
         editable={!isHideKeyboard && true}
         onBlur={() => setFieldTouched(name)}
-        placeholder={editPlaceHolder}
-        placeholderTextColor={isError ? colors.alizarin : colors.iron}
+        placeholder={placeholder}
       />
+      <View>
+        <Dialog.Container visible={isError as boolean}>
+          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Description>
+            Do you want to delete this account? You cannot undo this action.
+          </Dialog.Description>
+        </Dialog.Container>
+      </View>
     </View>
   );
 };

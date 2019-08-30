@@ -10,8 +10,9 @@ export const IC_USER_ACTIVE = require('../../assets/icons/bottomBar/UserActive.p
 export const IC_USER_UN_ACTIVE = require('../../assets/icons/bottomBar/UserUnActive.png');
 
 // Auth Icons
-export const IC_STEP_ONE_SIGN_UP = require('../../assets/icons/auth/Step1.png');
-export const IC_STEP_TWO_SIGN_UP = require('../../assets/icons/auth/Step2.png');
+export const IC_CHECKED = require('../../assets/icons/auth/IconChecked.png');
+export const IC_UNCHECKED = require('../../assets/icons/auth/IconUnchecked.png');
+export const IC_DOT_LINE = require('../../assets/icons/auth/dotted-line.png');
 export const IC_ICON_RIGHT_ARROW = require('../../assets/icons/auth/arrow-right-solid.png');
 
 // Others
