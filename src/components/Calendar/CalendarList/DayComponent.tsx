@@ -84,8 +84,10 @@ export default class DayComponent extends React.Component<Props, State> {
        <WrapperDay
          isCurrentDate={isCurrentDate}
          onPress={() => navigate(RouteName.AGENDA, {
-           month: moment(date.month, 'MM').format('MMMM'),
-           datePicked: date.dateString,
+           data: {
+             month: moment(date.month, 'MM').format('MMMM'),
+             datePicked: date.dateString,
+           },
          })}
        >
          <TextDay isWeekend={isWeekend}>

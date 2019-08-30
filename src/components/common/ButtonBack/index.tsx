@@ -1,13 +1,14 @@
 
 import React from 'react';
 import styled from 'styled-components/native';
+import { NavigationScreenProp, NavigationActions } from 'react-navigation';
 
 import { IC_BACK } from 'utils/Icons';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
 interface Props {
   label?: string;
-  onPress: any;
+  navigation: NavigationScreenProp<any>
 }
 
 interface State {}
@@ -37,10 +38,18 @@ export default class BackButtonUI extends React.Component<Props, State> {
   }
 
   render() {
-    const { label, onPress } = this.props;
+    const { label, navigation } = this.props;
+
+    const handleNavigate = () => {
+      const routeBack = navigation.getParam('routeBack');
+      const param = navigation.getParam('param');
+      if (routeBack) navigation.navigate({ routeName: routeBack }, { data: param });
+      navigation.pop();
+    };
+
     return (
       <Wrapper >
-        <TouchableOpacity onPress={onPress} hitSlop={{
+        <TouchableOpacity onPress={() => handleNavigate()} hitSlop={{
           top: convertHeight(5),
           bottom: convertHeight(5),
           left: convertWidth(20),

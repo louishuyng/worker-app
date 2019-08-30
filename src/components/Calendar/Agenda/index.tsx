@@ -27,7 +27,7 @@ export default class Agenda extends React.Component<Props, State> {
       navigation: NavigationScreenProp<any>
     }): NavigationStackScreenOptions => {
     const { getParam } = navigation;
-    const monthName = getParam('month');
+    const monthName = getParam('data').month;
     return {
       title: RouteName.CALENDAR,
       headerStyle: {
@@ -40,16 +40,17 @@ export default class Agenda extends React.Component<Props, State> {
         textAlign: 'center',
         fontFamily: fontFamily.medium,
       },
-      headerLeft: <BackButtonUI label={monthName} onPress={() => navigation.pop()} />,
+      headerLeft: <BackButtonUI label={monthName} navigation={navigation} />,
       headerTintColor: colors.mineShaft,
     };
   }
 
   render() {
+    const { navigation: { getParam } } = this.props;
     return (
       <View style={{ height: screenHeight, paddingBottom: convertHeight(180) }}>
-        <HeaderCalendar datePicked={this.props.navigation.getParam('datePicked')} isShowController />
-        <ListAgenda navigation={this.props.navigation}/>
+        <HeaderCalendar datePicked={getParam('data').datePicked} isShowController />
+        <ListAgenda navigation={this.props.navigation} data={getParam('data')}/>
       </View>
     );
   }

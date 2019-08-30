@@ -3,13 +3,12 @@ import {
   createStackNavigator,
   NavigationRouteConfig,
   StackNavigatorConfig,
-} from 'react-navigation';
+  NavigationScreenProp } from 'react-navigation';
+import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 
 import { RouteName } from 'constant';
-import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 import { IC_USER_ACTIVE, IC_USER_UN_ACTIVE } from 'utils/Icons';
 import { ProfileScreen } from 'screens/Profile';
-import { convertWidth } from 'utils/convertSize';
 import { WorkHoursScreen } from 'screens/WorkHours';
 import BackButtonUI from 'components/common/ButtonBack';
 
@@ -17,17 +16,17 @@ const routeConfig: NavigationRouteConfig = {
   [RouteName.PROFILE]: {
     screen: ProfileScreen,
     navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({ navigation, screenProps }),
   },
   [RouteName.WORK_HOURS]: {
     screen: WorkHoursScreen,
     navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({
       navigation,
       screenProps,
-      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      headLeftComponent: <BackButtonUI navigation={navigation}/>,
       widthTitle: '75%',
     }),
   },

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 
 import { ALERT_CIRCLE } from 'utils/Icons';
 import { getString } from 'locales';
 import { convertWidth } from 'utils/convertSize';
 import { TimeFormat } from 'components/workHours/type';
+import { RouteName } from 'constant';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -92,9 +93,11 @@ export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) 
           ) : null
         }
         <WrapperRecommed>
-          <RecommendNavigate onPress={() => {
-            (navigation).navigate('workHour');
-          }} >{getString('jobList', 'tapLabel')}</RecommendNavigate>
+          <TouchableOpacity onPress={() => (navigation).navigate(RouteName.WORK_HOURS) }>
+            <RecommendNavigate>
+              {getString('jobList', 'tapLabel')}
+            </RecommendNavigate>
+          </TouchableOpacity>
           <RecommendText>
             {
               isEmpty === true

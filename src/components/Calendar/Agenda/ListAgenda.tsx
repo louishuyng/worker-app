@@ -9,10 +9,10 @@ import { processTimeData } from '../config';
 import { LabelBackgroundCalendar } from './type';
 import { colorsType } from 'utils/Theme';
 import { mockJobData } from 'components/JobList/mock';
-import { JobDetail } from 'components/JobList/type';
 
 interface Props {
   navigation: NavigationScreenProp<any>;
+  data: any;
 }
 
 interface State {}
@@ -50,6 +50,7 @@ export default class ListAgenda extends React.Component<Props, State> {
           hourText={string}
           navigation={this.props.navigation}
           data={mockJobData[0]}
+          routeParam={this.props.data}
           selected={
             {
               isSelected,

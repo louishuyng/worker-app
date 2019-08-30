@@ -169,6 +169,16 @@ const strings: any = new LocalizedStrings({
       skip: 'Skip Signature',
       sign: 'Sign TimeSheet',
     },
+    timeFormat: {
+      second: 'second',
+      min: 'min',
+      hour: 'hour',
+      day: 'day',
+      month: 'month',
+      year: 'year',
+      ago: 'ago',
+      s: 's',
+    },
   },
 });
 

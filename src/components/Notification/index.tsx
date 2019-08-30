@@ -12,6 +12,7 @@ import { mockJobData } from 'components/JobList/mock';
 import { JobDetail } from 'components/JobList/type';
 import { RouteName } from 'constant';
 import { notificationTitleModel } from './model';
+import { fromNow } from 'utils/fromNow';
 
 const Container = styled.ScrollView`
   flex: 1;
@@ -101,7 +102,9 @@ export default class NotificationUI extends Component<Props, State> {
     return data.filter((item) => item.isRead === isRead).map((item, i) => {
       const { jobName, location, type } = item;
       const icon = type === TypeNotifcation.JOB_ASSIGN ? IC_JOB_ASSIGN : IC_JOB_CANCELLED;
-      const timeFormat = moment().startOf('hours').fromNow();
+      const currentDate = new Date();
+      currentDate.setMinutes(currentDate.getMinutes() + 19);
+      const timeFormat = fromNow(currentDate);
       return (
         <View key={i}>
           <WrapperCard onPress={() => this.goToJobDetail(item)}>

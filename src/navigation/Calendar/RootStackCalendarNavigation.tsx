@@ -8,7 +8,6 @@ import { CalendarList, Agenda } from 'components/Calendar';
 import { RouteName } from 'constant';
 import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 import { IC_CALENDAR_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
-import { convertWidth } from 'utils/convertSize';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.CALENDAR]: {

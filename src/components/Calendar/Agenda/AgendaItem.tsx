@@ -16,6 +16,7 @@ interface Props {
   selected: SelectedAgendaProps,
   navigation: NavigationScreenProp<any>;
   data: JobDetail;
+  routeParam: any;
 }
 
 interface State {}
@@ -107,6 +108,7 @@ export default class AgendaItem extends React.Component<Props, State> {
       selected: { isSelected, marked, text, fontText, colorText },
       navigation,
       data,
+      routeParam,
     } = this.props;
     return (
       <Wrapper>
@@ -130,7 +132,13 @@ export default class AgendaItem extends React.Component<Props, State> {
         }
         {
           marked === LabelBackgroundCalendar.NAVIGATION && (
-            <WrapperNavigation onPress={() => navigation.navigate(RouteName.JOB, { data })} >
+            <WrapperNavigation onPress={() => {
+              navigation.navigate(RouteName.JOB, {
+                data,
+                routeBack: RouteName.AGENDA,
+                param: routeParam,
+              });
+            }} >
               <NavigationText>{getString('calendar', 'goJobPage')}</NavigationText>
               <NavigationIcon source={IC_ARROW_RIGHT}/>
             </WrapperNavigation>

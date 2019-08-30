@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   NavigationRouteConfig,
   StackNavigatorConfig,
-} from 'react-navigation';
+  NavigationScreenProp } from 'react-navigation';
 
 import JobList from 'components/JobList';
 import { RouteName } from 'constant';
@@ -19,54 +19,54 @@ const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
     screen: JobList,
     navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({ screenProps, navigation }),
   },
   [RouteName.JOB]: {
     screen: JobDetail,
     navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({
       screenProps,
       navigation,
       colorHeader: colors.auqaHazeTwo,
-      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
       widthTitle: '75%',
     }),
   },
   [RouteName.CREATE_TIMESHEET]: {
     screen: CreateTimeSheetScreen,
     navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({
       screenProps,
       navigation,
       colorHeader: colors.auqaHazeTwo,
-      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
       widthTitle: '75%',
     }),
   },
   [RouteName.REVIEW_TIMESHEET]: {
     screen: CreateReviewSheetScreen,
     navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({
       screenProps,
       navigation,
       colorHeader: colors.auqaHazeTwo,
-      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
       widthTitle: '75%',
     }),
   },
   [RouteName.MAPVIEW]: {
     screen: MapViewComponent,
     navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({
       screenProps,
       navigation,
       colorHeader: colors.auqaHazeTwo,
-      headLeftComponent: <BackButtonUI onPress={() => navigation.pop()}/>,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
       widthTitle: '75%',
     }),
   },
