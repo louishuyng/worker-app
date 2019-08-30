@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, Component } from 'react';
 import { View } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
@@ -23,7 +23,7 @@ const InputStyled = styled.TextInput<{ isError: any, placeholder: any }>`
   padding-vertical: 0;
   padding-left: ${convertWidth(10)};
   font-family: ${({ theme }) => theme.fontFamily.regular};
-  color: ${({ theme }) => theme.colors.capeCod};
+  color: ${({ theme }) => theme.colors.paleSky};
   background-color: ${({ theme }) => theme.colors.white};
   ${(props) => {
     const { isError, theme: { colors } } = props;
@@ -34,35 +34,34 @@ const InputStyled = styled.TextInput<{ isError: any, placeholder: any }>`
   }};
 `;
 
-const TextInputFormikHourUI = (props: TextInputUIProps) => {
-  const {
-    type,
-    label,
-    placeholder,
-    isHideKeyboard,
-    onTouch,
-    value,
-    field: { name },
-    form: { setFieldValue, submitCount, errors, touched, setFieldTouched },
-  } = props;
-  const isError = touched[name] && errors[name] && submitCount > 0;
-  const editPlaceHolder = isError ? errors[name] : placeholder;
-  return (
-    <View>
-      <LableStyled>{label}</LableStyled>
-      <InputStyled
-        value={value.hour !== '' && value.minute !== '' ? `${value.hour}:${value.minute}` : ''}
-        isError={isError}
-        onTouchStart={() => onTouch}
-        secureTextEntry={type === 'password' && true}
-        onChangeText={(text) => setFieldValue(name, text)}
-        editable={!isHideKeyboard && true}
-        onBlur={() => setFieldTouched(name)}
-        placeholder={editPlaceHolder}
-        placeholderTextColor={isError ? colors.alizarin : colors.iron}
-      />
-    </View>
-  );
+class TextInputFormikHourUI extends Component<TextInputUIProps, any> {
+  render() {
+    const {
+      label,
+      placeholder,
+      isHideKeyboard,
+      onTouch,
+      value,
+      field: { name },
+      form: { submitCount, errors, touched, setFieldTouched, values },
+    } = this.props;
+    const isError = touched[name] && errors[name] && submitCount > 0;
+    const editPlaceHolder = isError ? errors[name] : placeholder;
+    return (
+      <View>
+        <LableStyled>{label}</LableStyled>
+        <InputStyled
+          value={value || values[name]}
+          isError={isError}
+          onTouchStart={() => onTouch}
+          editable={!isHideKeyboard && true}
+          onBlur={() => setFieldTouched(name)}
+          placeholder={editPlaceHolder}
+          placeholderTextColor={isError ? colors.alizarin : colors.iron}
+        />
+      </View>
+    );
+  }
 };
 
 export default TextInputFormikHourUI;

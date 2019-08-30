@@ -13,10 +13,7 @@ export interface TextInputUIProps {
   label: string;
   onTouch?: () => void;
   onchange: () => void;
-  value: {
-    hour: string,
-    minute: string,
-  };
+  value: string;
   values: any;
   field: fieldProps;
   form: FormikProps<any>;

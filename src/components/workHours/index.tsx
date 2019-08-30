@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Keyboard, TouchableWithoutFeedback, Alert, View } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, Alert, View, Platform } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import styled from 'styled-components/native';
 import { Field } from 'formik';
@@ -86,8 +86,10 @@ export default class WorkHoursComponent extends Component<Props, State> {
   };
 
   handleDatePicked = (date: Date, currentInput: CurrentInput) => {
-    const hour = moment(date).hour().toString();
-    const minute = moment(date).minute().toString();
+    const hour = moment(date).hour().toString().length === 1
+      ? '0' + moment(date).hour() : moment(date).hour().toString();
+    const minute = moment(date).minute().toString().length === 1
+      ? '0' + moment(date).minute() : moment(date).minute().toString();
 
     const cloneDate = [...this.state.date];
     if (currentInput.timeMark === TimeMark.FROM) {
@@ -97,7 +99,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
           minute,
         })) {
           Alert.alert('You can not set time, please try again!');
-          this.setState({
+          Platform.OS === 'android' && this.setState({
             ...this.state,
             isDateTimePickerVisible: false,
           });
@@ -109,7 +111,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
         !isValidDate({ hour, minute }, cloneDate[currentInput.index].end as TimeDefined)
       ) {
         Alert.alert('You can not set time, please try again!');
-        this.setState({
+        Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,
         });
@@ -125,7 +127,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
     if (currentInput.timeMark === TimeMark.TO) {
       if (cloneDate[currentInput.index].begin.hour === '') {
         Alert.alert('You need to set time for from field first!');
-        this.setState({
+        Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,
         });
@@ -137,7 +139,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
         minute,
       })) {
         Alert.alert('You can not set time, please try again!');
-        this.setState({
+        Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,
         });
@@ -151,7 +153,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
           minute,
         }, cloneDate[currentInput.index + 1].begin as TimeDefined)) {
         Alert.alert('You can not set time, please try again!');
-        this.setState({
+        Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,
         });
@@ -202,7 +204,8 @@ export default class WorkHoursComponent extends Component<Props, State> {
             <Field
               name={`from${i}`}
               label={getString('workHours', 'from')}
-              value={item.begin}
+              value={item.begin.hour !== '' &&
+                item.begin.minute !== '' ? `${item.begin.hour}:${item.begin.minute}` : ''}
               isHideKeyboard={true}
               component={TextInputFormikHour}
             />
@@ -216,7 +219,8 @@ export default class WorkHoursComponent extends Component<Props, State> {
             <Field
               name={`to${i}`}
               label={getString('workHours', 'to')}
-              value={item.end}
+              value={item.end.hour !== '' &&
+                item.end.minute !== '' ? `${item.end.hour}:${item.end.minute}` : ''}
               isHideKeyboard={true}
               component={TextInputFormikHour}
             />
