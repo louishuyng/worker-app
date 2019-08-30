@@ -24,7 +24,7 @@ export default class InformationForm extends React.Component<Props, State> {
 
     const renderForm = (data: Array<InputAuthData>) => {
       return data.map((value, index) => {
-        const { fieldName, label, placeholder, type } = value;
+        const { fieldName, label, placeholder, type, keyboardType } = value;
         return (
           <Field
             key={index}
@@ -33,6 +33,7 @@ export default class InformationForm extends React.Component<Props, State> {
             name={fieldName}
             placeholder={placeholder}
             label={label}
+            keyboardType={keyboardType}
           />
         );
       });

@@ -194,6 +194,7 @@ const strings: any = new LocalizedStrings({
       PHONE_LABEL: 'New Phone',
       CURRENT_EMAIL: 'Current Email',
       CURRENT_PHONE: 'Your Phone',
+      SAVE: 'Save',
     },
   },
 });

@@ -7,13 +7,13 @@ type PersonalCurrentLabel = {[key in PersonalStage]: string}
 export const personalFormData: PersonalForm = {
   [PersonalStage.EMAIL]: [{
     label: getString('personal', 'EMAIL_LABEL'),
-    fieldName: 'firstName',
+    fieldName: 'email',
     type: 'text',
     keyboardType: 'email-address',
   }],
   [PersonalStage.PHONE]: [{
     label: getString('personal', 'PHONE_LABEL'),
-    fieldName: 'firstName',
+    fieldName: 'phone',
     type: 'text',
     keyboardType: 'phone-pad',
   }],
