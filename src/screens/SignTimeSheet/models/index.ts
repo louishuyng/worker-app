@@ -2,11 +2,11 @@ import { handleSubmitFormikInterface } from 'screens/hoc/withConnectFormik';
 import { RouteName } from 'constant';
 
 interface FormikSignTimeSheet {
-  superviorName: string;
+  supervisorName: string;
 }
 
 export const InitMapPropsSignTimeSheet: FormikSignTimeSheet = {
-  superviorName: '',
+  supervisorName: '',
 };
 
 export const handleSubmit: handleSubmitFormikInterface = (values: FormikSignTimeSheet, navigation) => {

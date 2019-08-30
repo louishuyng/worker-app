@@ -19,6 +19,7 @@ export const RouteName = {
   WORK_HOURS: getString('screen', 'WORK_HOURS'),
   PROFILE: getString('screen', 'PROFILE'),
   CALENDAR: getString('screen', 'CALENDAR'),
+  CALENDAR_MAIN: getString('screen', 'CALENDAR_MAIN'),
   AGENDA: getString('screen', 'AGENDA'),
   NOTIFICATION: getString('screen', 'NOTIFICATION'),
   CREATE_TIMESHEET: getString('screen', 'CREATE_TIMESHEET'),

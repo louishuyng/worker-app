@@ -35,15 +35,14 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
     isHideKeyboard,
     onTouch,
     field: { name },
-    form: { setFieldValue, submitCount, errors, touched, setFieldTouched, isSubmitting },
+    form: { setFieldValue, submitCount, errors, setFieldTouched, isValidating },
   } = props;
 
   const [isShowDiaglog, setIsShowDialog] = useState(false);
-  const isError = touched[name] && errors[name] && submitCount > 0;
 
   useEffect(() => {
-    if (errors[name] && isSubmitting) setIsShowDialog(true);
-  }, [errors, submitCount]);
+    if (Object.keys(errors)[0] === name && isValidating) setIsShowDialog(true);
+  }, [errors[name], submitCount]);
 
   return (
     <View>

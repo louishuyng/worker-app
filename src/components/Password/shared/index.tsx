@@ -31,16 +31,16 @@ const TitleWrapper = styled(DescriptionWrapper)`
 `;
 
 const WrapperTitle = styled.View`
-  flex: 1 0 ${screenHeight * 0.1}px;
+  flex: 1 0 ${screenHeight * 0.15}px;
 `;
 
 const WrapperBody = styled.View`
-  flex: 1 0 ${screenHeight * 0.7}px;
+  flex: 1 0 ${screenHeight * 0.60}px;
   justify-content: space-between;
 `;
 
 const WrapperFooter = styled.View`
-  flex: 1 0 ${screenHeight * 0.2}px;
+  flex: 1 0 ${screenHeight * 0.25}px;
 `;
 
 const WrapperButton = styled.View`

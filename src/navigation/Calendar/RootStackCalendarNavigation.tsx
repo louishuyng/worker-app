@@ -8,6 +8,7 @@ import { CalendarList, Agenda } from 'components/Calendar';
 import { RouteName } from 'constant';
 import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 import { IC_CALENDAR_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
+import CalendarMain from 'components/Calendar/CalendarMain';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.CALENDAR]: {
@@ -18,6 +19,12 @@ const routeConfig: NavigationRouteConfig = {
   },
   [RouteName.AGENDA]: {
     screen: Agenda,
+  },
+  [RouteName.CALENDAR_MAIN]: {
+    screen: CalendarMain,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({ screenProps, navigation }),
   },
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({

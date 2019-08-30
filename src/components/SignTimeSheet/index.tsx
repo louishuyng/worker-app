@@ -62,7 +62,11 @@ const SignTimeSheet = (props: any) => {
       <WrapperContent>
         <WrapperInput>
           <Field
+<<<<<<< HEAD
             name='superivorName'
+=======
+            name='supervisorName'
+>>>>>>> Task Update Calendar
             label={getString('signTimeSheet', 'supervisor')}
             component={TextInputFormikUI}
           />
