@@ -70,7 +70,7 @@ const LayoutPasswordScreen = (props: AboutPasswordScreenProps) => {
             {forms
               ? forms.map((form, key) => {
                 const {
-                  type, label, placeholder, fieldName,
+                  type, label, placeholder, fieldName, keyboardType,
                 } = form;
                 return (
                   <Field
@@ -80,6 +80,7 @@ const LayoutPasswordScreen = (props: AboutPasswordScreenProps) => {
                     name={fieldName}
                     placeholder={placeholder}
                     label={label}
+                    keyboardType={keyboardType}
                   />
                 );
               })

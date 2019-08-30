@@ -176,7 +176,7 @@ export default class ProfileUI extends Component<Props, any> {
             <WrapperArrow source={IC_ARROW} />
           </WrapperCard>
         </WrapperContact>
-        <SettingNavigation onPress={() => null}>
+        <SettingNavigation onPress={() => this.props.navigation.navigate(RouteName.SIGNATURE)}>
           <ActionDetail>{getString('profile', 'settings')}</ActionDetail>
           <WrapperArrow source={IC_ARROW} />
         </SettingNavigation>

@@ -1,4 +1,3 @@
-
 import * as Yup from 'yup';
 
 import { emailRegExp } from 'constant';

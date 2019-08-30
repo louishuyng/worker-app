@@ -26,7 +26,7 @@ const Wrapper = styled.View`
 `;
 
 const WrapperBackgroundJob = styled.View`
-  width: ${convertWidth(313)};
+  width: 80%;
   position: absolute;
   left: ${convertWidth(20)}%;
   border-top-width: ${convertHeight(1)};
@@ -44,7 +44,7 @@ const HourText = styled.Text`
 
 const BackgroundJob = styled.View<{isSelected: boolean}>`
   position: absolute;
-  width: ${convertWidth(310)};
+  width: 100%;
   left: ${convertWidth(3)};
   height: ${convertHeight(32)};
   opacity: 0.1;

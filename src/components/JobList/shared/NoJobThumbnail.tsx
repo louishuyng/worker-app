@@ -93,7 +93,9 @@ export const NoJobThumbnail = ({ hourWorkingData, navigation }: JobAssignProps) 
           ) : null
         }
         <WrapperRecommed>
-          <TouchableOpacity onPress={() => (navigation).navigate(RouteName.WORK_HOURS) }>
+          <TouchableOpacity onPress={
+            () => (navigation).navigate(RouteName.WORK_HOURS, { routeBack: RouteName.JOB_LIST })
+          }>
             <RecommendNavigate>
               {getString('jobList', 'tapLabel')}
             </RecommendNavigate>

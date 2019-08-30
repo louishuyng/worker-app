@@ -1,4 +1,5 @@
 import { FormikHandlers, FormikProps } from 'formik';
+import { KeyboardType } from 'react-native';
 
 interface fieldProps {
   onChange: FormikHandlers['handleChange'];
@@ -21,4 +22,5 @@ export interface TextInputUIProps {
   field: fieldProps;
   form: FormikProps<any>;
   isHideKeyboard?: boolean;
+  keyboardType: KeyboardType;
 }

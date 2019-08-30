@@ -130,11 +130,12 @@ export default class AuthScreen extends Component<Props, State> {
 
   displayForm = (data: Array<InputAuthData>): any => {
     return data.map((value, key) => {
-      const { placeholder, fieldName, label, type } = value;
+      const { placeholder, fieldName, label, type, keyboardType } = value;
       return (
         <Field
           key={key}
           type={type}
+          keyboardType={keyboardType}
           component={TextInputFormikUI}
           name={fieldName}
           placeholder={placeholder}
@@ -200,7 +201,7 @@ export default class AuthScreen extends Component<Props, State> {
               <ButtonUI
                 type={Types.SUBMIT}
                 title={buttonLabel}
-                onPress={() => navigate(navigator)}
+                onPress={() => handleSubmit()}
                 afterIcon={afterIconData}
               />
             </WrapperButton>

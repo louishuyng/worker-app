@@ -3,23 +3,11 @@ import styled from 'styled-components/native';
 
 import { convertHeight, convertWidth } from 'utils/convertSize';
 import { weekDayShortNames } from '../config';
-import { View, Animated, ScrollView, InteractionManager } from 'react-native';
+import { View, Animated, ScrollView, InteractionManager, Dimensions } from 'react-native';
 import { getDateOfWeek } from 'utils/getDateOfWeek';
 import { AnimatedValue } from 'react-navigation';
-import { screenWidth } from 'utils/Styles';
+import { screenWidth, screenHeight } from 'utils/Styles';
 import moment from 'moment';
-
-interface Props {
-  isShowController?: boolean;
-  datePicked: string;
-}
-
-interface State {
-  animatedScroll: AnimatedValue;
-  weekdays: number[][];
-  currentNextOffset: number;
-  currentPreviousOffet: number;
-}
 
 const WrapperHeaderWeek = styled.View`
   flex-direction: row;
@@ -49,22 +37,47 @@ const TextDayHeader = styled.Text<{ isMarked: boolean }>`
 
 `;
 
+interface Props {
+  isShowController?: boolean;
+  datePicked: string;
+}
+
+interface State {
+  animatedScroll: AnimatedValue;
+  weekdays: number[][];
+  currentNextOffset: number;
+  currentPreviousOffet: number;
+  isPortrait: boolean;
+}
+
 export default class HaderCalendar extends React.Component<Props, State> {
   private scrollViewEl: any;
 
   constructor(props: Props) {
     super(props);
     this.scrollViewEl = React.createRef();
+    const isPortrait = () => {
+      const dim = Dimensions.get('screen');
+      return dim.width <= dim.height;
+    };
     this.state = {
       animatedScroll: new Animated.Value(0),
       currentNextOffset: 1,
       currentPreviousOffet: -1,
+      isPortrait: isPortrait(),
       weekdays: [
         getDateOfWeek(this.props.datePicked, -1),
         getDateOfWeek(this.props.datePicked, 0),
         getDateOfWeek(this.props.datePicked, 1),
       ],
     };
+
+    Dimensions.addEventListener('change', () => {
+      this.setState({
+        ...this.state,
+        isPortrait: isPortrait(),
+      });
+    });
   }
 
   handleScroll = (event: any) => {
@@ -105,7 +118,11 @@ export default class HaderCalendar extends React.Component<Props, State> {
   componentDidMount() {
     this.scrollViewEl.current && InteractionManager.runAfterInteractions(() => {
       setTimeout(() => {
-        this.scrollViewEl.current.scrollTo({ x: screenWidth, y: 0, animated: false });
+        this.scrollViewEl.current.scrollTo({
+          x: this.state.isPortrait ? screenWidth : screenHeight,
+          y: 0,
+          animated: false,
+        });
       }, 1);
     });
   }
@@ -129,41 +146,41 @@ export default class HaderCalendar extends React.Component<Props, State> {
           ))}
         </WrapperHeaderWeek>
         {
-          this.props.isShowController && <View>
-            <ScrollView
-              pagingEnabled
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentOffset={{ x: screenWidth, y: 0 }}
-              onScroll={this.handleScroll}
-              ref={this.scrollViewEl}
-            >
-              {
-                this.state.weekdays.map((week, i) => {
-                  return (
-                    <WrapperHeaderWeek style={{ width: screenWidth }} key={i}>
-                      {week.map((day, id) => {
-                        const weekDay = moment(this.props.datePicked).isoWeekday();
-                        return (
-                          <WrapperDay key={id}>
-                            <TextDayHeader
-                              isMarked={weekDay === id + 1}
-                              allowFontScaling={false}
-                              accessible={false}
-                              numberOfLines={1}
-                              importantForAccessibility='no'
-                            >
-                              {day}
-                            </TextDayHeader>
-                          </WrapperDay>
-                        );
-                      })}
-                    </WrapperHeaderWeek>
-                  );
-                })
-              }
-            </ScrollView>
-          </View>
+          this.props.isShowController &&
+          <ScrollView
+            pagingEnabled
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentOffset={{ x: this.state.isPortrait ? screenWidth : screenHeight, y: 0 }}
+            onScroll={this.handleScroll}
+            ref={this.scrollViewEl}
+            style={{ width: '100%' }}
+          >
+            {
+              this.state.weekdays.map((week, i) => {
+                return (
+                  <WrapperHeaderWeek style={{ width: this.state.isPortrait ? screenWidth : screenHeight }} key={i}>
+                    {week.map((day, id) => {
+                      const weekDay = moment(this.props.datePicked).isoWeekday();
+                      return (
+                        <WrapperDay key={id}>
+                          <TextDayHeader
+                            isMarked={weekDay === id + 1}
+                            allowFontScaling={false}
+                            accessible={false}
+                            numberOfLines={1}
+                            importantForAccessibility='no'
+                          >
+                            {day}
+                          </TextDayHeader>
+                        </WrapperDay>
+                      );
+                    })}
+                  </WrapperHeaderWeek>
+                );
+              })
+            }
+          </ScrollView>
         }
       </View>
     );

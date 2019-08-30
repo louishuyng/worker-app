@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { NavigationScreenProp } from 'react-navigation';
+import { NavigationScreenProp, SafeAreaView } from 'react-navigation';
 
 import { listNumberHour } from 'constant';
 import AgendaItem from './AgendaItem';
@@ -15,7 +15,7 @@ interface Props {
   data: any;
 }
 
-interface State {}
+interface State { }
 
 const WrapperView = styled.ScrollView`
   padding-bottom: 150;
@@ -32,7 +32,7 @@ export default class ListAgenda extends React.Component<Props, State> {
   }
 
   renderList = () => {
-    const timeData: {[index: string]: any} = {};
+    const timeData: { [index: string]: any } = {};
     processTimeData(timeData, mockJobData);
 
     return listNumberHour.map((value) => {
@@ -67,10 +67,12 @@ export default class ListAgenda extends React.Component<Props, State> {
 
   render() {
     return (
-      <WrapperView showsVerticalScrollIndicator={false}>
-        <ExtendBox />
-        {this.renderList()}
-      </WrapperView>
+      <SafeAreaView>
+        <WrapperView showsVerticalScrollIndicator={false}>
+          <ExtendBox />
+          {this.renderList()}
+        </WrapperView>
+      </SafeAreaView>
     );
   }
 }

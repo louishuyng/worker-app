@@ -8,6 +8,7 @@ import DayComponent from 'components/Calendar/CalendarList/DayComponent';
 import { convertWidth } from 'utils/convertSize';
 import HeaderCalendar from '../shared';
 import { colors } from 'utils/Theme';
+import { screenHeight } from 'utils/Styles';
 
 LocaleConfig.defaultLocale = 'en';
 
@@ -48,6 +49,9 @@ export default class CalendarListComponent extends React.Component<Props, State>
             'stylesheet.calendar-list.main': {
               container: {
                 backgroundColor: colors.aquaHaze,
+              },
+              calendar: {
+                width: '100%',
               },
             },
             'stylesheet.calendar.header': {

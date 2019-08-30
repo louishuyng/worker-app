@@ -17,23 +17,27 @@ export const autFormData: AuthForm = {
       label: getString('auth', 'FIRST_NAME'),
       fieldName: 'firstName',
       type: 'text',
+      keyboardType: 'default',
     },
     {
       label: getString('auth', 'LAST_NAME'),
       fieldName: 'lastName',
       type: 'text',
+      keyboardType: 'default',
     },
     {
       label: getString('auth', 'PHONE_NUMBER'),
       placeholder: getString('auth', 'PLACE_HOLDER_PHONE'),
       fieldName: 'phoneNumber',
       type: 'number',
+      keyboardType: 'phone-pad',
     },
     {
       label: getString('auth', 'EMAIL'),
       placeholder: getString('auth', 'PLACE_HOLDER_EMAIL'),
       fieldName: 'email',
       type: 'email',
+      keyboardType: 'email-address',
     },
   ],
   [AuthStage.SIGNUP_STEP_TWO]: [
@@ -41,28 +45,33 @@ export const autFormData: AuthForm = {
       label: getString('auth', 'DEPARTMENT'),
       fieldName: 'department',
       type: 'text',
+      keyboardType: 'default',
     },
     {
       label: getString('auth', 'PASSWORD'),
       fieldName: 'password',
       type: 'password',
+      keyboardType: 'default',
     },
     {
       label: getString('auth', 'REPEAT_PASSWORD'),
       fieldName: 'repeatPassword',
       type: 'password',
+      keyboardType: 'default',
     },
   ],
   [AuthStage.LOGIN]: [
     {
       label: getString('auth', 'EMAIL'),
       fieldName: 'email',
-      type: 'email',
+      type: 'email-address',
+      keyboardType: 'email-address',
     },
     {
       label: getString('auth', 'PASSWORD'),
       fieldName: 'password',
       type: 'password',
+      keyboardType: 'default',
     },
   ],
 };

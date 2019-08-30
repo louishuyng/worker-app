@@ -43,7 +43,7 @@ export default class BackButtonUI extends React.Component<Props, State> {
     const handleNavigate = () => {
       const routeBack = navigation.getParam('routeBack');
       const param = navigation.getParam('param');
-      if (routeBack) navigation.navigate(routeBack, { data: param });
+      if (routeBack) return navigation.navigate(routeBack, { data: param });
       navigation.pop();
     };
 
