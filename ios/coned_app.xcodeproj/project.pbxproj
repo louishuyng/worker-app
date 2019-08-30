@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* coned_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* coned_appTests.m */; };
 		0B5C49F68BAE4E3BB4ABA1FF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C01C0C430F3142399D39A468 /* Octicons.ttf */; };
@@ -833,11 +832,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.coned-appunique";
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.coned-appzczx";
->>>>>>> hour ui
 				PRODUCT_NAME = coned_app;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

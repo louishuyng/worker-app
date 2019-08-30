@@ -46,6 +46,7 @@ const strings: any = new LocalizedStrings({
       SIGNATURE: 'SUPERVISOR’s Signature',
       EMAIL_PERSONAL: 'Email',
       PHONE_PERSONAL: 'Phone',
+      SIGN_TIME_SHEET: 'Sign Timesheet',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',
@@ -178,6 +179,11 @@ const strings: any = new LocalizedStrings({
       conEdisonTruckLabel: 'Con Edison Truck #',
       skip: 'Skip Signature',
       sign: 'Sign TimeSheet',
+    },
+    signTimeSheet: {
+      supervisor: 'Supervisor’s Name',
+      signature: 'Signature',
+      save: 'Save',
     },
     timeFormat: {
       second: 'second',

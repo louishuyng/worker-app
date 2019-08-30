@@ -1,3 +1,6 @@
+import { handleSubmitFormikInterface } from 'screens/hoc/withConnectFormik';
+import { RouteName } from 'constant';
+
 export interface FormikTimeSheet {
   requestorName?: string;
   dateRequested?: string;
@@ -54,6 +57,6 @@ export const InitMapPropsTimeSheet = {
   conEdisonTruck: '',
 };
 
-export const handleSubmitCreateTimeSheet = (values: FormikTimeSheet) => {
-
+export const handleSubmitCreateTimeSheet: handleSubmitFormikInterface = (values: FormikTimeSheet, navigation) => {
+  navigation.navigate(RouteName.JOB_LIST);
 };

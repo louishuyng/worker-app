@@ -114,7 +114,7 @@ export default class TimeSheet extends React.Component<Props, State> {
        <WrapperButtonInLine>
          <ButtonUI
            title={getString('timeSheet', 'sign')}
-           onPress={() => this.props.navigation.navigate(RouteName.SIGNATURE)}
+           onPress={() => this.props.navigation.navigate(RouteName.SIGN_TIME_SHEET)}
            type={Types.SUBMIT}
          />
        </WrapperButtonInLine>
