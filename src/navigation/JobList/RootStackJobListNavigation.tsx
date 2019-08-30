@@ -16,6 +16,7 @@ import { CreateReviewSheetScreen, CreateTimeSheetScreen } from 'screens/TimeShee
 import MapViewComponent from 'components/MapView';
 import SignaturePadUI from 'components/Signature';
 import HeadRightNav from 'components/Signature/HeadRightNav';
+import { SignTimeSheetScreen } from 'screens/SignTimeSheet';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.JOB_LIST]: {
@@ -81,6 +82,18 @@ const routeConfig: NavigationRouteConfig = {
       screenProps,
       headLeftComponent: <BackButtonUI navigation={navigation} />,
       headRightComponent: <HeadRightNav />,
+      colorHeader: screenProps.theme.colors.auqaHazeTwo,
+      widthTitle: '75%',
+    }),
+  },
+  [RouteName.SIGN_TIME_SHEET]: {
+    screen: SignTimeSheetScreen,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: any, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      navigation,
+      screenProps,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
       colorHeader: screenProps.theme.colors.auqaHazeTwo,
       widthTitle: '75%',
     }),

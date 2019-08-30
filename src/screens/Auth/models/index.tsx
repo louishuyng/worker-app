@@ -1,3 +1,6 @@
+import { handleSubmitFormikInterface } from 'screens/hoc/withConnectFormik';
+import { RouteName } from 'constant';
+
 export interface FormikAuthValues {
   email?: string,
   password?: string,
@@ -26,14 +29,14 @@ export const InitMapPropsSignUpStepTwo = {
   repeatPassword: '',
 };
 
-export const handleSubmitLogin = (values: FormikAuthValues) => {
-
+export const handleSubmitLogin: handleSubmitFormikInterface = (values: FormikAuthValues, navigation) => {
+  navigation.navigate(RouteName.MAIN);
 };
 
-export const handleSubmitSignUpStepOne = (values: FormikAuthValues) => {
-
+export const handleSubmitSignUpStepOne: handleSubmitFormikInterface = (values: FormikAuthValues, navigation) => {
+  navigation.navigate(RouteName.SIGN_UP_STEP_TWO);
 };
 
-export const handleSubmitSignUpStepTwo = (values: FormikAuthValues) => {
-
+export const handleSubmitSignUpStepTwo: handleSubmitFormikInterface = (values: FormikAuthValues, navigation) => {
+  navigation.navigate(RouteName.SIGN_IN);
 };

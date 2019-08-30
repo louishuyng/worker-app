@@ -7,7 +7,6 @@ import {
 } from 'react-navigation';
 
 import { ThemeProvider } from 'styled-components';
-import MapViewComponent from 'components/MapView';
 import { createTheme, ThemeType } from 'utils/Theme';
 import BottomMaterialNavigator from './BottomMaterialNavigator';
 

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { withFormik } from 'formik';
+import { NavigationScreenProp } from 'react-navigation';
 
 import { ObjectSchema } from 'yup';
 
@@ -8,8 +9,8 @@ interface initMapPropsInterface {
   [key: string]: any;
 }
 
-interface handleSubmitFormikInterface {
-  (values: any): any
+export interface handleSubmitFormikInterface {
+  (values: any, navigation: NavigationScreenProp<any>): any
 }
 
 export interface ConnectFormikAuthParamaters {
@@ -20,7 +21,9 @@ export interface ConnectFormikAuthParamaters {
   handleSubmit: handleSubmitFormikInterface,
 }
 
-interface Props {}
+interface Props {
+  navigation: NavigationScreenProp<any>;
+}
 
 export const withConnectFormik = ({
   Component, displayName, customSchema, initMapProps, handleSubmit,
@@ -29,7 +32,9 @@ export const withConnectFormik = ({
     enableReinitialize: false,
     validationSchema: customSchema,
     mapPropsToValues: () => initMapProps,
-    handleSubmit: (values) => handleSubmit(values),
+    handleSubmit: (values) => {
+      handleSubmit(values, props.navigation);
+    },
     displayName,
   })(Component);
   return <RenderComponent {...props} />;
