@@ -109,7 +109,7 @@ const HorizontalLine = styled.View`
   width: 95%;
   height: 1;
   align-self: flex-end;
-  background-color: ${({ theme }) => theme.colors.iron}
+  background-color: ${({ theme }) => theme.colors.iron};
 `;
 
 const SettingNavigation = styled.TouchableOpacity`
@@ -166,12 +166,12 @@ export default class ProfileUI extends Component<Props, any> {
         </WrapperAvailabelCard>
         <PersonalInfo>{getString('profile', 'personalInfo')}</PersonalInfo>
         <WrapperContact>
-          <WrapperCard>
+          <WrapperCard onPress={() => this.props.navigation.navigate(RouteName.EMAIL_PERSONAL)}>
             <ActionDetail>{getString('profile', 'email')}</ActionDetail>
             <WrapperArrow source={IC_ARROW} />
           </WrapperCard>
           <HorizontalLine />
-          <WrapperCard>
+          <WrapperCard onPress={() => this.props.navigation.navigate(RouteName.PHONE_PERSONAL)}>
             <ActionDetail>{getString('profile', 'phone')}</ActionDetail>
             <WrapperArrow source={IC_ARROW} />
           </WrapperCard>

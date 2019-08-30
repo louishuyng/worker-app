@@ -30,9 +30,10 @@ import DateForm from './form/DateForm';
 import { IC_LINE_HOR } from 'utils/Icons';
 
 interface Props {
-  values: FormikTimeSheet,
-  stageTimeSheet: StageTimeSheet,
-  navigation: NavigationScreenProp<any>
+  values: FormikTimeSheet;
+  stageTimeSheet: StageTimeSheet;
+  navigation: NavigationScreenProp<any>;
+  handleSubmit: Function;
 }
 
 interface State {
@@ -95,7 +96,7 @@ export default class TimeSheet extends React.Component<Props, State> {
     <WrapperButton >
       <ButtonUI
         title={getString('jobList', 'createTimeSheet')}
-        onPress={() => null}
+        onPress={() => this.props.handleSubmit()}
         type={Types.SUBMIT}
       />
     </WrapperButton>

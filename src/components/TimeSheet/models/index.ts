@@ -193,14 +193,14 @@ export const formDataFive: Array<InputAuthData> = [
     placeholder: '',
     label: getString('timeSheet', 'totalHoursLabel'),
     fieldName: 'totalHours',
-    type: 'text',
-    keyboardType: 'default',
+    type: 'number',
+    keyboardType: 'numeric',
   },
   {
     placeholder: '',
     label: getString('timeSheet', 'conEdisonTruckLabel'),
     fieldName: 'conEdisonTruck',
-    type: 'text',
-    keyboardType: 'default',
+    type: 'number',
+    keyboardType: 'numeric',
   },
 ];

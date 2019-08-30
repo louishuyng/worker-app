@@ -43,7 +43,7 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
 
   useEffect(() => {
     if (errors[name] && isSubmitting) setIsShowDialog(true);
-  }, [errors]);
+  }, [errors, submitCount]);
 
   return (
     <View>
