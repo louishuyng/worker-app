@@ -45,3 +45,6 @@ export const IC_JOB_ASSIGN = require('../../assets/icons/notification/job-assign
 
 // Calendar
 export const IC_ARROW_RIGHT = require('../../assets/icons/calendar/arrow-right.png');
+
+// time sheet
+export const IC_LINE_HOR = require('../../assets/icons/timeSheet/line.png');

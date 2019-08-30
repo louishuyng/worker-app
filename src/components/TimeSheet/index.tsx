@@ -5,7 +5,15 @@ import { NavigationScreenProp } from 'react-navigation';
 import { FormikTimeSheet } from 'screens/TimeSheet/models';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 import RequestorForm from './form/RequestorForm';
-import { formDataOne, requestorForm, formDataTwo, formDataThree, formDataFive } from './models';
+import {
+  formDataOne,
+  requestorForm,
+  formDataTwo,
+  formDataThree,
+  formDataFive,
+  formDataFour,
+  formDataCheckbox,
+} from './models';
 import InformationForm from './form/InformationForm';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TotalHourForm from './form/TotalHourForm';
@@ -14,8 +22,12 @@ import { Types } from 'components/common/Button/types';
 import { getString } from 'locales';
 import { StageTimeSheet } from './type';
 import { SafeAreaView } from 'react-native';
+
 import { SkipSignatureModal } from 'components/common/Modal';
 import { RouteName } from 'constant';
+import CheckBoxForm from './form/CheckboxForm';
+import DateForm from './form/DateForm';
+import { IC_LINE_HOR } from 'utils/Icons';
 
 interface Props {
   values: FormikTimeSheet,
@@ -39,6 +51,10 @@ const WrapperForm = styled.View`
 const ExtendBox = styled.View`
   background-color: ${({ theme }) => theme.colors.aquaHaze};
   height: ${convertHeight(8)};
+`;
+
+const HorizontalLine = styled.Image`
+  margin-vertical: ${convertHeight(20)};
 `;
 
 const WrapperFooter = styled.View`
@@ -75,15 +91,15 @@ export default class TimeSheet extends React.Component<Props, State> {
     };
   }
 
-   renderCreateButton = () => (
-     <WrapperButton >
-       <ButtonUI
-         title={getString('jobList', 'createTimeSheet')}
-         onPress={() => null}
-         type={Types.SUBMIT}
-       />
-     </WrapperButton>
-   )
+  renderCreateButton = () => (
+    <WrapperButton >
+      <ButtonUI
+        title={getString('jobList', 'createTimeSheet')}
+        onPress={() => null}
+        type={Types.SUBMIT}
+      />
+    </WrapperButton>
+  )
 
    renderReviewButtonn = () => (
      <WrapperButtonReivew>
@@ -110,7 +126,7 @@ export default class TimeSheet extends React.Component<Props, State> {
        <SafeAreaView>
          <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
            <WrapperForm>
-             <RequestorForm data={requestorForm}/>
+             <RequestorForm {...this.props} data={requestorForm} />
            </WrapperForm>
            <ExtendBox />
            <WrapperForm>
@@ -122,9 +138,9 @@ export default class TimeSheet extends React.Component<Props, State> {
            </WrapperForm>
            <ExtendBox />
            <WrapperForm>
-             <InformationForm data={formDataThree} />
-           </WrapperForm>
-           <WrapperForm>
+             <DateForm {...this.props} data={formDataFour} />
+             <CheckBoxForm data={formDataCheckbox} />
+             <HorizontalLine source={IC_LINE_HOR} />
              <TotalHourForm data={formDataFive} />
            </WrapperForm>
            <WrapperFooter>
