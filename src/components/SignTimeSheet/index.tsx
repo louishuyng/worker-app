@@ -62,7 +62,7 @@ const SignTimeSheet = (props: any) => {
       <WrapperContent>
         <WrapperInput>
           <Field
-            name='superivorName'
+            name='supervisorName'
             label={getString('signTimeSheet', 'supervisor')}
             component={TextInputFormikUI}
           />

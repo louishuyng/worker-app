@@ -133,7 +133,7 @@ export default class AgendaItem extends React.Component<Props, State> {
         {
           marked === LabelBackgroundCalendar.NAVIGATION && (
             <WrapperNavigation onPress={() => {
-              navigation.navigate(RouteName.JOB, {
+              navigation.navigate(RouteName.JOB_CALENDAR, {
                 data,
                 routeBack: RouteName.AGENDA,
                 param: routeParam,

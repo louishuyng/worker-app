@@ -1,13 +1,18 @@
+import React from 'react';
 import {
   createStackNavigator,
   NavigationRouteConfig,
   StackNavigatorConfig,
+  NavigationScreenProp,
 } from 'react-navigation';
 
 import { CalendarList, Agenda } from 'components/Calendar';
 import { RouteName } from 'constant';
 import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 import { IC_CALENDAR_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
+import JobDetail from 'components/JobDetail';
+import { colors } from 'utils/Theme';
+import BackButtonUI from 'components/common/ButtonBack';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.CALENDAR]: {
@@ -18,6 +23,18 @@ const routeConfig: NavigationRouteConfig = {
   },
   [RouteName.AGENDA]: {
     screen: Agenda,
+  },
+  [RouteName.JOB_CALENDAR]: {
+    screen: JobDetail,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
+      widthTitle: '75%',
+    }),
   },
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({
