@@ -28,7 +28,6 @@ class SignaturePadUI extends Component<any, State> {
 
   componentDidUpdate(prevProps: any) {
     if (prevProps.isFocused !== this.props.isFocused) {
-      console.log('hello');
       this.forceUpdate();
     }
   }

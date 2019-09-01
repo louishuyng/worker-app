@@ -25,7 +25,7 @@ const routeConfigMap: NavigationRouteConfigMap = {
 };
 
 const switchConfig: SwitchNavigatorConfig = {
-  initialRouteName: RouteName.SIGN_UP_STEP_ONE,
+  initialRouteName: RouteName.MAIN,
 };
 
 const SwitchAnimatedNavigator = createSwitchNavigator(
