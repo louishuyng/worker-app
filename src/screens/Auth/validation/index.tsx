@@ -5,8 +5,8 @@ import { emailRegExp, passRegExp } from 'constant';
 export const signInValidationSchema = Yup.object().shape({
   email: Yup
     .string()
-    .required('Please fill the email ')
-    .matches(emailRegExp, 'Email not follow the format'),
+    .required('Email is required')
+    .matches(emailRegExp, 'Invalid email address'),
   password: Yup
     .string()
     .required('Password is required'),
@@ -15,29 +15,31 @@ export const signInValidationSchema = Yup.object().shape({
 export const signUpStepOneValidationShcema = Yup.object().shape({
   firstName: Yup
     .string()
-    .required('Please fill the First Name'),
+    .required('First Name is required')
+    .min(1, 'First Name must be at least 1 character'),
   lastName: Yup
     .string()
-    .required('Please fill the Last Name'),
+    .required('Last Name is required')
+    .min(1, 'Last Name must be at least 1 character'),
   phoneNumber: Yup
     .string()
-    .required('Please fill the phone number'),
+    .required('Phone Number is required'),
   email: Yup
     .string()
-    .required('Please fill the email')
-    .matches(emailRegExp, 'Email not follow the format'),
+    .required('Email is required')
+    .matches(emailRegExp, 'Invalid email address'),
 });
 
 export const signUpStepTwoValidationShcema = Yup.object().shape({
   department: Yup
     .string()
-    .required('Please fill the department name'),
+    .required('Department is required'),
   password: Yup
     .string()
-    .required('Please fill the password')
+    .required('Password is required')
     .matches(passRegExp),
   repeatPassword: Yup
     .string()
-    .required('Please fill the repeat password')
-    .oneOf([Yup.ref('password'), 'Password is not match']),
+    .required('Repeat Password is required')
+    .oneOf([Yup.ref('password'), `Password doesn't match`]),
 });

@@ -2,5 +2,5 @@ import * as Yup from 'yup';
 export const signTimSheetValidationSchema = Yup.object().shape({
   supervisorName: Yup
     .string()
-    .required('Please fill the supervisor name'),
+    .required(`Supervisor's Name is required`),
 });

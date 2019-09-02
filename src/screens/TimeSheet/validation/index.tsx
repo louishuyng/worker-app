@@ -4,53 +4,53 @@ import * as Yup from 'yup';
 export const timeSheetSchema = Yup.object().shape({
   requestorName: Yup
     .string()
-    .required('Please fill the requestor name'),
+    .required('Requestor Name is required'),
   department: Yup
     .string()
-    .required('Please fill the department name'),
+    .required('Department is required'),
   electric: Yup
     .string()
-    .required('Please fill the electirc name'),
+    .required('Electric is required'),
   gas: Yup
     .string()
-    .required('Please fill the gas name'),
+    .required('Gas is required'),
   section: Yup
     .string()
-    .required('Please fill the section name'),
+    .required('Section is required'),
   account: Yup
     .string()
-    .required('Please fill the account name'),
+    .required('Account is required'),
   workRequest: Yup
     .string()
-    .required('Please fill the work request field'),
+    .required('Work Request is required'),
   po: Yup
     .string()
-    .required('Please fill the PO field'),
+    .required('PO is required'),
   confirmation: Yup
     .string()
-    .required('Please fill the confirmation field'),
+    .required('Confirmation is required'),
   locationAddress1: Yup
     .string()
-    .required('Please fill the Location Address 1 field'),
+    .required('Location Address #1 is required'),
   locationAddress2: Yup
     .string()
-    .required('Please fill the Location Address 2 field'),
+    .required('Location Address #2 is required'),
   locationAddress3: Yup
     .string()
-    .required('Please fill the Location Address 3 field'),
+    .required('Location Address #3 is required'),
   locationAddress4: Yup
     .string()
-    .required('Please fill the Location Address 4 field'),
+    .required('Location Address #4 is required'),
   crossStreet: Yup
     .string()
-    .required('Please fill the Cross Street field'),
+    .required('Cross Street is required'),
   flagger: Yup
     .string()
-    .required('Please fill the flagger field'),
+    .required('Flagger is required'),
   totalHours: Yup
     .number()
-    .required('Please fill the Total Hours field'),
+    .required('Total Hours is required'),
   conEdisonTruck: Yup
     .number()
-    .required('Please fill the ConEdison Truck field'),
+    .required('Con Edison Truck is required'),
 });
