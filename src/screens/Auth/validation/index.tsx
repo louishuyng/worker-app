@@ -9,19 +9,16 @@ export const signInValidationSchema = Yup.object().shape({
     .matches(emailRegExp, 'Email not follow the format'),
   password: Yup
     .string()
-    .required('Password is required')
-    .matches(passRegExp, 'Password is not complex'),
+    .required('Password is required'),
 });
 
 export const signUpStepOneValidationShcema = Yup.object().shape({
   firstName: Yup
     .string()
-    .required('Please fill the First Name')
-    .min(5, 'First name must be greater than 5 characters'),
+    .required('Please fill the First Name'),
   lastName: Yup
     .string()
-    .required('Please fill the Last Name')
-    .min(5, 'Last Name must be greater than 5 characters'),
+    .required('Please fill the Last Name'),
   phoneNumber: Yup
     .string()
     .required('Please fill the phone number'),

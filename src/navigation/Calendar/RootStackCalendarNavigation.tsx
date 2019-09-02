@@ -13,6 +13,7 @@ import { IC_CALENDAR_ACTIVE, IC_CALENDAR_UN_ACTIVE } from 'utils/Icons';
 import JobDetail from 'components/JobDetail';
 import { colors } from 'utils/Theme';
 import BackButtonUI from 'components/common/ButtonBack';
+import DatePicker from 'components/Calendar/PickDate';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.CALENDAR]: {
@@ -36,9 +37,20 @@ const routeConfig: NavigationRouteConfig = {
       widthTitle: '75%',
     }),
   },
+  [RouteName.DATE_PICKER]: {
+    screen: DatePicker,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      widthTitle: '75%',
+    }),
+  },
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({
-  initialRouteName: RouteName.CALENDAR,
+  initialRouteName: RouteName.DATE_PICKER,
   activeIcon: IC_CALENDAR_ACTIVE,
   unActiveIcon: IC_CALENDAR_UN_ACTIVE,
 });

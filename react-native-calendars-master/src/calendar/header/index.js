@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import styleConstructor from './style';
 import {weekDayNames} from '../../dateutils';
 import {CHANGE_MONTH_LEFT_ARROW, CHANGE_MONTH_RIGHT_ARROW} from '../../testIDs';
+import moment from 'moment';
 
 
 class CalendarHeader extends Component {
   static displayName = 'IGNORE';
-  
+
   static propTypes = {
     theme: PropTypes.object,
     hideArrows: PropTypes.bool,
@@ -127,7 +128,9 @@ class CalendarHeader extends Component {
     if (this.props.showIndicator) {
       indicator = <ActivityIndicator color={this.props.theme && this.props.theme.indicatorColor}/>;
     }
-    const isCurrentMonth = XDate().getMonth() === this.props.month.getMonth();
+    const isCurrentMonth =
+      moment().month() === this.props.month.getMonth() &&
+      moment().year() === moment(this.props.month['0']).year();
 
     return (
       <View style={this.props.style}>
@@ -135,7 +138,7 @@ class CalendarHeader extends Component {
           {leftArrow}
           <View style={{ flexDirection: 'row' }}>
             <Text allowFontScaling={false} style={[
-              this.style.monthText, 
+              this.style.monthText,
               isCurrentMonth && this.style.currentMonthText
             ]} accessibilityTraits='header'>
               {this.props.month.toString(this.props.monthFormat)}
@@ -149,12 +152,12 @@ class CalendarHeader extends Component {
           <View style={this.style.week}>
             {this.props.weekNumbers && <Text allowFontScaling={false} style={this.style.dayHeader}></Text>}
             {weekDaysNames.map((day, idx) => (
-              <Text 
-                allowFontScaling={false} 
-                key={idx} 
-                accessible={false} 
-                style={this.style.dayHeader} 
-                numberOfLines={1} 
+              <Text
+                allowFontScaling={false}
+                key={idx}
+                accessible={false}
+                style={this.style.dayHeader}
+                numberOfLines={1}
                 importantForAccessibility='no'
               >
                 {day}
