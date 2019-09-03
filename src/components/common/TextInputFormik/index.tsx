@@ -42,7 +42,7 @@ const TextInputFormikUI = (props: TextInputUIProps) => {
   const isError = touched[name] && errors[name] && submitCount > 0;
 
   useEffect(() => {
-    if (errors[name] && isSubmitting) setIsShowDialog(true);
+    if (errors[name] && isSubmitting && Object.keys(errors)[0] === name) setIsShowDialog(true);
   }, [errors, submitCount]);
 
   return (

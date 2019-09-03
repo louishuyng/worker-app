@@ -50,7 +50,7 @@ const routeConfig: NavigationRouteConfig = {
   },
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({
-  initialRouteName: RouteName.DATE_PICKER,
+  initialRouteName: RouteName.CALENDAR,
   activeIcon: IC_CALENDAR_ACTIVE,
   unActiveIcon: IC_CALENDAR_UN_ACTIVE,
 });

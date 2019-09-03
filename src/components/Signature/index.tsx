@@ -47,6 +47,7 @@ class SignaturePadUI extends Component<any, State> {
   }
 
   signaturePadChange = ({ base64DataUrl }: { base64DataUrl: string }) => {
+    console.log(base64DataUrl);
     this.setState({
       base64DataUrl,
     });

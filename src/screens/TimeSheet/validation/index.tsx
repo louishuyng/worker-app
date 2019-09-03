@@ -4,53 +4,53 @@ import * as Yup from 'yup';
 export const timeSheetSchema = Yup.object().shape({
   requestorName: Yup
     .string()
-    .required('Requestor Name is required'),
+    .required('Requestor cannot be empty'),
   department: Yup
     .string()
-    .required('Department is required'),
+    .required('Department cannot be empty'),
   electric: Yup
     .string()
-    .required('Electric is required'),
+    .required('Electric cannot be empty'),
   gas: Yup
     .string()
-    .required('Gas is required'),
+    .required('Gas cannot be empty'),
   section: Yup
     .string()
-    .required('Section is required'),
+    .required('Section cannot be empty'),
   account: Yup
     .string()
-    .required('Account is required'),
+    .required('Account cannot be empty'),
   workRequest: Yup
     .string()
-    .required('Work Request is required'),
+    .required('Work Request cannot be empty'),
   po: Yup
     .string()
-    .required('PO is required'),
+    .required('PO cannot be empty'),
   confirmation: Yup
     .string()
-    .required('Confirmation is required'),
+    .required('Confirmation cannot be empty'),
   locationAddress1: Yup
     .string()
-    .required('Location Address #1 is required'),
+    .required('Location Address #1 cannot be empty'),
   locationAddress2: Yup
     .string()
-    .required('Location Address #2 is required'),
+    .required('Location Address #2 cannot be empty'),
   locationAddress3: Yup
     .string()
-    .required('Location Address #3 is required'),
+    .required('Location Address #3 cannot be empty'),
   locationAddress4: Yup
     .string()
-    .required('Location Address #4 is required'),
+    .required('Location Address #4 cannot be empty'),
   crossStreet: Yup
     .string()
-    .required('Cross Street is required'),
+    .required('Cross Street cannot be empty'),
   flagger: Yup
     .string()
-    .required('Flagger is required'),
+    .required('Flagger cannot be empty'),
   totalHours: Yup
     .number()
-    .required('Total Hours is required'),
+    .required('Total Hours cannot be empty'),
   conEdisonTruck: Yup
     .number()
-    .required('Con Edison Truck is required'),
+    .required('Con Edison Truck cannot be empty'),
 });

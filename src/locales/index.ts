@@ -22,7 +22,7 @@ const strings: any = new LocalizedStrings({
       SIGNUP_BUTTON_LABLE_STEP_ONE: 'Next  ',
       SIGNUP_BUTTON_LABLE_STEP_TWO: 'Create Account',
       LOGIN_BUTTON_LABLE: 'Log In',
-      TITLE_ERROR: 'Validation Error',
+      TITLE_ERROR: 'Alert',
       OK: 'OK',
     },
     screen: {

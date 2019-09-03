@@ -125,7 +125,7 @@ export default class NotificationUI extends Component<Props, State> {
   };
 
    goToJobDetail = (data: JobDetail) => {
-     this.props.navigation.navigate(RouteName.JOB, { data, routeBack: RouteName.NOTIFICATION });
+     this.props.navigation.navigate(RouteName.JOB_NOTIFICATION, { data, routeBack: RouteName.NOTIFICATION });
    };
 
    render() {

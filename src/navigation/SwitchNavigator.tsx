@@ -2,9 +2,8 @@ import React from 'react';
 import {
   createAppContainer,
   NavigationRouteConfigMap,
-  createSwitchNavigator,
-  SwitchNavigatorConfig,
-} from 'react-navigation';
+  StackNavigatorConfig,
+  createStackNavigator } from 'react-navigation';
 
 import { ThemeProvider } from 'styled-components';
 import { createTheme, ThemeType } from 'utils/Theme';
@@ -24,13 +23,14 @@ const routeConfigMap: NavigationRouteConfigMap = {
   [RouteName.MAIN]: BottomMaterialNavigator,
 };
 
-const switchConfig: SwitchNavigatorConfig = {
+const stackConfig: StackNavigatorConfig = {
   initialRouteName: RouteName.SIGN_UP_STEP_ONE,
+  headerMode: 'none',
 };
 
-const SwitchAnimatedNavigator = createSwitchNavigator(
+const SwitchAnimatedNavigator = createStackNavigator(
   routeConfigMap,
-  switchConfig
+  stackConfig
 );
 
 const AppContainer = createAppContainer(SwitchAnimatedNavigator);

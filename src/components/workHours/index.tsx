@@ -98,7 +98,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
           hour,
           minute,
         })) {
-          Alert.alert('You can not set time, please try again!');
+          Alert.alert(getString('auth', 'TITLE_ERROR'), 'Please select a valid work hours');
           Platform.OS === 'android' && this.setState({
             ...this.state,
             isDateTimePickerVisible: false,
@@ -110,7 +110,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
       if (cloneDate[currentInput.index].end.hour !== '' &&
         !isValidDate({ hour, minute }, cloneDate[currentInput.index].end as TimeDefined)
       ) {
-        Alert.alert('You can not set time, please try again!');
+        Alert.alert(getString('auth', 'TITLE_ERROR'), 'Please select a valid work hours');
         Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,
@@ -126,19 +126,18 @@ export default class WorkHoursComponent extends Component<Props, State> {
 
     if (currentInput.timeMark === TimeMark.TO) {
       if (cloneDate[currentInput.index].begin.hour === '') {
-        Alert.alert('You need to set time for from field first!');
+        Alert.alert(getString('auth', 'TITLE_ERROR'), 'You need to set time for from field first!');
         Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,
         });
         return null;
       }
-
       if (!isValidDate(cloneDate[currentInput.index].begin as TimeDefined, {
         hour,
         minute,
       })) {
-        Alert.alert('You can not set time, please try again!');
+        Alert.alert(getString('auth', 'TITLE_ERROR'), 'Please select a valid work hours');
         Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,
@@ -152,7 +151,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
           hour,
           minute,
         }, cloneDate[currentInput.index + 1].begin as TimeDefined)) {
-        Alert.alert('You can not set time, please try again!');
+        Alert.alert(getString('auth', 'TITLE_ERROR'), 'Please select a valid work hours');
         Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,

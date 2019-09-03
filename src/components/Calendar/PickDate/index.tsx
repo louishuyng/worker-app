@@ -59,7 +59,7 @@ export default class DatePicker extends Component<Props, State> {
         <WrapperButton>
           <ButtonUI
             type={Types.SETSTATUS}
-            title="Move to current date."
+            title="Move to current date"
             onPress={() => {
               this.props.navigation.navigate(RouteName.CALENDAR, {
                 datePicked: moment().format('YYYY-MM-DD'),
@@ -70,7 +70,7 @@ export default class DatePicker extends Component<Props, State> {
         <WrapperButton>
           <ButtonUI
             type={Types.SETSTATUS}
-            title="Choose another date."
+            title="Choose another date"
             onPress={this.showDateTimePicker}
           />
         </WrapperButton>

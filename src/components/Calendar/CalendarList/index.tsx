@@ -27,7 +27,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
   }
 
   render() {
-    const currentDate: string = this.props.navigation.getParam('datePicked');
+    const currentDate: string = this.props.navigation.getParam('datePicked') || '2019-08-26';
     return (
       <SafeAreaView>
         <HeaderCalendar isShowController={false} datePicked={'1970-01-01T00:00:00.140Z'} />
