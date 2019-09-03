@@ -40,5 +40,5 @@ export const signUpStepTwoValidationShcema = Yup.object().shape({
   repeatPassword: Yup
     .string()
     .required('Repeat Password cannot be empty')
-    .oneOf([Yup.ref('password'), `Password does not match`]),
+    .oneOf([Yup.ref('password')], 'Password does not match'),
 });
