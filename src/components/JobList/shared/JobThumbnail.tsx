@@ -91,6 +91,7 @@ const TimeStyled = styled.Text`
 const WrapperLocation = styled.View`
   flex-direction: row;
   padding-vertical: 10;
+  align-items: center;
 `;
 
 const WrapperButton = styled.View`
@@ -187,7 +188,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
       return status !== JobStatus.REVIEW && (
         <>
           <View style={{
-            height: convertHeight(20),
+            height: convertHeight(15),
           }} />
           <WrapperButton>
             <WrapperImage onPress={() => navigation && navigation.navigate(RouteName.MAPVIEW)}>
