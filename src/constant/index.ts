@@ -24,6 +24,7 @@ export const RouteName = {
   DATE_PICKER: getString('screen', 'DATE_PIKCER'),
   AGENDA: getString('screen', 'AGENDA'),
   NOTIFICATION: getString('screen', 'NOTIFICATION'),
+  JOB_NOTIFICATION: getString('screen', 'JOB'),
   CREATE_TIMESHEET: getString('screen', 'CREATE_TIMESHEET'),
   REVIEW_TIMESHEET: getString('screen', 'REVIEW_TIMESHEET'),
   MAPVIEW: getString('screen', 'MAP_VIEW'),

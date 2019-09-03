@@ -10,6 +10,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import TextInputFormikHourUI from 'components/common/TextInputFormikHour';
 import { formatTime } from '../config/formatTime';
 import { TypeDateInput } from './RequestorForm';
+import { getString } from 'locales';
 
 const Container = styled.View`
   flex: 1;
@@ -77,7 +78,7 @@ export default class DateForm extends React.Component<Props, State> {
     }
 
     if (timeData[2] !== '' && moment(timeData[2]).isBefore(timeData[0])) {
-      Alert.alert('The finish date must be greater than the start date.');
+      Alert.alert(getString('auth', 'TITLE_ERROR'), 'The finish date must be greater than the start date.');
       Platform.OS === 'android' && this.setState({
         ...this.state,
         isDateTimePickerVisible: false,
@@ -90,7 +91,7 @@ export default class DateForm extends React.Component<Props, State> {
       const endHour = moment(timeData[3], 'h:mma');
 
       if (beginHour.isAfter(endHour)) {
-        Alert.alert('The finish time must be greater than the start time.');
+        Alert.alert(getString('auth', 'TITLE_ERROR'), 'The finish time must be greater than the start time.');
         Platform.OS === 'android' && this.setState({
           ...this.state,
           isDateTimePickerVisible: false,

@@ -49,12 +49,9 @@ export default class BackButtonUI extends React.Component<Props, State> {
 
     return (
       <Wrapper >
-        <TouchableOpacity onPress={() => handleNavigate()} hitSlop={{
-          top: convertHeight(5),
-          bottom: convertHeight(5),
-          left: convertWidth(20),
-          right: convertWidth(20),
-        }}>
+        <TouchableOpacity onPress={() => handleNavigate()} style={{
+          width: convertWidth(150),
+        }} >
           <BackButton source={IC_BACK} />
           {label && <LabelText>{label}</LabelText>}
         </TouchableOpacity>

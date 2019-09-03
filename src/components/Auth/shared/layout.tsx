@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Keyboard, Image, TouchableWithoutFeedback } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { TouchableWithoutFeedback, Keyboard, Image } from 'react-native';
+
 import { Field } from 'formik';
 
 import { AuthStage, InputAuthData } from '../models/authScreenConfig';
@@ -14,7 +15,6 @@ import { FormikAuthValues } from 'screens/Auth/models';
 import { RouteName } from 'constant';
 import { screenHeight } from 'utils/Styles';
 import { convertWidth, convertHeight } from 'utils/convertSize';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface Props {
   stage: AuthStage;
@@ -121,6 +121,29 @@ const WrapperButton = styled.View`
   height: ${convertHeight(56)};
 `;
 
+const CircleStep = styled.TouchableOpacity<{activated: boolean}>`
+  height: ${convertHeight(20)};
+  width: ${convertHeight(20)};
+  border-width: ${convertWidth(1)};
+  border-color: ${({ theme }) => theme.colors.silver};
+  border-radius: ${convertHeight(10)};
+  justify-content: center;
+  align-items: center;
+  ${({ activated, theme }) => {
+    if (activated) {
+      return css`
+      border-color: ${theme.colors.cerulean};
+    `;
+    }
+  }}
+`;
+
+const ActiveCircleStep = styled.View`
+  height: ${convertHeight(8)};
+  width: ${convertHeight(8)};
+  border-radius: ${convertHeight(4)};
+  background-color: ${({ theme }) => theme.colors.cerulean};
+`;
 export default class AuthScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -148,7 +171,7 @@ export default class AuthScreen extends Component<Props, State> {
   render() {
     const {
       title, form, buttonLabel, suggestionTitle, stepLabel,
-      navigatorTitle, status, navigator, subNavigator, afterIconData,
+      navigatorTitle, status, subNavigator, afterIconData,
     } = AuthScreenModel(this.props.stage);
 
     const {
@@ -160,19 +183,25 @@ export default class AuthScreen extends Component<Props, State> {
 
     const displayStepIcon = () => (
       <WrapperStepIcon>
-        <TouchableOpacity onPress={() => {
-          if (!isStepOne) navigate(RouteName.SIGN_UP_STEP_ONE);
-          return null;
-        }}>
-          {isStepOne ? <Image source={IC_CHECKED} /> : <Image source={IC_UNCHECKED} />}
-        </TouchableOpacity>
+        <CircleStep
+          onPress={() => {
+            if (!isStepOne) navigate(RouteName.SIGN_UP_STEP_ONE);
+            return null;
+          }}
+          activated={isStepOne}
+        >
+          {isStepOne && <ActiveCircleStep />}
+        </CircleStep>
         <Image source={IC_DOT_LINE} />
-        <TouchableOpacity onPress={() => {
-          if (isStepOne) navigate(RouteName.SIGN_UP_STEP_TWO);
-          return null;
-        }}>
-          {isStepOne ? <Image source={IC_UNCHECKED} /> : <Image source={IC_CHECKED} />}
-        </TouchableOpacity>
+        <CircleStep
+          onPress={() => {
+            if (isStepOne) navigate(RouteName.SIGN_UP_STEP_TWO);
+            return null;
+          }}
+          activated={!isStepOne}
+        >
+          {!isStepOne && <ActiveCircleStep />}
+        </CircleStep>
       </WrapperStepIcon>
     );
 

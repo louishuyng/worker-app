@@ -3,16 +3,16 @@ import {
   createStackNavigator,
   NavigationRouteConfig,
   StackNavigatorConfig,
+  NavigationScreenProp,
 } from 'react-navigation';
 
 import { RouteName } from 'constant';
 import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
-import { IC_USER_ACTIVE, IC_USER_UN_ACTIVE, IC_NOTIFICATION_ACITVE, IC_NOTIFICATION_UN_ACITVE } from 'utils/Icons';
-import { ProfileScreen } from 'screens/Profile';
-import { convertWidth } from 'utils/convertSize';
-import { WorkHoursScreen } from 'screens/WorkHours';
-import BackButtonUI from 'components/common/ButtonBack';
+import { IC_NOTIFICATION_ACITVE, IC_NOTIFICATION_UN_ACITVE } from 'utils/Icons';
 import NotificationUI from 'components/Notification';
+import JobDetail from 'components/JobDetail';
+import { colors } from 'utils/Theme';
+import BackButtonUI from 'components/common/ButtonBack';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.NOTIFICATION]: {
@@ -20,6 +20,18 @@ const routeConfig: NavigationRouteConfig = {
     navigationOptions: (
       { navigation, screenProps }: { navigation: any, screenProps: any }
     ) => wihtDefaultNavigtaionConfig({ navigation, screenProps }),
+  },
+  [RouteName.JOB_NOTIFICATION]: {
+    screen: JobDetail,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
+      widthTitle: '75%',
+    }),
   },
 };
 
