@@ -36,8 +36,7 @@ export const signUpStepTwoValidationShcema = Yup.object().shape({
     .required('Department cannot be empty'),
   password: Yup
     .string()
-    .required('Password cannot be empty')
-    .matches(passRegExp),
+    .required('Password cannot be empty'),
   repeatPassword: Yup
     .string()
     .required('Repeat Password cannot be empty')

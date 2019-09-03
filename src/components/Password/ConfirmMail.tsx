@@ -12,6 +12,7 @@ export const ConfirMailComponent = (props: any) => {
           getModelData(RecoveryPasswordStage.CONFIRM_MAIL).navigator
         );
       }}
+      stage={RecoveryPasswordStage.CONFIRM_MAIL}
       {...props}
       {...getModelData(RecoveryPasswordStage.CONFIRM_MAIL)}
     />
