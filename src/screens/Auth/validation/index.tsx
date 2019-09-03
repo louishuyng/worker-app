@@ -16,11 +16,11 @@ export const signUpStepOneValidationShcema = Yup.object().shape({
   firstName: Yup
     .string()
     .required('First Name is required')
-    .min(1, 'First Name must be at least 1 character'),
+    .min(2, 'Last Name must be at least 2 characters'),
   lastName: Yup
     .string()
     .required('Last Name is required')
-    .min(1, 'Last Name must be at least 1 character'),
+    .min(2, 'Last Name must be at least 2 characters'),
   phoneNumber: Yup
     .string()
     .required('Phone Number is required'),
