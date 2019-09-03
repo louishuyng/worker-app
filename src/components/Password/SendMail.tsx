@@ -10,6 +10,7 @@ export const SendMailComponent = (props: any) => {
       onPress={() => {
         props.navigation.navigate('ConfirmMail');
       }}
+      stage={RecoveryPasswordStage.SEND_MAIL}
       {...getModelData(RecoveryPasswordStage.SEND_MAIL)}
       {...props}
     />

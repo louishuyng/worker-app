@@ -12,6 +12,7 @@ export const ResetPasswordComponent = (props: any) => {
           getModelData(RecoveryPasswordStage.RESET_PASSWORD).navigator
         );
       }}
+      stage={RecoveryPasswordStage.RESET_PASSWORD}
       {...getModelData(RecoveryPasswordStage.RESET_PASSWORD)}
       {...props}
     />

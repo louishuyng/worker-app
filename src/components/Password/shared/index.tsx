@@ -6,7 +6,7 @@ import { Field } from 'formik';
 
 import { ButtonUI, TextInputFormikUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
-import { InputData } from '../models/recoveryPasswordTypes';
+import { InputData, RecoveryPasswordStage } from '../models/recoveryPasswordTypes';
 import { screenHeight } from 'utils/Styles';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
@@ -55,10 +55,11 @@ interface AboutPasswordScreenProps {
   buttonTitle: string;
   onPress: () => any;
   handleSubmit: () => any;
+  stage: RecoveryPasswordStage;
 }
 
 const LayoutPasswordScreen = (props: AboutPasswordScreenProps) => {
-  const { title, description, forms, buttonTitle, onPress, handleSubmit } = props;
+  const { title, description, forms, buttonTitle, handleSubmit, stage, onPress } = props;
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <Container>
@@ -90,7 +91,10 @@ const LayoutPasswordScreen = (props: AboutPasswordScreenProps) => {
         </WrapperBody>
         <WrapperFooter>
           <WrapperButton>
-            <ButtonUI onPress={() => onPress()} title={buttonTitle} type={Types.SUBMIT} />
+            <ButtonUI onPress={() => {
+              stage === RecoveryPasswordStage.SEND_MAIL || stage === RecoveryPasswordStage.RESET_PASSWORD
+                ? handleSubmit() : onPress();
+            }} title={buttonTitle} type={Types.SUBMIT} />
           </WrapperButton>
         </WrapperFooter>
       </Container>

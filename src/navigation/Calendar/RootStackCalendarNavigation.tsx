@@ -14,6 +14,7 @@ import JobDetail from 'components/JobDetail';
 import { colors } from 'utils/Theme';
 import BackButtonUI from 'components/common/ButtonBack';
 import DatePicker from 'components/Calendar/PickDate';
+import { CreateTimeSheetScreen } from 'screens/TimeSheet';
 
 const routeConfig: NavigationRouteConfig = {
   [RouteName.CALENDAR]: {
@@ -45,6 +46,18 @@ const routeConfig: NavigationRouteConfig = {
       screenProps,
       navigation,
       colorHeader: colors.auqaHazeTwo,
+      widthTitle: '75%',
+    }),
+  },
+  [RouteName.CREATE_TIMESHEET]: {
+    screen: CreateTimeSheetScreen,
+    navigationOptions: (
+      { navigation, screenProps }: { navigation: NavigationScreenProp<any>, screenProps: any }
+    ) => wihtDefaultNavigtaionConfig({
+      screenProps,
+      navigation,
+      colorHeader: colors.auqaHazeTwo,
+      headLeftComponent: <BackButtonUI navigation={navigation} />,
       widthTitle: '75%',
     }),
   },
