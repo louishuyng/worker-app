@@ -131,6 +131,7 @@ interface JobThumbNailProps {
   isHideIcon?: boolean;
   ButtonIcon: ImageSourcePropType;
   navigation?: NavigationScreenProp<any>;
+  onPress?: () => void;
 }
 
 interface JobThumbNailState {
@@ -191,7 +192,10 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
             height: convertHeight(15),
           }} />
           <WrapperButton>
-            <WrapperImage onPress={() => navigation && navigation.navigate(RouteName.MAPVIEW)}>
+            <WrapperImage onPress={!isHideLocation
+              ? () => navigation && navigation.navigate(RouteName.MAPVIEW)
+              : this.props.onPress
+            }>
               <ImageStyled source={ButtonIcon} />
             </WrapperImage>
             <ButtonStyled>

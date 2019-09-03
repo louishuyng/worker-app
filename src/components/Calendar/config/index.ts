@@ -5,6 +5,36 @@ import { colors } from 'utils/Theme';
 import { JobDetail } from 'components/JobList/type';
 
 export const weekDayShortNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+export const monthNamesShort: {[key: string]: string} = {
+  January: 'Jan',
+  February: 'Feb',
+  March: 'Mar',
+  April: 'Apr',
+  May: 'May',
+  June: 'June',
+  July: 'July',
+  August: 'Aug',
+  September: 'Sept',
+  October: 'Oct',
+  November: 'Nov',
+  December: 'Dec',
+};
+
+export const reverseMonthNamesShort: {[key: string]: string} = {
+  Jan: 'January',
+  Feb: 'February',
+  Mar: 'March',
+  Apr: 'April',
+  May: 'May',
+  June: 'June',
+  July: 'July',
+  Aug: 'August',
+  Sept: 'September',
+  Oct: 'October',
+  Nov: 'November',
+  Dec: 'December',
+};
+
 LocaleConfig.locales['en'] = {
   monthNames: [
     'January', 'February', 'March', 'April', 'May', 'June',

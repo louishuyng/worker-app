@@ -12,6 +12,7 @@ interface Props {
   state?: any;
   marking: any;
   navigation: NavigationScreenProp<any>;
+  selectedYear: any;
 }
 
 interface State {}
@@ -87,6 +88,7 @@ export default class DayComponent extends React.Component<Props, State> {
            data: {
              month: moment(date.month, 'MM').format('MMMM'),
              datePicked: date.dateString,
+             selectedYear: this.props.selectedYear,
            },
          })}
        >

@@ -7,7 +7,7 @@ import { IC_BACK } from 'utils/Icons';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 
 interface Props {
-  label?: string;
+  label?: string | number;
   navigation: NavigationScreenProp<any>
 }
 
@@ -46,10 +46,15 @@ export default class BackButtonUI extends React.Component<Props, State> {
       if (routeBack) return navigation.navigate(routeBack, { data: param });
       navigation.pop();
     };
+    const onPress = navigation.getParam('onPress') || undefined;
 
+    const handleOnPress = () => {
+      if (onPress) return onPress();
+      return handleNavigate();
+    };
     return (
       <Wrapper >
-        <TouchableOpacity onPress={() => handleNavigate()} style={{
+        <TouchableOpacity onPress={() => handleOnPress()} style={{
           width: convertWidth(150),
         }} >
           <BackButton source={IC_BACK} />
