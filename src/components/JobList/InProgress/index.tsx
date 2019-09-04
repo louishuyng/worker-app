@@ -3,7 +3,8 @@ import { NavigationScreenProp } from 'react-navigation';
 
 import { JobDetail } from '../type';
 import { JobThumbnail, WrapperJobList } from '../shared';
-import { LOCATION } from 'utils/Icons';
+import { LOCATION, IC_ARROW, IC_BACK } from 'utils/Icons';
+import { ImageSourcePropType } from 'react-native';
 
 interface InProgressProps {
   tabLabel: string;

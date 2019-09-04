@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   },
   middle: {
     height: 40,
-    width: screenWidth * 70 / 100,
+    width: screenWidth * 30 / 100,
     overflow: 'hidden',
     borderColor: colors.cerulean,
     borderTopWidth: 2 / ratio,

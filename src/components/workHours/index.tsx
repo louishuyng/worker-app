@@ -4,6 +4,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import styled from 'styled-components/native';
 import { Field } from 'formik';
 import moment from 'moment';
+import Swipeout, { SwipeoutProperties } from 'react-native-swipeout';
 
 import { TextInputFormikHour, ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
@@ -16,8 +17,6 @@ import { convertHeight, convertWidth } from 'utils/convertSize';
 
 const Container = styled.View`
   flex: 1;
-  padding-horizontal: 5%;
-  padding-vertical: 2%;
   justify-content: space-between;
   background: ${({ theme }) => theme.colors.aquaHaze};
 `;
@@ -40,6 +39,7 @@ const WrapperBody = styled.View``;
 const WrapperButton = styled.View`
   width: 43%;
   height: ${convertHeight(39)};
+  padding-horizontal: 5%;
   align-self: flex-end;
 `;
 
@@ -172,8 +172,9 @@ export default class WorkHoursComponent extends Component<Props, State> {
   };
 
   handleAddHours = () => {
-    const lastFrom = this.state.date[this.state.date.length - 1];
-    if (lastFrom.begin.hour !== '' && lastFrom.end.hour !== '') {
+    const lastFrom = this.state.date[this.state.date.length - 1] || undefined;
+    const isValid = lastFrom === undefined || (lastFrom.begin.hour !== '' && lastFrom.end.hour !== '');
+    if (isValid) {
       this.setState({
         ...this.state,
         date: this.state.date.concat({
@@ -192,39 +193,64 @@ export default class WorkHoursComponent extends Component<Props, State> {
 
   renderForm(workHours: any) {
     return workHours.map((item: TimeFormat, i: number) => {
+      const swipeSettings: SwipeoutProperties = {
+        autoClose: true,
+        right: [
+          {
+            onPress: () => {
+              this.state.date.splice(i, 1);
+              this.setState({
+                ...this.state,
+                date: this.state.date,
+              });
+            },
+            text: 'Delete',
+            type: 'delete',
+          },
+        ],
+        rowId: i,
+        sectionId: 1,
+        style: {
+          backgroundColor: 'transparent',
+          paddingVertical: '2%',
+        },
+      };
+
       return (
-        <WrapperTextInput key={i}>
-          <TextInputStyled onPressIn={() => {
-            this.showDateTimePicker({
-              timeMark: TimeMark.FROM,
-              index: i,
-            });
-          }}>
-            <Field
-              name={`from${i}`}
-              label={getString('workHours', 'from')}
-              value={item.begin.hour !== '' &&
+        <Swipeout key={i} {...swipeSettings}>
+          <WrapperTextInput style={{ paddingHorizontal: '5%' }} >
+            <TextInputStyled onPressIn={() => {
+              this.showDateTimePicker({
+                timeMark: TimeMark.FROM,
+                index: i,
+              });
+            }}>
+              <Field
+                name={`from${i}`}
+                label={getString('workHours', 'from')}
+                value={item.begin.hour !== '' &&
                 item.begin.minute !== '' ? `${item.begin.hour}:${item.begin.minute}` : ''}
-              isHideKeyboard={true}
-              component={TextInputFormikHour}
-            />
-          </TextInputStyled>
-          <TextInputStyled onPress={() => {
-            this.showDateTimePicker({
-              timeMark: TimeMark.TO,
-              index: i,
-            });
-          }}>
-            <Field
-              name={`to${i}`}
-              label={getString('workHours', 'to')}
-              value={item.end.hour !== '' &&
+                isHideKeyboard={true}
+                component={TextInputFormikHour}
+              />
+            </TextInputStyled>
+            <TextInputStyled onPress={() => {
+              this.showDateTimePicker({
+                timeMark: TimeMark.TO,
+                index: i,
+              });
+            }}>
+              <Field
+                name={`to${i}`}
+                label={getString('workHours', 'to')}
+                value={item.end.hour !== '' &&
                 item.end.minute !== '' ? `${item.end.hour}:${item.end.minute}` : ''}
-              isHideKeyboard={true}
-              component={TextInputFormikHour}
-            />
-          </TextInputStyled>
-        </WrapperTextInput >
+                isHideKeyboard={true}
+                component={TextInputFormikHour}
+              />
+            </TextInputStyled>
+          </WrapperTextInput >
+        </Swipeout>
       );
     });
   }
@@ -239,6 +265,7 @@ export default class WorkHoursComponent extends Component<Props, State> {
                 this.renderForm(this.state.date)
               }
             </WrapperGroupInput>
+            <View style={{ height: convertHeight(20) }}/>
             <WrapperButton>
               <ButtonUI
                 onPress={this.handleAddHours}
@@ -247,12 +274,14 @@ export default class WorkHoursComponent extends Component<Props, State> {
               />
             </WrapperButton>
           </WrapperBody>
-          <View style={{ height: convertHeight(56) }}>
-            <ButtonUI
-              onPress={() => null}
-              title={getString('workHours', 'save')}
-              type={Types.SUBMIT}
-            />
+          <View style={{ paddingVertical: '5%', paddingHorizontal: '5%' }}>
+            <View style={{ height: convertHeight(56) }}>
+              <ButtonUI
+                onPress={() => null}
+                title={getString('workHours', 'save')}
+                type={Types.SUBMIT}
+              />
+            </View>
           </View>
           <DateTimePicker
             isVisible={this.state.isDateTimePickerVisible}

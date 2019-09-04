@@ -34,7 +34,7 @@ target 'coned_app' do
   pod 'Google-Maps-iOS-Utils' # Uncomment this line if you want to support GoogleMaps on iOS
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
-  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
 
   target 'coned_appTests' do
     inherit! :search_paths

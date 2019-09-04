@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Image, View, ImageSourcePropType, Animated } from 'react-native';
+import { Image, View, ImageSourcePropType, Text, FlatList } from 'react-native';
 import styled from 'styled-components/native';
-import { NavigationScreenProp, AnimatedValue } from 'react-navigation';
+import { NavigationScreenProp } from 'react-navigation';
 import { Tooltip } from 'react-native-ui-kitten';
 
 import {
@@ -124,14 +124,27 @@ const LocationStyled = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.regular};
 `;
 
+const WrapperImagePicker = styled.TouchableOpacity`
+  margin-top: ${convertHeight(5)};
+  margin-right: ${convertWidth(5)};
+`;
+
+const ImagePicker = styled.Image`
+  width: ${convertWidth(80)};
+  height: ${convertWidth(80)};
+  resize-mode: cover;
+`;
+
 interface JobThumbNailProps {
   jobData: JobDetail;
   isHideLocation?: boolean;
   isFlat?: boolean;
   isHideIcon?: boolean;
+  imageUrls?: ImageSourcePropType[];
   ButtonIcon: ImageSourcePropType;
   navigation?: NavigationScreenProp<any>;
   onPress?: () => void;
+  onImagePress?: () => void;
 }
 
 interface JobThumbNailState {
@@ -302,6 +315,21 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
               <LocationStyled>{location}</LocationStyled>
             </WrapperLocation>)}
           {renderButton()}
+          {isHideLocation && (
+            <FlatList data={this.props.imageUrls as string[]}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ item, index }: { item: any, index: number }) => {
+                return (
+                  <WrapperImagePicker key={index} onPress={this.props.onImagePress} >
+                    <ImagePicker
+                      source={{ uri: item && item.url }}
+                    />
+                  </WrapperImagePicker>
+                );
+              }}
+            ></FlatList>
+          )}
         </Container>
         {renderModal()}
       </View >
