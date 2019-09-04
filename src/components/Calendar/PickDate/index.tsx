@@ -9,7 +9,6 @@ import PickerAndroid from './PickerAndroid';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 import { RouteName } from 'constant';
 import { monthNamesShort, reverseMonthNamesShort } from '../config';
-import { colors } from 'utils/Theme';
 
 const CustomerPicker = Platform.OS === 'ios' ? Picker : PickerAndroid;
 const PickerItem = CustomerPicker.Item;
@@ -119,9 +118,13 @@ export default class CustomPickDate extends Component<Props, State> {
       } else if (isYearData === false) {
         const month = moment().month(reverseMonthNamesShort[this.state.selectedValue]).format('M');
         const datePicked: string = `${this.props.selectedYear}-${month}-05`;
-        navigation.push(RouteName.CALENDAR, {
-          selectedYear: this.props.selectedYear,
-          datePicked,
+        navigation.navigate({
+          routeName: RouteName.CALENDAR,
+          params: {
+            selectedYear: this.props.selectedYear,
+            datePicked,
+          },
+          key: datePicked,
         });
         onCancel();
       }
@@ -143,7 +146,7 @@ export default class CustomPickDate extends Component<Props, State> {
           <LineHeader />
           <Body>
             <CustomerPicker
-              style={{ width: '80%' }}
+              style={{ width: '30%' }}
               selectedValue={this.state.selectedValue}
               onValueChange={(itemValue: any) => {
                 this.setState({ selectedValue: itemValue });

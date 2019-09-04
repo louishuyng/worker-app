@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { CalendarList, DayComponentProps } from 'react-native-calendars';
-import { Platform, DatePickerIOS } from 'react-native';
 import { NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
 import moment from 'moment';
 
@@ -12,7 +11,6 @@ import HeaderCalendar from '../shared';
 import { colors, fontFamily } from 'utils/Theme';
 import { RouteName } from 'constant';
 import BackButtonUI from 'components/common/ButtonBack';
-import DateTimePicker from 'react-native-modal-datetime-picker';
 import CustomPickDate from '../PickDate';
 
 LocaleConfig.defaultLocale = 'en';
@@ -23,6 +21,7 @@ interface Props {
 
 interface State {
   isShowModalYear: boolean;
+  selectedDate: any;
 }
 
 const SafeAreaView = styled.SafeAreaView` `;
@@ -32,10 +31,14 @@ export default class CalendarListComponent extends React.Component<Props, State>
     super(props);
     this.state = {
       isShowModalYear: false,
+      selectedDate: undefined,
     };
   }
 
   componentDidMount() {
+    this.setState({
+      selectedDate: this.props.navigation.getParam('datePicked') || moment().format('YYYY-MM-DD'),
+    });
     this.props.navigation.setParams({ onPress: () => this.setState({
       isShowModalYear: true,
     }),
@@ -46,7 +49,6 @@ export default class CalendarListComponent extends React.Component<Props, State>
     { navigation }: {
       navigation: NavigationScreenProp<any>
     }): NavigationStackScreenOptions => {
-    const { getParam } = navigation;
     const selectedYear = navigation.getParam('selectedYear');
     return {
       title: RouteName.CALENDAR,
@@ -69,7 +71,6 @@ export default class CalendarListComponent extends React.Component<Props, State>
   }
 
   render() {
-    const selectedDate: string = this.props.navigation.getParam('datePicked');
     const currentDate: string = moment().format('YYYY-MM-DD');
     const selectedYear = this.props.navigation.getParam('selectedYear') || moment().year();
     return (
@@ -85,55 +86,58 @@ export default class CalendarListComponent extends React.Component<Props, State>
           isVisible={this.state.isShowModalYear}
           onCancel={() => this.setState({ isShowModalYear: false })}
         />
-        <CalendarList
-          hideDayNames={true}
-          firstDay={1}
-          current={selectedDate}
-          selected={currentDate}
-          monthFormat={'MMMM, yyyy'}
-          disabledByDefault={true}
-          markedDates={
-            {
-              [currentDate]: {
-                selected: true,
-                marked: true,
-                selectedColor: 'blue',
-                dots: [2, 2],
-              },
+        {this.state.selectedDate && (
+          <CalendarList
+            key={this.state.selectedDate}
+            hideDayNames={true}
+            firstDay={1}
+            current={`${this.state.selectedDate}`}
+            selected={currentDate}
+            monthFormat={'MMMM, yyyy'}
+            disabledByDefault={true}
+            markedDates={
+              {
+                [currentDate]: {
+                  selected: true,
+                  marked: true,
+                  selectedColor: 'blue',
+                  dots: [2, 2],
+                },
+              }
             }
-          }
-          theme={{
-            'stylesheet.calendar-list.main': {
-              container: {
-                backgroundColor: colors.aquaHaze,
+            theme={{
+              'stylesheet.calendar-list.main': {
+                container: {
+                  backgroundColor: colors.aquaHaze,
+                },
+                calendar: {
+                  width: '100%',
+                },
               },
-              calendar: {
-                width: '100%',
+              'stylesheet.calendar.header': {
+                monthText: {
+                  color: colors.paleSky,
+                  fontSize: convertWidth(17),
+                },
+                currentMonthText: {
+                  color: colors.skyBlue,
+                },
               },
-            },
-            'stylesheet.calendar.header': {
-              monthText: {
-                color: colors.paleSky,
-                fontSize: convertWidth(17),
+              'stylesheet.calendar.main': {
+                week: {
+                  flexDirection: 'row',
+                },
               },
-              currentMonthText: {
-                color: colors.skyBlue,
-              },
-            },
-            'stylesheet.calendar.main': {
-              week: {
-                flexDirection: 'row',
-              },
-            },
-          }}
-          dayComponent={({ marking, date, state }: DayComponentProps) => {
-            return (
-              <DayComponent {...{
-                selectedYear, currentDate, date, state, marking, navigation: this.props.navigation,
-              }} />
-            );
-          }}
-        />
+            }}
+            dayComponent={({ marking, date, state }: DayComponentProps) => {
+              return (
+                <DayComponent {...{
+                  selectedYear, currentDate, date, state, marking, navigation: this.props.navigation,
+                }} />
+              );
+            }}
+          />
+        )}
       </SafeAreaView>
     );
   }

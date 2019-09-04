@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
+import ActionSheet from 'react-native-actionsheet';
+import { ImageSourcePropType, Platform, Modal, Text, View, Image, TouchableOpacity } from 'react-native';
+import ImageViewer from 'react-native-image-zoom-viewer';
+import { NavigationScreenProp } from 'react-navigation';
 
 import { JobThumbnail } from 'components/JobList/shared';
 import { mockJobData } from 'components/JobList/mock';
@@ -15,10 +19,9 @@ import DisplayBox from './content/DisplayBox';
 import { ButtonUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
 import { convertHeight, convertWidth } from 'utils/convertSize';
-import { NavigationScreenProp } from 'react-navigation';
 import Map from './content/Map';
 import { RouteName } from 'constant';
-import { Alert } from 'react-native';
+import { fontFamily } from 'utils/Theme';
 
 const ScrollView = styled.ScrollView`
   background: ${({ theme }) => theme.colors.aquaHaze};
@@ -44,47 +47,67 @@ interface Props {
 }
 
 interface State {
-  imageSource: string;
+  imagesSource: any[];
+  isModalVisible: boolean;
+  currentIndexImage: number;
 }
 
+const optionsMenu = ['Cancel', 'Take photo', 'Choose from Library'];
+
 export default class JobDetail extends React.Component<Props, State> {
+  private ActionSheet: any;
+
   constructor(props: Props) {
     super(props);
     this.state = {
-      imageSource: '',
-    };
-    const options = {
-      title: 'Select Avatar',
-      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
+      imagesSource: [],
+      isModalVisible: false,
+      currentIndexImage: 0,
     };
   }
 
-  selectPhotoTapped = () => {
-    const options = {
-      quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
-      storageOptions: {
-        skipBackup: true,
-      },
-    };
+  showActionSheet = () => {
+    this.ActionSheet.show();
+  }
 
-    ImagePicker.showImagePicker(options, (response) => {
-      if (response.didCancel) {
-      } else if (response.error) {
-      } else if (response.customButton) {
-      } else {
-        Alert.alert('Done');
-        this.setState({
-          imageSource: response.data,
-        });
-      }
+  showCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then((image: any) => {
+      this.setState({
+        ...this.state,
+        imagesSource: this.state.imagesSource.concat(
+          Platform.OS === 'ios' ? { url: image.sourceURL } : { url: image.path }
+        ),
+      });
     });
   }
+
+  showGallery = () => {
+    ImagePicker.openPicker({
+      multiple: true,
+    }).then((images) => {
+      const imageUris = (images as []).map((image: any) =>
+        Platform.OS === 'ios' ? { url: image.sourceURL } : { url: image.path }
+      );
+      this.setState({
+        ...this.state,
+        imagesSource: this.state.imagesSource.concat(imageUris),
+      });
+    });
+  }
+
+  handleRemoveImage = () => {
+    const { imagesSource, currentIndexImage } = this.state;
+    imagesSource.splice(currentIndexImage, 1);
+    this.setState({
+      ...this.state,
+      imagesSource,
+      currentIndexImage: currentIndexImage > 0 ? currentIndexImage - 1 : currentIndexImage,
+    });
+  };
 
   render() {
     const { navigation: { getParam } } = this.props;
@@ -95,7 +118,14 @@ export default class JobDetail extends React.Component<Props, State> {
           jobData={getParam('data')} isFlat={true} isHideIcon={true}
           isHideLocation={true}
           ButtonIcon={IC_CAMERA}
-          onPress={this.selectPhotoTapped}
+          onPress={this.showActionSheet}
+          onImagePress={() => {
+            this.setState({
+              ...this.state,
+              isModalVisible: true,
+            });
+          }}
+          imageUrls={this.state.imagesSource as ImageSourcePropType[]}
         />
         <SectionJobDetail
           titleHeader={getString('jobDetail', 'address')}
@@ -151,6 +181,59 @@ export default class JobDetail extends React.Component<Props, State> {
           </WrapperButton>
           <ExtendFooterBox />
         </WrapperFooter>
+        <ActionSheet
+          ref={(o) => { this.ActionSheet = o; }}
+          title={'Choose image'}
+          options={optionsMenu}
+          cancelButtonIndex={0}
+          destructiveButtonIndex={4}
+          onPress={(index) => {
+            if (index === 1) {
+              this.showCamera();
+            }
+            if (index === 2) {
+              this.showGallery();
+            }
+          }}
+        />
+        <Modal visible={this.state.isModalVisible} transparent={true}>
+          <ImageViewer
+            imageUrls={this.state.imagesSource}
+            backgroundColor='white'
+            index={this.state.currentIndexImage}
+            onChange={(index) => {
+              this.setState({
+                ...this.state,
+                currentIndexImage: index as number,
+              });
+            }}
+            footerContainerStyle={{
+              bottom: 30,
+              right: 30,
+              position: 'absolute',
+              zIndex: 9999,
+            }}
+            renderFooter={() => {
+              return (
+                <View>
+                  <TouchableOpacity onPress={this.handleRemoveImage}>
+                    <Text style={{
+                      fontFamily: fontFamily.regular,
+                      fontSize: convertWidth(17),
+                    }}>Remove</Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
+            enableSwipeDown
+            onSwipeDown={() => {
+              this.setState({
+                ...this.state,
+                isModalVisible: false,
+              });
+            }}
+          />
+        </Modal>
       </ScrollView>
     );
   }
