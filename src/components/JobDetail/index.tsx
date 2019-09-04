@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import ImagePicker from 'react-native-image-picker';
 
 import { JobThumbnail } from 'components/JobList/shared';
 import { mockJobData } from 'components/JobList/mock';
@@ -17,12 +18,7 @@ import { convertHeight, convertWidth } from 'utils/convertSize';
 import { NavigationScreenProp } from 'react-navigation';
 import Map from './content/Map';
 import { RouteName } from 'constant';
-
-interface Props {
-  navigation: NavigationScreenProp<any>;
-}
-
-interface State {}
+import { Alert } from 'react-native';
 
 const ScrollView = styled.ScrollView`
   background: ${({ theme }) => theme.colors.aquaHaze};
@@ -43,10 +39,51 @@ const WrapperButton = styled.View`
   padding-horizontal: ${convertWidth(10)};
 `;
 
+interface Props {
+  navigation: NavigationScreenProp<any>;
+}
+
+interface State {
+  imageSource: string;
+}
+
 export default class JobDetail extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      imageSource: '',
+    };
+    const options = {
+      title: 'Select Avatar',
+      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+  }
+
+  selectPhotoTapped = () => {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true,
+      },
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+      } else if (response.error) {
+      } else if (response.customButton) {
+      } else {
+        Alert.alert('Done');
+        this.setState({
+          imageSource: response.data,
+        });
+      }
+    });
   }
 
   render() {
@@ -58,11 +95,12 @@ export default class JobDetail extends React.Component<Props, State> {
           jobData={getParam('data')} isFlat={true} isHideIcon={true}
           isHideLocation={true}
           ButtonIcon={IC_CAMERA}
+          onPress={this.selectPhotoTapped}
         />
         <SectionJobDetail
           titleHeader={getString('jobDetail', 'address')}
           Content={
-            () => (<Map locationTitle={mockJobData[0].location as string}/>)}
+            () => (<Map locationTitle={mockJobData[0].location as string} />)}
         />
         <SectionJobDetail
           titleHeader={getString('jobDetail', 'time')}
@@ -80,7 +118,7 @@ export default class JobDetail extends React.Component<Props, State> {
             () => (
               <DividedBox
                 titleData={TitleDetailsOneData}
-                contentData={mockdataDetailsOne }
+                contentData={mockdataDetailsOne}
               />
             )}
         />

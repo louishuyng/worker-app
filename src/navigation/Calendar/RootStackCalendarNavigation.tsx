@@ -19,9 +19,6 @@ import { CreateTimeSheetScreen } from 'screens/TimeSheet';
 const routeConfig: NavigationRouteConfig = {
   [RouteName.CALENDAR]: {
     screen: CalendarList,
-    navigationOptions: (
-      { navigation, screenProps }: { navigation: any, screenProps: any }
-    ) => wihtDefaultNavigtaionConfig({ screenProps, navigation }),
   },
   [RouteName.AGENDA]: {
     screen: Agenda,

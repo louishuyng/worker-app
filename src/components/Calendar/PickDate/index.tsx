@@ -1,85 +1,171 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import styled from 'styled-components/native';
-import DateTimePicker from 'react-native-modal-datetime-picker';
 import { NavigationScreenProp } from 'react-navigation';
+import Modal from 'react-native-modal';
+import { Picker, Platform } from 'react-native';
+import moment from 'moment';
+import PickerAndroid from './PickerAndroid';
 
-import { Types } from 'components/common/Button/types';
-import { ButtonUI } from 'components/common';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 import { RouteName } from 'constant';
+import { monthNamesShort, reverseMonthNamesShort } from '../config';
+import { colors } from 'utils/Theme';
+
+const CustomerPicker = Platform.OS === 'ios' ? Picker : PickerAndroid;
+const PickerItem = CustomerPicker.Item;
 
 const Container = styled.View`
+  background-color: white;
+  border-radius: ${convertWidth(2)};
+  display: flex;
+`;
+
+const Header = styled.View`
+  justify-content: center;
+  height: ${convertHeight(52)};
+  padding-horizontal: ${convertWidth(10)};
+`;
+
+const Body = styled.View`
+  justify-content: center;
+  align-items: center;
+  height: ${Platform.OS === 'android' ? convertHeight(250) : 'auto'};
+`;
+
+const Footer = styled.View`
+  flex-direction: row;
+  height: ${convertHeight(52)};
+`;
+
+const WrapperButton = styled.TouchableOpacity`
   flex: 1;
   justify-content: center;
   align-items: center;
+  border: 1px solid ${({ theme }) => theme.colors.paleGray};
 `;
 
-const WrapperButton = styled.View`
-  width: ${convertWidth(260)};
-  height: ${convertHeight(39)};
-  margin-vertical: ${convertHeight(8)};
+const TextButton = styled.Text`
+  color: ${({ theme }) => theme.colors.black};
+  font-size: ${convertWidth(16)};
+`;
+
+const Title = styled.Text`
+  color: ${({ theme }) => theme.colors.cerulean};
+  font-size: ${convertWidth(20)};
+`;
+
+const LineHeader = styled.View`
+  height: ${convertHeight(3)};
+  background: ${({ theme }) => theme.colors.cerulean};
 `;
 
 interface State {
-  isDateTimePickerVisible: boolean;
+  selectedValue: any;
 };
 
 interface Props {
   navigation: NavigationScreenProp<any>;
+  onCancel: Function;
+  isVisible: boolean;
+  title: String;
+  minYear?: number;
+  maxYear?: number;
+  isYearData?: boolean;
+  selectedValue: any;
+  selectedYear?: any;
 }
 
-export default class DatePicker extends Component<Props, State> {
+export default class CustomPickDate extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      isDateTimePickerVisible: false,
+      selectedValue: 0,
     };
   }
 
-  showDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: true });
-  };
-
-  hideDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: false });
-  };
-
-  handleDatePicked = (date: Date) => {
-    const { navigation } = this.props;
-    navigation.navigate(RouteName.CALENDAR, {
-      datePicked: moment(date.toISOString()).format('YYYY-MM-DD'),
+  componentDidMount() {
+    this.setState({
+      selectedValue: this.props.selectedValue,
     });
-    this.hideDateTimePicker();
-  };
+  }
 
   render() {
+    const { onCancel, isVisible, title, isYearData, minYear, maxYear, navigation } = this.props;
+
+    const displayPickItem = () => {
+      const options = [];
+      if (isYearData) {
+        for (let i = minYear as number; i < (maxYear as number); i++) {
+          options.push(<PickerItem key={i} label={`${i}`} value={i}/>);
+        }
+      } else {
+        Object.keys(monthNamesShort).map((objectkey, index) => {
+          const name = monthNamesShort[objectkey];
+          options.push(<PickerItem key={index} label={name} value={name} />);
+        });
+      }
+      return options;
+    };
+
+    const handleSubmit = () => {
+      if (isYearData === true) {
+        let datePicked: string | undefined = `${this.state.selectedValue}-01-01`;
+        if (this.state.selectedValue === moment().year()) datePicked = undefined;
+        navigation.push(RouteName.CALENDAR, {
+          selectedYear: this.state.selectedValue,
+          datePicked,
+        });
+        onCancel();
+      } else if (isYearData === false) {
+        const month = moment().month(reverseMonthNamesShort[this.state.selectedValue]).format('M');
+        const datePicked: string = `${this.props.selectedYear}-${month}-05`;
+        navigation.push(RouteName.CALENDAR, {
+          selectedYear: this.props.selectedYear,
+          datePicked,
+        });
+        onCancel();
+      }
+    };
+
     return (
-      <Container>
-        <WrapperButton>
-          <ButtonUI
-            type={Types.SETSTATUS}
-            title="Move to current date"
-            onPress={() => {
-              this.props.navigation.navigate(RouteName.CALENDAR, {
-                datePicked: moment().format('YYYY-MM-DD'),
-              });
-            }}
-          />
-        </WrapperButton>
-        <WrapperButton>
-          <ButtonUI
-            type={Types.SETSTATUS}
-            title="Choose another date"
-            onPress={this.showDateTimePicker}
-          />
-        </WrapperButton>
-        <DateTimePicker
-          isVisible={this.state.isDateTimePickerVisible}
-          onConfirm={this.handleDatePicked}
-          onCancel={this.hideDateTimePicker}
-        />
-      </Container>
+      <Modal
+        isVisible={isVisible}
+        animationIn='fadeIn'
+        animationOut='fadeOut'
+        backdropTransitionOutTiming={0}
+      >
+        <Container>
+          <Header>
+            <Title>
+              {title}
+            </Title>
+          </Header>
+          <LineHeader />
+          <Body>
+            <CustomerPicker
+              style={{ width: '80%' }}
+              selectedValue={this.state.selectedValue}
+              onValueChange={(itemValue: any) => {
+                this.setState({ selectedValue: itemValue });
+              }}
+            >
+              {displayPickItem()}
+            </CustomerPicker>
+          </Body>
+          <Footer>
+            <WrapperButton onPress={() => onCancel()}>
+              <TextButton>
+                Cancel
+              </TextButton>
+            </WrapperButton>
+            <WrapperButton onPress={() => handleSubmit()}>
+              <TextButton>
+                OK
+              </TextButton>
+            </WrapperButton>
+          </Footer>
+        </Container>
+      </Modal>
     );
   }
 };
