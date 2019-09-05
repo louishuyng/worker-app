@@ -10,7 +10,7 @@ import { JobThumbnail } from 'components/JobList/shared';
 import { mockJobData } from 'components/JobList/mock';
 import SectionJobDetail from './section';
 import { getString } from 'locales';
-import { IC_CAMERA } from 'utils/Icons';
+import { IC_CAMERA, TRASH_ICON } from 'utils/Icons';
 import DividedBox from './content/DividedBox';
 import { TitleTimeData, TitleDetailsOneData, TitleDetailsTwoData } from './models';
 import { mockdataDetailsOne, mockdataTime, mockdataDetailsTwo } from './mock';
@@ -21,7 +21,6 @@ import { Types } from 'components/common/Button/types';
 import { convertHeight, convertWidth } from 'utils/convertSize';
 import Map from './content/Map';
 import { RouteName } from 'constant';
-import { fontFamily } from 'utils/Theme';
 
 const ScrollView = styled.ScrollView`
   background: ${({ theme }) => theme.colors.aquaHaze};
@@ -104,7 +103,8 @@ export default class JobDetail extends React.Component<Props, State> {
     imagesSource.splice(currentIndexImage, 1);
     this.setState({
       ...this.state,
-      imagesSource,
+      imagesSource: [...imagesSource],
+      isModalVisible: false,
       currentIndexImage: currentIndexImage > 0 ? currentIndexImage - 1 : currentIndexImage,
     });
   };
@@ -119,13 +119,14 @@ export default class JobDetail extends React.Component<Props, State> {
           isHideLocation={true}
           ButtonIcon={IC_CAMERA}
           onPress={this.showActionSheet}
-          onImagePress={() => {
+          onImagePress={(i: number) => {
             this.setState({
               ...this.state,
+              currentIndexImage: i,
               isModalVisible: true,
             });
           }}
-          imageUrls={this.state.imagesSource as ImageSourcePropType[]}
+          imageUrls={this.state.imagesSource.length === 0 ? [] : this.state.imagesSource }
         />
         <SectionJobDetail
           titleHeader={getString('jobDetail', 'address')}
@@ -198,18 +199,18 @@ export default class JobDetail extends React.Component<Props, State> {
         />
         <Modal visible={this.state.isModalVisible} transparent={true}>
           <ImageViewer
-            imageUrls={this.state.imagesSource}
+            imageUrls={this.state.imagesSource.length === 0 ? [] : this.state.imagesSource }
             backgroundColor='white'
             index={this.state.currentIndexImage}
             onChange={(index) => {
-              this.setState({
+              index as number < this.state.imagesSource.length && this.setState({
                 ...this.state,
                 currentIndexImage: index as number,
               });
             }}
             footerContainerStyle={{
-              bottom: 30,
-              right: 30,
+              bottom: convertHeight(50),
+              right: convertWidth(30),
               position: 'absolute',
               zIndex: 9999,
             }}
@@ -217,10 +218,7 @@ export default class JobDetail extends React.Component<Props, State> {
               return (
                 <View>
                   <TouchableOpacity onPress={this.handleRemoveImage}>
-                    <Text style={{
-                      fontFamily: fontFamily.regular,
-                      fontSize: convertWidth(17),
-                    }}>Remove</Text>
+                    <Image source={TRASH_ICON} />
                   </TouchableOpacity>
                 </View>
               );

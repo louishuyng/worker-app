@@ -116,16 +116,15 @@ export default class CustomPickDate extends Component<Props, State> {
         });
         onCancel();
       } else if (isYearData === false) {
-        const month = moment().month(reverseMonthNamesShort[this.state.selectedValue]).format('M');
+        const month = reverseMonthNamesShort[this.state.selectedValue];
         const datePicked: string = `${this.props.selectedYear}-${month}-05`;
-        navigation.navigate({
-          routeName: RouteName.CALENDAR,
-          params: {
+        navigation.push(
+          RouteName.CALENDAR,
+          {
             selectedYear: this.props.selectedYear,
             datePicked,
           },
-          key: datePicked,
-        });
+        );
         onCancel();
       }
     };

@@ -18,6 +18,7 @@ export const IC_ICON_RIGHT_ARROW = require('../../assets/icons/auth/arrow-right-
 // Others
 export const CLOSE_ICON = require('../../assets/icons/close.png');
 export const HELP_ICON = require('../../assets/icons/help-circle.png');
+export const TRASH_ICON = require('../../assets/icons/trash.png');
 
 // Job List
 export const ORANGE_CIRCLE = require('../../assets/icons/joblist/orange-circle.png');

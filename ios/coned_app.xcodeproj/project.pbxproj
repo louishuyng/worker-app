@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* coned_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* coned_appTests.m */; };
 		0B5C49F68BAE4E3BB4ABA1FF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C01C0C430F3142399D39A468 /* Octicons.ttf */; };
@@ -381,11 +382,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = KK9V7PRPF2;
+						DevelopmentTeam = 4YUA24PL5G;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = KK9V7PRPF2;
+						DevelopmentTeam = 4YUA24PL5G;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -761,7 +762,7 @@
 			baseConfigurationReference = 3212BDD6B72E5006AB93BFF2 /* Pods-coned_appTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = KK9V7PRPF2;
+				DEVELOPMENT_TEAM = 4YUA24PL5G;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -786,7 +787,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = KK9V7PRPF2;
+				DEVELOPMENT_TEAM = 4YUA24PL5G;
 				INFOPLIST_FILE = coned_appTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -808,7 +809,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = KK9V7PRPF2;
+				DEVELOPMENT_TEAM = 4YUA24PL5G;
 				INFOPLIST_FILE = coned_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -828,7 +829,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KK9V7PRPF2;
+				DEVELOPMENT_TEAM = 4YUA24PL5G;
 				INFOPLIST_FILE = coned_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

@@ -144,7 +144,7 @@ interface JobThumbNailProps {
   ButtonIcon: ImageSourcePropType;
   navigation?: NavigationScreenProp<any>;
   onPress?: () => void;
-  onImagePress?: () => void;
+  onImagePress?: any;
 }
 
 interface JobThumbNailState {
@@ -321,7 +321,7 @@ export class JobThumbnail extends Component<JobThumbNailProps, JobThumbNailState
               showsHorizontalScrollIndicator={false}
               renderItem={({ item, index }: { item: any, index: number }) => {
                 return (
-                  <WrapperImagePicker key={index} onPress={this.props.onImagePress} >
+                  <WrapperImagePicker key={index} onPress={() => this.props.onImagePress(index as number)} >
                     <ImagePicker
                       source={{ uri: item && item.url }}
                     />
