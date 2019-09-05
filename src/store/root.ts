@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
-import { delay } from 'redux-saga/effects';
+import { combineEpics } from 'redux-observable';
 
-import { demoReducer } from 'store/demo/demoReducer';
+import authReducer from './auth/AuthReducer';
+import authEpics from './auth/AuthEpics';
 
 export const rootReducer = combineReducers({
-  demoState: demoReducer,
+  authState: authReducer,
 });
 
-export function * rootSaga() {
-  yield delay(1000);
-};
+export const rootEpic = combineEpics(...authEpics);

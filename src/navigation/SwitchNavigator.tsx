@@ -24,7 +24,7 @@ const routeConfigMap: NavigationRouteConfigMap = {
 };
 
 const stackConfig: StackNavigatorConfig = {
-  initialRouteName: RouteName.SIGN_UP_STEP_ONE,
+  initialRouteName: RouteName.SIGN_IN,
   headerMode: 'none',
 };
 

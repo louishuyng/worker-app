@@ -103,13 +103,13 @@ export const authButtonLabelData: AuthTitle = {
 export const authSuggestionTitleData: AuthTitle = {
   [AuthStage.SIGNUP_STEP_ONE]: getString('auth', 'SUGGESTION_SIGN_UP'),
   [AuthStage.SIGNUP_STEP_TWO]: getString('auth', 'SUGGESTION_SIGN_UP'),
-  [AuthStage.LOGIN]: getString('auth', 'SUGGESTION_SIGN_IN'),
+  [AuthStage.LOGIN]: undefined,
 };
 
 export const authNavigatorTitleData: AuthTitle = {
   [AuthStage.SIGNUP_STEP_ONE]: getString('auth', 'LOGIN_TITLE'),
   [AuthStage.SIGNUP_STEP_TWO]: getString('auth', 'LOGIN_TITLE'),
-  [AuthStage.LOGIN]: getString('auth', 'SIGNUP_TITLE'),
+  [AuthStage.LOGIN]: undefined,
 };
 
 export const authAfterIconData: AuthIcon = {
