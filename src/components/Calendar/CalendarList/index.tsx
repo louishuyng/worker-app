@@ -30,9 +30,6 @@ export default class CalendarListComponent extends React.Component<Props, State>
     this.state = {
       isShowModalYear: false,
     };
-  }
-
-  componentDidMount() {
     this.props.navigation.setParams({ onPress: () => this.setState({
       isShowModalYear: true,
     }),
@@ -57,7 +54,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
         fontFamily: fontFamily.medium,
       },
       headerLeft: <BackButtonUI
-        isHideButton={true}
+        isHideButton
         label={selectedYear || moment().year() as number}
         navigation={navigation}
       />,
@@ -76,8 +73,6 @@ export default class CalendarListComponent extends React.Component<Props, State>
           selectedValue={selectedYear}
           title={'Select year'}
           isYearData
-          minYear={2010}
-          maxYear={2040}
           isVisible={this.state.isShowModalYear}
           onCancel={() => this.setState({ isShowModalYear: false })}
         />

@@ -67,8 +67,6 @@ interface Props {
   onCancel: Function;
   isVisible: boolean;
   title: String;
-  minYear?: number;
-  maxYear?: number;
   isYearData?: boolean;
   selectedValue: any;
   datePicked?: any;
@@ -89,21 +87,25 @@ export default class CustomPickDate extends Component<Props, State> {
   }
 
   render() {
-    const { onCancel, isVisible, title, isYearData, minYear, maxYear, navigation } = this.props;
+    const { onCancel, isVisible, title, isYearData, navigation } = this.props;
 
     const displayPickItem = () => {
       const options = [];
       if (isYearData) {
-        for (let i = minYear as number; i < (maxYear as number); i++) {
-          options.push(<PickerItem key={i} label={`${i}`} value={i}/>);
+        for (let i = 2010; i <= 2040; i++) {
+          options.push(i);
         }
+        return options.map((value, index) => {
+          return (
+            <PickerItem key={index} label={value} value={value}/>
+          );
+        });
       } else {
-        Object.keys(monthNamesShort).map((objectkey, index) => {
+        return Object.keys(monthNamesShort).map((objectkey, index) => {
           const name = monthNamesShort[objectkey];
-          options.push(<PickerItem key={index} label={name} value={name} />);
+          return (<PickerItem key={index} label={name} value={name} />);
         });
       }
-      return options;
     };
 
     const handleSubmit = () => {
