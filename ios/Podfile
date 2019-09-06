@@ -36,6 +36,8 @@ target 'coned_app' do
 
   pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
 
+  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
   target 'coned_appTests' do
     inherit! :search_paths
     # Pods for testing

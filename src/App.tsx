@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ApplicationProvider } from 'react-native-ui-kitten';
 import { mapping, light as lightTheme } from '@eva-design/eva';
+import Orientation from 'react-native-orientation-locker';
+
 import SwitchNavigator from './navigation/SwitchNavigator';
 import configureStore from 'store/configureStore';
-import { colors } from 'utils/Theme';
 
 const store = configureStore();
 
@@ -14,6 +15,10 @@ const theme = {
 };
 
 const App: FC = () => {
+  useEffect(() => {
+    Orientation.lockToPortrait();
+  }, []);
+
   return (
     <ApplicationProvider
       mapping={mapping}
