@@ -5,15 +5,19 @@ import { NavigationScreenProp, NavigationActions } from 'react-navigation';
 
 import { IC_BACK } from 'utils/Icons';
 import { convertWidth, convertHeight } from 'utils/convertSize';
+import { View } from 'react-native';
 
 interface Props {
   label?: string | number;
   navigation: NavigationScreenProp<any>
+  isHideButton?: boolean;
 }
 
 interface State {}
 
 const Wrapper = styled.View`
+  flex-direction: row;
+  margin-left: ${convertWidth(15)};
 `;
 
 const TouchableOpacity = styled.TouchableOpacity`
@@ -22,8 +26,6 @@ const TouchableOpacity = styled.TouchableOpacity`
 `;
 
 const BackButton = styled.Image`
-  margin-left: ${convertWidth(9)};
-  margin-right: ${convertWidth(9)};
 `;
 
 const LabelText = styled.Text`
@@ -39,25 +41,18 @@ export default class BackButtonUI extends React.Component<Props, State> {
 
   render() {
     const { label, navigation } = this.props;
-
-    const handleNavigate = () => {
-      const routeBack = navigation.getParam('routeBack');
-      const param = navigation.getParam('param');
-      if (routeBack) return navigation.navigate(routeBack, { data: param });
-      navigation.pop();
-    };
     const onPress = navigation.getParam('onPress') || undefined;
 
-    const handleOnPress = () => {
-      if (onPress) return onPress();
-      return handleNavigate();
-    };
     return (
-      <Wrapper >
-        <TouchableOpacity onPress={() => handleOnPress()} style={{
-          width: convertWidth(150),
-        }} >
-          <BackButton source={IC_BACK} />
+      <Wrapper>
+        {!this.props.isHideButton && (
+          <TouchableOpacity onPress={() => navigation.pop()}
+            style={{ width: label ? convertWidth(15) : convertWidth(150) }} >
+            <BackButton source={IC_BACK} />
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity onPress={() => onPress()}
+          style={{ width: convertWidth(50), justifyContent: 'center' }}>
           {label && <LabelText>{label}</LabelText>}
         </TouchableOpacity>
       </Wrapper>

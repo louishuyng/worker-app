@@ -38,6 +38,8 @@ target 'coned_app' do
 
   pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
 
+  pod 'react-native-signature-capture', :path => '../node_modules/react-native-signature-capture'
+
   target 'coned_appTests' do
     inherit! :search_paths
     # Pods for testing

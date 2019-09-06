@@ -3,6 +3,7 @@ import {
   TabBarIconProps,
   NavigationScreenProp,
   NavigationScreenConfig,
+  NavigationActions,
 } from 'react-navigation';
 
 import { BottomBarIconUI } from 'components/common';
@@ -87,6 +88,10 @@ export const withDefaultStackNavigationConfig = (
           return BottomBarIconUI({ source: unActiveIcon });
         },
         tabBarVisible,
+        tabBarOnPress: () => {
+          if (navigation.state.routes.length > 1) navigation.push(initialRouteName);
+          navigation.navigate(initialRouteName);
+        },
       };
     },
   };
