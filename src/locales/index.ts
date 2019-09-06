@@ -15,7 +15,7 @@ const strings: any = new LocalizedStrings({
       PLACE_HOLDER_EMAIL: 'example.email@coned.com',
       PASSWORD: 'Password',
       REPEAT_PASSWORD: 'Repeat Password',
-      FORGET_PASSWORD: 'Forget Password',
+      FORGET_PASSWORD: 'Forgot Password',
       DEPARTMENT: 'Department',
       SUGGESTION_SIGN_UP: 'Already have an account?',
       SUGGESTION_SIGN_IN: 'Don’t have an account?',
