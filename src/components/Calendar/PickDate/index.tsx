@@ -71,7 +71,7 @@ interface Props {
   maxYear?: number;
   isYearData?: boolean;
   selectedValue: any;
-  selectedYear?: any;
+  datePicked?: any;
 }
 
 export default class CustomPickDate extends Component<Props, State> {
@@ -117,12 +117,13 @@ export default class CustomPickDate extends Component<Props, State> {
         onCancel();
       } else if (isYearData === false) {
         const month = reverseMonthNamesShort[this.state.selectedValue];
-        const datePicked: string = `${this.props.selectedYear}-${month}-05`;
-        navigation.push(
-          RouteName.CALENDAR,
+        navigation.navigate(
+          RouteName.AGENDA,
           {
-            selectedYear: this.props.selectedYear,
-            datePicked,
+            data: {
+              month,
+              datePicked: this.props.datePicked,
+            },
           },
         );
         onCancel();

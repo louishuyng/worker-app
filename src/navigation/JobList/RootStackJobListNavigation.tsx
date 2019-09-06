@@ -82,7 +82,7 @@ const routeConfig: NavigationRouteConfig = {
       navigation,
       screenProps,
       headLeftComponent: <BackButtonUI navigation={navigation} />,
-      headRightComponent: <HeadRightNav />,
+      headRightComponent: <HeadRightNav navigation={navigation} />,
       colorHeader: screenProps.theme.colors.auqaHazeTwo,
       widthTitle: '75%',
     }),

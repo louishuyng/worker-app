@@ -51,7 +51,7 @@ export default class Agenda extends React.Component<Props, State> {
         textAlign: 'center',
         fontFamily: fontFamily.medium,
       },
-      headerLeft: <BackButtonUI label={monthName} navigation={navigation} />,
+      headerLeft: <BackButtonUI label={monthNamesShort[monthName]} navigation={navigation} />,
       headerTintColor: colors.mineShaft,
     };
   }
@@ -59,14 +59,14 @@ export default class Agenda extends React.Component<Props, State> {
   render() {
     const { navigation: { getParam } } = this.props;
     const selectedMonth = getParam('data').month;
-    const selectedYear = getParam('data').selectedYear;
+    const datePicked = getParam('data').datePicked;
     return (
       <View style={{ height: screenHeight, paddingBottom: convertHeight(180) }}>
         <HeaderCalendar datePicked={getParam('data').datePicked} isShowController />
         <CustomPickDate
           navigation={this.props.navigation}
           selectedValue={monthNamesShort[selectedMonth as string]}
-          selectedYear={selectedYear}
+          datePicked={datePicked}
           isYearData={false}
           title={'Select month'}
           isVisible={this.state.isShowModelMonth}

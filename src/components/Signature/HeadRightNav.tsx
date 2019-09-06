@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform, TouchableNativeFeedback } from 'react-native';
 import { convertHeight, convertWidth } from 'utils/convertSize';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { NavigationScreenProp } from 'react-navigation';
+
+const CustomButton = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
 
 const Container = styled.View`
   flex-direction: row;
@@ -20,12 +24,15 @@ const DoneButton = styled.Text<{ isPortrait: boolean }>`
   padding-horizontal: ${convertWidth(8)};
 `;
 
+interface Props {
+  navigation: NavigationScreenProp<any>;
+}
 interface State {
   isPortrait: boolean;
 }
 
-export default class HeadRightNav extends Component<any, State> {
-  constructor(props: any) {
+export default class HeadRightNav extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       isPortrait: true,
@@ -45,10 +52,17 @@ export default class HeadRightNav extends Component<any, State> {
 
   render() {
     const { isPortrait } = this.state;
+    const { navigation: { getParam } } = this.props;
+    const onHandleClear = getParam('onHandleClear');
+    const onHandleDone = getParam('onHandleDone');
     return (
       <Container>
-        <ClearButton isPortrait={isPortrait}>Clear</ClearButton>
-        <DoneButton isPortrait={isPortrait}>Done</DoneButton>
+        <CustomButton onPress={() => onHandleClear()}>
+          <ClearButton isPortrait={isPortrait}>Clear</ClearButton>
+        </CustomButton>
+        <CustomButton onPress={() => onHandleDone()}>
+          <DoneButton isPortrait={isPortrait}>Done</DoneButton>
+        </CustomButton>
       </Container>
     );
   }

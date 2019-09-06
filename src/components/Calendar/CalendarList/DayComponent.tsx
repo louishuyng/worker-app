@@ -88,7 +88,6 @@ export default class DayComponent extends React.Component<Props, State> {
            data: {
              month: moment(date.month, 'MM').format('MMMM'),
              datePicked: date.dateString,
-             selectedYear: this.props.selectedYear,
            },
          })}
        >
