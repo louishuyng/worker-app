@@ -70,6 +70,7 @@ interface Props {
   isYearData?: boolean;
   selectedValue: any;
   datePicked?: any;
+  options: any;
 }
 
 export default class CustomPickDate extends Component<Props, State> {
@@ -87,17 +88,13 @@ export default class CustomPickDate extends Component<Props, State> {
   }
 
   render() {
-    const { onCancel, isVisible, title, isYearData, navigation } = this.props;
+    const { onCancel, isVisible, title, isYearData, navigation, options } = this.props;
 
     const displayPickItem = () => {
-      const options = [];
       if (isYearData) {
-        for (let i = 2010; i <= 2040; i++) {
-          options.push(i);
-        }
-        return options.map((value, index) => {
+        return Object.values(options).map((value: any, index:any) => {
           return (
-            <PickerItem key={index} label={value} value={value}/>
+            <PickerItem key={index} label={value.name} value={value.name}/>
           );
         });
       } else {
@@ -112,10 +109,12 @@ export default class CustomPickDate extends Component<Props, State> {
       if (isYearData === true) {
         let datePicked: string | undefined = `${this.state.selectedValue}-01-01`;
         if (this.state.selectedValue === moment().year()) datePicked = undefined;
-        navigation.push(RouteName.CALENDAR, {
-          selectedYear: this.state.selectedValue,
-          datePicked,
-        });
+        navigation.navigate(
+          RouteName.CALENDAR, {
+            selectedYear: this.state.selectedValue,
+            datePicked,
+          }, this.state.selectedValue
+        );
         onCancel();
       } else if (isYearData === false) {
         const month = reverseMonthNamesShort[this.state.selectedValue];
@@ -126,7 +125,7 @@ export default class CustomPickDate extends Component<Props, State> {
               month,
               datePicked: this.props.datePicked,
             },
-          },
+          }, this.state.selectedValue
         );
         onCancel();
       }

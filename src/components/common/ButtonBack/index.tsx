@@ -1,11 +1,10 @@
 
 import React from 'react';
 import styled from 'styled-components/native';
-import { NavigationScreenProp, NavigationActions } from 'react-navigation';
+import { NavigationScreenProp } from 'react-navigation';
 
 import { IC_BACK } from 'utils/Icons';
-import { convertWidth, convertHeight } from 'utils/convertSize';
-import { View } from 'react-native';
+import { convertWidth } from 'utils/convertSize';
 
 interface Props {
   label?: string | number;
