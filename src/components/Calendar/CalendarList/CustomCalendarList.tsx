@@ -38,6 +38,8 @@ export default class CustomCalendarList extends React.Component<Props, State> {
         selected={currentDate}
         monthFormat={'MMMM, yyyy'}
         disabledByDefault={true}
+        pastScrollRange={1000}
+        futureScrollRange={1000}
         markedDates={
           {
             [currentDate]: {

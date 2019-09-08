@@ -43,7 +43,8 @@ export default class CalendarListComponent extends React.Component<Props, State>
 
   componentDidMount() {
     const options: {[key: number]: any} = {};
-    for (let i = 2010; i <= 2040; i++) {
+    const currentYear = moment().year();
+    for (let i = currentYear - 10; i <= currentYear + 10; i++) {
       options[i] = {
         name: i,
       };
@@ -87,6 +88,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
       <SafeAreaView>
         <HeaderCalendar isShowController={false} datePicked={'1970-01-01T00:00:00.140Z'} />
         <CustomPickDate
+          key={selectedYear}
           navigation={this.props.navigation}
           selectedValue={selectedYear}
           title={'Select year'}
