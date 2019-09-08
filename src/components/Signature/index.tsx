@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 import { withNavigationFocus, NavigationScreenProp } from 'react-navigation';
 
 import { convertHeight, convertWidth } from 'utils/convertSize';
-import { RouteName } from 'constant';
 
 const Container = styled.View`
   flex: 1;
@@ -36,7 +35,7 @@ class SignaturePadUI extends Component<Props, State> {
   componentDidMount() {
     this.props.navigation.setParams({
       onHandleClear: () => this.state.signatureRef.current.resetImage(),
-      onHandleDone: () => this.props.navigation.navigate(RouteName.JOB_LIST),
+      onHandleDone: () => this.props.navigation.goBack(),
     });
   }
 

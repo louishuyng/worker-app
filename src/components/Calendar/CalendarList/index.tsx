@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { NavigationScreenProp, NavigationStackScreenOptions } from 'react-navigation';
+import {
+  NavigationScreenProp,
+  NavigationStackScreenOptions,
+} from 'react-navigation';
 import moment from 'moment';
 
 import LocaleConfig from '../config';
@@ -20,6 +23,7 @@ interface Props {
 
 interface State {
   isShowModalYear: boolean;
+  options: {[key: number]: any};
 }
 
 const SafeAreaView = styled.SafeAreaView` `;
@@ -29,10 +33,24 @@ export default class CalendarListComponent extends React.Component<Props, State>
     super(props);
     this.state = {
       isShowModalYear: false,
+      options: {},
     };
     this.props.navigation.setParams({ onPress: () => this.setState({
       isShowModalYear: true,
     }),
+    });
+  }
+
+  componentDidMount() {
+    const options: {[key: number]: any} = {};
+    for (let i = 2010; i <= 2040; i++) {
+      options[i] = {
+        name: i,
+      };
+    }
+    this.setState({
+      ...this.state,
+      options,
     });
   }
 
@@ -75,6 +93,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
           isYearData
           isVisible={this.state.isShowModalYear}
           onCancel={() => this.setState({ isShowModalYear: false })}
+          options={this.state.options}
         />
         <CustomCalendarList
           selectedYear={selectedYear}
