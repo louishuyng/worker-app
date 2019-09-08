@@ -1,8 +1,13 @@
 import { createAction } from 'typesafe-actions';
 
 export default {
-  createUser: createAction('CREATE_USER', (payload) => payload),
-  createToken: createAction('CREATE_TOKEN', (payload) => payload),
-  createUserSuccess: createAction('CREATE_USER_SUCCESS', (payload) => payload),
-  craeteUserFailed: createAction('CREATE_USER_FAILED', (payload) => payload),
+  createToken: createAction('CREATE_TOKEN',
+    (action) => (values: any, callback: any, handleError: any) => action({
+      values,
+      callback,
+      handleError,
+    })
+  ),
+  createTokenSuccess: createAction('CREATE_TOKEN_SUCCESS', (payload) => payload),
+  createTokenFailed: createAction('CREATE_TOKEN_FAILED', (payload) => payload),
 };

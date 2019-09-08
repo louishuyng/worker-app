@@ -4,24 +4,26 @@ import styled, { css } from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { Field } from 'formik';
+import { NavigationScreenProp } from 'react-navigation';
 
 import { AuthStage, InputAuthData } from '../models/authScreenConfig';
 import { AuthScreenModel } from '../models/authScreenModel';
 import { ButtonUI, TextInputFormikUI } from 'components/common';
 import { Types } from 'components/common/Button/types';
-import { IC_CHECKED, IC_UNCHECKED, IC_DOT_LINE } from 'utils/Icons';
+import { IC_DOT_LINE } from 'utils/Icons';
 import { getString } from 'locales';
 import { FormikAuthValues } from 'screens/Auth/models';
 import { RouteName } from 'constant';
 import { screenHeight } from 'utils/Styles';
 import { convertWidth, convertHeight } from 'utils/convertSize';
+import { handleSubmitAuth } from '../types';
 
 interface Props {
   stage: AuthStage;
-  navigation: { navigate: Function };
+  navigation: NavigationScreenProp<any>;
   values: FormikAuthValues;
   errors: Object;
-  handleSubmit: Function;
+  handleSubmit: handleSubmitAuth;
 }
 
 interface State {
@@ -230,7 +232,10 @@ export default class AuthScreen extends Component<Props, State> {
               <ButtonUI
                 type={Types.SUBMIT}
                 title={buttonLabel}
-                onPress={() => handleSubmit()}
+                onPress={() => handleSubmit({
+                  email: this.props.values.email,
+                  password: this.props.values.password,
+                })}
                 afterIcon={afterIconData}
               />
             </WrapperButton>

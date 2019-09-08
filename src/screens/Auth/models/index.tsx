@@ -1,5 +1,8 @@
 import { handleSubmitFormikInterface } from 'screens/hoc/withConnectFormik';
 import { RouteName } from 'constant';
+import { ActionsObservable } from 'redux-observable';
+import authActions from 'store/auth/AuthActions';
+import { ActionType } from 'typesafe-actions';
 
 export interface FormikAuthValues {
   email?: string,
@@ -29,14 +32,30 @@ export const InitMapPropsSignUpStepTwo = {
   repeatPassword: '',
 };
 
-export const handleSubmitLogin: handleSubmitFormikInterface = (values: FormikAuthValues, navigation) => {
-  navigation.navigate(RouteName.MAIN);
+export const handleSubmitLogin: handleSubmitFormikInterface = (
+  values: FormikAuthValues,
+  navigation,
+  action: any,
+) => {
+  const callback = () => navigation.navigate(RouteName.MAIN);
+
+  const handleError = (err: string) => {
+    navigation.navigate(RouteName.ERROR, { message: err });
+  };
+
+  return action(values, callback, handleError);
 };
 
-export const handleSubmitSignUpStepOne: handleSubmitFormikInterface = (values: FormikAuthValues, navigation) => {
+export const handleSubmitSignUpStepOne: handleSubmitFormikInterface = (
+  values: FormikAuthValues, navigation, action
+) => {
+  action();
   navigation.navigate(RouteName.SIGN_UP_STEP_TWO);
 };
 
-export const handleSubmitSignUpStepTwo: handleSubmitFormikInterface = (values: FormikAuthValues, navigation) => {
+export const handleSubmitSignUpStepTwo: handleSubmitFormikInterface = (
+  values: FormikAuthValues, navigation, action
+) => {
+  action();
   navigation.navigate(RouteName.SIGN_IN);
 };

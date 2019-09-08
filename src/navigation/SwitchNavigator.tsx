@@ -11,6 +11,7 @@ import BottomMaterialNavigator from './BottomMaterialNavigator';
 
 import { SignInScreen, SignUpStepOneScreen, SignUpStepTwoScreen } from 'screens/Auth';
 import { SendEmailScreen, ConfirmMailScreen, ResetPasswordScreen } from 'screens/Password';
+import ErrorScreen from 'components/Error';
 import { RouteName } from 'constant';
 
 const routeConfigMap: NavigationRouteConfigMap = {
@@ -21,6 +22,7 @@ const routeConfigMap: NavigationRouteConfigMap = {
   [RouteName.CONFIRM_MAIL]: ConfirmMailScreen,
   [RouteName.RESET_PASSWORD]: ResetPasswordScreen,
   [RouteName.MAIN]: BottomMaterialNavigator,
+  [RouteName.ERROR]: ErrorScreen,
 };
 
 const stackConfig: StackNavigatorConfig = {

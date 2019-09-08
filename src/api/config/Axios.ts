@@ -1,11 +1,18 @@
-import Axios, { AxiosInstance, Method, AxiosResponse } from 'axios';
+import Axios, { AxiosInstance } from 'axios';
 
-export type REST_API_METHOD = 'get'| 'post'| 'patch'| 'put'| 'delete'
+export enum REST_API_METHOD {
+  GET,
+  POST,
+  PUT,
+  PATCH,
+  DELETE,
+}
 
 export interface RequestConfig {
   path: string;
-  extraParams: string[];
+  extraParams?: string;
   method: REST_API_METHOD;
+  data: Object,
 }
 
 const client: AxiosInstance = Axios.create({
@@ -13,32 +20,32 @@ const client: AxiosInstance = Axios.create({
   timeout: 10000,
 });
 
-const getUrl = (endPoint: string, ...extraParams: string[]): string => {
-  const extra = extraParams.length ? extraParams.join('&') : '';
-  return `${endPoint}&${extra}`;
+const getUrl = (endPoint: string, extraParams: string): string => {
+  if (extraParams) return `${endPoint}/${extraParams}`;
+  return endPoint;
 };
 
 export const createRequest = async<RequestModel> ({
-  path, extraParams, method,
+  path, extraParams, method, data,
 }: RequestConfig) => {
-  const url = getUrl(path, ...extraParams);
+  const url = getUrl(path, extraParams as string);
   let respone: any = {};
   switch (method) {
-    case 'get':
-      respone = client.get<RequestModel>(url);
+    case REST_API_METHOD.GET:
+      respone = await client.get<RequestModel>(url, data);
       break;
-    case 'put':
-      respone = client.put<RequestModel>(url);
+    case REST_API_METHOD.PUT:
+      respone = await client.put<RequestModel>(url, data);
       break;
-    case 'patch':
-      respone = client.patch<RequestModel>(url);
+    case REST_API_METHOD.PATCH:
+      respone = await client.patch<RequestModel>(url, data);
       break;
-    case 'post':
-      respone = client.post<RequestModel>(url);
+    case REST_API_METHOD.POST:
+      respone = await client.post<RequestModel>(url, data);
       break;
-    case 'delete':
-      respone = client.delete<RequestModel>(url);
+    case REST_API_METHOD.DELETE:
+      respone = await client.delete<RequestModel>(url, data);
       break;
   }
-  return respone.data;
+  return respone;
 };

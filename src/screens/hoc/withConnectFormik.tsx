@@ -10,32 +10,35 @@ interface initMapPropsInterface {
 }
 
 export interface handleSubmitFormikInterface {
-  (values: any, navigation: NavigationScreenProp<any>): any
+  (values: any, navigation: NavigationScreenProp<any>, action: any): any
 }
 
 export interface ConnectFormikAuthParamaters {
-  displayName: string,
-  Component: any,
-  customSchema?: ObjectSchema,
-  initMapProps: initMapPropsInterface,
-  handleSubmit: handleSubmitFormikInterface,
+  displayName: string;
+  Component: any;
+  customSchema?: ObjectSchema;
+  initMapProps: initMapPropsInterface;
+  handleSubmit: handleSubmitFormikInterface;
+  actionKey: string;
 }
 
 interface Props {
   navigation: NavigationScreenProp<any>;
+  [key: string]: any;
 }
 
 export const withConnectFormik = ({
-  Component, displayName, customSchema, initMapProps, handleSubmit,
+  Component, displayName, customSchema, initMapProps, handleSubmit, actionKey,
 }: ConnectFormikAuthParamaters) => (props: Props) => {
   const RenderComponent = withFormik<Props, any>({
     enableReinitialize: false,
     validationSchema: customSchema,
     mapPropsToValues: () => initMapProps,
     handleSubmit: (values) => {
-      handleSubmit(values, props.navigation);
+      handleSubmit(values, props.navigation, props[actionKey]);
     },
     displayName,
   })(Component);
+
   return <RenderComponent {...props} />;
 };
