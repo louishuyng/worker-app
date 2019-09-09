@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components/native';
 import {
   NavigationScreenProp,
@@ -13,7 +13,9 @@ import { colors, fontFamily } from 'utils/Theme';
 import { RouteName } from 'constant';
 import BackButtonUI from 'components/common/ButtonBack';
 import CustomPickDate from '../PickDate';
-import CustomCalendarList from './CustomCalendarList';
+import { LoadingSpine } from 'components/common';
+
+const CustomCalendarList = lazy(() => import('./CustomCalendarList'));
 
 LocaleConfig.defaultLocale = 'en';
 
@@ -24,9 +26,18 @@ interface Props {
 interface State {
   isShowModalYear: boolean;
   options: {[key: number]: any};
+  isLoading: boolean;
 }
 
-const SafeAreaView = styled.SafeAreaView` `;
+const SafeAreaView = styled.SafeAreaView`
+  flex: 1;
+`;
+
+const LoadingSpineWrapper = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default class CalendarListComponent extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -34,6 +45,7 @@ export default class CalendarListComponent extends React.Component<Props, State>
     this.state = {
       isShowModalYear: false,
       options: {},
+      isLoading: false,
     };
     this.props.navigation.setParams({ onPress: () => this.setState({
       isShowModalYear: true,
@@ -82,27 +94,56 @@ export default class CalendarListComponent extends React.Component<Props, State>
   }
 
   render() {
+    const handleOnCancel = (callback: any = undefined, isLoading = false) => {
+      if (callback) {
+        setTimeout(() => {
+          callback();
+          this.setState({
+            isLoading: false,
+          });
+        }, 1000);
+      }
+      this.setState({
+        isShowModalYear: false,
+        isLoading,
+      });
+    };
     const selectedYear = this.props.navigation.getParam('selectedYear') || moment().year();
     const selectedDate = this.props.navigation.getParam('datePicked') || moment().format('YYYY-MM-DD');
+
     return (
-      <SafeAreaView>
-        <HeaderCalendar isShowController={false} datePicked={'1970-01-01T00:00:00.140Z'} />
-        <CustomPickDate
-          key={selectedYear}
-          navigation={this.props.navigation}
-          selectedValue={selectedYear}
-          title={'Select year'}
-          isYearData
-          isVisible={this.state.isShowModalYear}
-          onCancel={() => this.setState({ isShowModalYear: false })}
-          options={this.state.options}
-        />
-        <CustomCalendarList
-          selectedYear={selectedYear}
-          navigation={this.props.navigation}
-          CustomSelectedDate={selectedDate}
-        />
-      </SafeAreaView>
+      <React.Fragment>
+        {this.state.isLoading ? (
+          <LoadingSpineWrapper >
+            <LoadingSpine />
+          </LoadingSpineWrapper>
+        ) : (
+          <SafeAreaView>
+            <HeaderCalendar isShowController={false} datePicked={'1970-01-01T00:00:00.140Z'} />
+            <CustomPickDate
+              key={selectedYear}
+              navigation={this.props.navigation}
+              selectedValue={selectedYear}
+              title={'Select year'}
+              isYearData
+              isVisible={this.state.isShowModalYear}
+              onCancel={(callback: any, isLoading: boolean) => handleOnCancel(callback, isLoading)}
+              options={this.state.options}
+            />
+            <Suspense fallback={
+              <LoadingSpineWrapper>
+                <LoadingSpine />
+              </LoadingSpineWrapper>}
+            >
+              <CustomCalendarList
+                selectedYear={selectedYear}
+                navigation={this.props.navigation}
+                CustomSelectedDate={selectedDate}
+              />
+            </Suspense>
+          </SafeAreaView>
+        ) }
+      </React.Fragment>
     );
   }
 }

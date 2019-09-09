@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalendarList, DayComponentProps } from 'react-native-calendars';
+import { DayComponentProps, CalendarList } from 'react-native-calendars';
 import moment from 'moment';
 import { NavigationScreenProp } from 'react-navigation';
 

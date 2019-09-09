@@ -9,6 +9,7 @@
       "es6",
       "dom"
     ],
+    "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,

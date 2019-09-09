@@ -40,6 +40,8 @@ target 'coned_app' do
 
   pod 'react-native-signature-capture', :path => '../node_modules/react-native-signature-capture'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'coned_appTests' do
     inherit! :search_paths
     # Pods for testing

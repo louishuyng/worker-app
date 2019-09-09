@@ -106,28 +106,34 @@ export default class CustomPickDate extends Component<Props, State> {
     };
 
     const handleSubmit = () => {
+      onCancel();
+      let callbackFunc = null;
       if (isYearData === true) {
-        let datePicked: string | undefined = `${this.state.selectedValue}-01-01`;
-        if (this.state.selectedValue === moment().year()) datePicked = undefined;
-        navigation.navigate(
-          RouteName.CALENDAR, {
-            selectedYear: this.state.selectedValue,
-            datePicked,
-          }, this.state.selectedValue
-        );
-        onCancel();
+        const callbackFunc = () => {
+          let datePicked: string | undefined = `${this.state.selectedValue}-01-01`;
+          if (this.state.selectedValue === moment().year()) datePicked = undefined;
+          navigation.navigate(
+            RouteName.CALENDAR, {
+              selectedYear: this.state.selectedValue,
+              datePicked,
+            }, this.state.selectedValue
+          );
+        };
+        onCancel(callbackFunc, true);
       } else if (isYearData === false) {
-        const month = reverseMonthNamesShort[this.state.selectedValue];
-        navigation.navigate(
-          RouteName.AGENDA,
-          {
-            data: {
-              month,
-              datePicked: this.props.datePicked,
-            },
-          }, this.state.selectedValue
-        );
-        onCancel();
+        callbackFunc = () => {
+          const month = reverseMonthNamesShort[this.state.selectedValue];
+          navigation.navigate(
+            RouteName.AGENDA,
+            {
+              data: {
+                month,
+                datePicked: this.props.datePicked,
+              },
+            }, this.state.selectedValue
+          );
+        };
+        onCancel(callbackFunc, true);
       }
     };
 

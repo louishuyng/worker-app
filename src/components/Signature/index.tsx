@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { withNavigationFocus, NavigationScreenProp } from 'react-navigation';
 
 import { convertHeight, convertWidth } from 'utils/convertSize';
+import { RouteName } from 'constant';
 
 const Container = styled.View`
   flex: 1;
@@ -21,6 +22,7 @@ interface Props {
 interface State {
   base64DataUrl: string;
   signatureRef: any;
+  dataSignature: any;
 }
 
 class SignaturePadUI extends Component<Props, State> {
@@ -29,13 +31,20 @@ class SignaturePadUI extends Component<Props, State> {
     this.state = {
       base64DataUrl: '',
       signatureRef: React.createRef(),
+      dataSignature: undefined,
     };
   }
   ;
   componentDidMount() {
     this.props.navigation.setParams({
       onHandleClear: () => this.state.signatureRef.current.resetImage(),
-      onHandleDone: () => this.props.navigation.goBack(),
+      onHandleDone: () => {
+        this.state.signatureRef.current.saveImage();
+      },
+    });
+    const dataSignature = this.props.navigation.getParam('dataSignature');
+    this.setState({
+      dataSignature,
     });
   }
 
@@ -46,13 +55,18 @@ class SignaturePadUI extends Component<Props, State> {
   }
 
   render() {
+    const onSaveEvent = (result: any) => {
+      this.props.navigation.navigate(RouteName.SIGN_TIME_SHEET, {
+        dataSignature: result,
+      });
+    };
+
     return (
       <Container>
         <WrapperIntro>Please Sign Here</WrapperIntro>
         <SignNatureCapture
           ref={this.state.signatureRef}
-          onSaveEvent={this._onSaveEvent}
-          onDragEvent={this._onDragEvent}
+          onSaveEvent={onSaveEvent}
           saveImageFileInExtStorage={false}
           showNativeButtons={false}
           showTitleLabel={false}
@@ -63,16 +77,6 @@ class SignaturePadUI extends Component<Props, State> {
           }} />
       </Container>
     );
-  }
-
-  _onSaveEvent(result: any) {
-    // result.encoded - for the base64 encoded png
-    // result.pathName - for the file path name
-    console.log(result);
-  }
-
-  _onDragEvent() {
-    // This callback will be called when the user enters signature
   }
 };
 

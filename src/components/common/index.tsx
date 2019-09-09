@@ -6,3 +6,4 @@ export { default as TextInputFormikUI } from './TextInputFormik';
 export { default as TextInputFormikHour } from './TextInputFormikHour';
 export { default as CheckBoxUI } from './CheckBox';
 export { default as ButtonBackUI } from './ButtonBack';
+export { default as LoadingSpine } from './LoadingSpine';

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { Field } from 'formik';
+import { NavigationScreenProp } from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { getString } from 'locales';
 import { TextInputFormikUI, ButtonUI } from 'components/common';
@@ -8,6 +10,9 @@ import { IC_ARROW } from 'utils/Icons';
 import { Types } from 'components/common/Button/types';
 import { convertWidth, convertHeight } from 'utils/convertSize';
 import { RouteName } from 'constant';
+import { Image, Platform } from 'react-native';
+import { colors } from 'utils/Theme';
+import { TouchableOpacity, TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 const Container = styled.View`
   flex: 1;
@@ -49,6 +54,12 @@ const WrapperNavSignature = styled.TouchableOpacity`
   padding-right: 5%;
 `;
 
+const WrapperImageSignature = styled.View`
+  flex-direction: row;
+  padding-horizontal: 10%;
+  height: ${convertHeight(300)};
+`;
+
 const NavIcon = styled.Image``;
 
 const WrapperButton = styled.View`
@@ -56,7 +67,27 @@ const WrapperButton = styled.View`
   padding-horizontal: 5%;
 `;
 
-const SignTimeSheet = (props: any) => {
+interface Props {
+  navigation: NavigationScreenProp<any>;
+  handleSubmit: any;
+}
+const SignTimeSheet = (props: Props) => {
+  const [dataSignature, setDataSignature] = useState();
+  const [uri, setUri] = useState();
+  useEffect(() => {
+    const dataSignature = props.navigation.getParam('dataSignature');
+    if (dataSignature) setDataSignature(dataSignature);
+  }, []);
+
+  useEffect(() => {
+    let uri = null;
+    if (dataSignature) {
+      uri = dataSignature && `data:image/png;base64,${dataSignature.encoded}`;
+      setUri(uri);
+    } else setUri(uri);
+  }, [dataSignature]);
+
+  const CustomButton = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
   return (
     <Container>
       <WrapperContent>
@@ -68,11 +99,29 @@ const SignTimeSheet = (props: any) => {
           />
         </WrapperInput>
         <HorizontalLine />
-        <WrapperNavSignature onPress={() => props.navigation.navigate(RouteName.SIGNATURE)}>
+        <WrapperNavSignature onPress={() => props.navigation.navigate(
+          RouteName.SIGNATURE, {
+            dataSignature,
+          })}>
           <WrapperTitle>{getString('signTimeSheet', 'signature')}</WrapperTitle>
           <NavIcon source={IC_ARROW} />
         </WrapperNavSignature>
       </WrapperContent>
+      {dataSignature &&
+        <WrapperImageSignature>
+          <Image
+            style={{
+              width: '100%',
+              height: '100%',
+              resizeMode: 'contain',
+            }}
+            source={{ uri }}
+          />
+          <CustomButton onPress={() => setDataSignature(undefined)}>
+            <Icon name="clear" size={30} color={colors.black} />
+          </CustomButton>
+        </WrapperImageSignature>
+      }
       <WrapperButton>
         <ButtonUI
           title={getString('signTimeSheet', 'save')}
