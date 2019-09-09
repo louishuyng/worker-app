@@ -27,6 +27,10 @@ export default class CustomCalendarList extends React.Component<Props, State> {
     if (prevProps.CustomSelectedDate !== this.props.CustomSelectedDate) this.forceUpdate();
   }
 
+  shouldComponentUpdate(nextProps: any) {
+    return nextProps.selectedYear !== this.props.selectedYear;
+  }
+
   render() {
     const currentDate: string = moment().format('YYYY-MM-DD');
     const { selectedYear, CustomSelectedDate, navigation } = this.props;
