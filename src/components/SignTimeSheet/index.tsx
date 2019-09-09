@@ -12,7 +12,7 @@ import { convertWidth, convertHeight } from 'utils/convertSize';
 import { RouteName } from 'constant';
 import { Image, Platform } from 'react-native';
 import { colors } from 'utils/Theme';
-import { TouchableOpacity, TouchableNativeFeedback } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Container = styled.View`
   flex: 1;
@@ -58,6 +58,7 @@ const WrapperImageSignature = styled.View`
   flex-direction: row;
   padding-horizontal: 10%;
   height: ${convertHeight(300)};
+  background-color: ${({ theme }) => theme.colors.aquaHaze};
 `;
 
 const NavIcon = styled.Image``;
@@ -65,6 +66,9 @@ const NavIcon = styled.Image``;
 const WrapperButton = styled.View`
   height: ${convertHeight(56)};
   padding-horizontal: 5%;
+`;
+
+const TouchableNativeFeedback = styled.TouchableNativeFeedback`
 `;
 
 interface Props {
@@ -118,7 +122,7 @@ const SignTimeSheet = (props: Props) => {
             source={{ uri }}
           />
           <CustomButton onPress={() => setDataSignature(undefined)}>
-            <Icon name="clear" size={30} color={colors.black} />
+            <Icon name="clear" size={25} color={colors.paleSky} />
           </CustomButton>
         </WrapperImageSignature>
       }
