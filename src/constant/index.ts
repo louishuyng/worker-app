@@ -32,6 +32,7 @@ export const RouteName = {
   EMAIL_PERSONAL: getString('screen', 'EMAIL_PERSONAL'),
   PHONE_PERSONAL: getString('screen', 'PHONE_PERSONAL'),
   SIGN_TIME_SHEET: getString('screen', 'SIGN_TIME_SHEET'),
+  ERROR: getString('screen', 'ERROR'),
 };
 
 export const listNumberHour = [

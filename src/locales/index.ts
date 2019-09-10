@@ -48,6 +48,7 @@ const strings: any = new LocalizedStrings({
       PHONE_PERSONAL: 'Phone',
       SIGN_TIME_SHEET: 'Sign Timesheet',
       DATE_PIKCER: 'Choose Date',
+      ERROR: 'Error',
     },
     recovery: {
       RECOVERY_TITLE: 'Password Recovery',

@@ -1,6 +1,7 @@
 import { ActionType, createReducer } from 'typesafe-actions';
 
 import authActions from 'store/auth/AuthActions';
+import { RequestToken } from 'api/models';
 
 export type AuthActions = ActionType<typeof authActions>;
 
@@ -16,7 +17,22 @@ const initialState = {
 
 export default createReducer<AuthState, AuthActions>(initialState)
   .handleAction([
-    authActions.createUser,
-    authActions.createToken,
-  ], (state) => ({ ...state, isAuth: true }))
+    authActions.createTokenSuccess,
+  ], (state: any, action: any) => {
+    const { payload } : {payload: RequestToken } = action;
+    return {
+      ...state,
+      isAuth: payload && payload.requestToken && true,
+    };
+  }
+  )
+  .handleAction([
+    authActions.createTokenFailed,
+  ], (state: any) => {
+    return {
+      ...state,
+      isAuth: false,
+    };
+  }
+  )
 ;
