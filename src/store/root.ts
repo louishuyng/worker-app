@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
-import { combineEpics } from 'redux-observable';
+import { all, fork } from 'redux-saga/effects';
 
 import authReducer from './auth/AuthReducer';
-import authEpics from './auth/AuthEpics';
+import auth from './auth/AuthSaga';
 
 export const rootReducer = combineReducers({
   authState: authReducer,
 });
 
-export const rootEpic = combineEpics(...authEpics);
+export function * rootSaga() {
+  yield all([
+    fork(auth),
+  ]);
+}

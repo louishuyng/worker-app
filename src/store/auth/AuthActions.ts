@@ -1,13 +1,13 @@
-import { createAction } from 'typesafe-actions';
+import { createActions } from 'redux-actions';
 
-export default {
-  createToken: createAction('CREATE_TOKEN',
-    (action) => (values: any, callback: any, handleError: any) => action({
-      values,
-      callback,
-      handleError,
-    })
-  ),
-  createTokenSuccess: createAction('CREATE_TOKEN_SUCCESS', (payload) => payload),
-  createTokenFailed: createAction('CREATE_TOKEN_FAILED', (payload) => payload),
-};
+import { ActionTypes } from 'constant';
+
+export const {
+  login,
+  updateUserData,
+} = createActions({
+  [ActionTypes.LOGIN]: ({ values, meta } : { values: Object, meta: Object }) => ({ values, meta }),
+  [ActionTypes.UPDATE_USER_DATA]: ({
+    user, isAuth,
+  }: { user: Object, isAuth: boolean }) => ({ user, isAuth }),
+});

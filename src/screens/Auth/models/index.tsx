@@ -1,8 +1,5 @@
 import { handleSubmitFormikInterface } from 'screens/hoc/withConnectFormik';
 import { RouteName } from 'constant';
-import { ActionsObservable } from 'redux-observable';
-import authActions from 'store/auth/AuthActions';
-import { ActionType } from 'typesafe-actions';
 
 export interface FormikAuthValues {
   email?: string,
@@ -37,13 +34,7 @@ export const handleSubmitLogin: handleSubmitFormikInterface = (
   navigation,
   action: any,
 ) => {
-  const callback = () => navigation.navigate(RouteName.MAIN);
-
-  const handleError = (err: string) => {
-    navigation.navigate(RouteName.ERROR, { message: err });
-  };
-
-  return action(values, callback, handleError);
+  return action({ values });
 };
 
 export const handleSubmitSignUpStepOne: handleSubmitFormikInterface = (

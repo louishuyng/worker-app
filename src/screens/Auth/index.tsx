@@ -10,13 +10,13 @@ import {
   handleSubmitLogin,
   InitMapPropsLogin,
 } from './models';
-import authActions from 'store/auth/AuthActions';
+import { login } from 'store/auth/AuthActions';
 
 export const SignUpStepOneScreen = withConnectFormik({
   Component: SignUpStepOneComponent,
   customSchema: signUpStepOneValidationShcema,
   displayName: 'SignUpStepOne',
-  handleSubmit: handleSubmitSignUpStepOne,
+  onSubmit: handleSubmitSignUpStepOne,
   initMapProps: InitMapPropsSignUpStepOne,
   actionKey: '',
 });
@@ -25,18 +25,18 @@ export const SignUpStepTwoScreen = withConnectFormik({
   Component: SignUpStepTwoComponent,
   customSchema: signUpStepTwoValidationShcema,
   displayName: 'SignUpStepTwo',
-  handleSubmit: handleSubmitSignUpStepTwo,
+  onSubmit: handleSubmitSignUpStepTwo,
   initMapProps: InitMapPropsSignUpStepTwo,
   actionKey: '',
 });
 
 export const SignInScreen = connect(
-  null, { createUser: authActions.createToken }
+  null, { createUser: login }
 )(withConnectFormik({
   Component: SignInComponent,
   customSchema: signInValidationSchema,
   displayName: 'SignUpStepTwo',
-  handleSubmit: handleSubmitLogin,
+  onSubmit: handleSubmitLogin,
   initMapProps: InitMapPropsLogin,
   actionKey: 'createUser',
 }));
