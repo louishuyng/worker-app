@@ -18,7 +18,7 @@ export interface ConnectFormikAuthParamaters {
   Component: any;
   customSchema?: ObjectSchema;
   initMapProps: initMapPropsInterface;
-  handleSubmit: handleSubmitFormikInterface;
+  onSubmit: handleSubmitFormikInterface;
   actionKey: string;
 }
 
@@ -28,14 +28,14 @@ interface Props {
 }
 
 export const withConnectFormik = ({
-  Component, displayName, customSchema, initMapProps, handleSubmit, actionKey,
+  Component, displayName, customSchema, initMapProps, onSubmit, actionKey,
 }: ConnectFormikAuthParamaters) => (props: Props) => {
   const RenderComponent = withFormik<Props, any>({
     enableReinitialize: false,
     validationSchema: customSchema,
     mapPropsToValues: () => initMapProps,
     handleSubmit: (values) => {
-      handleSubmit(values, props.navigation, props[actionKey]);
+      onSubmit(values, props.navigation, props[actionKey]);
     },
     displayName,
   })(Component);

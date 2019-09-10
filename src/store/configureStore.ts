@@ -1,14 +1,14 @@
 
 import { Middleware, StoreEnhancer, applyMiddleware, createStore, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-import { rootReducer, rootEpic } from 'store/root';
-import { createEpicMiddleware } from 'redux-observable';
+import { rootReducer, rootSaga } from 'store/root';
 
 export type AppState = ReturnType<typeof rootReducer>;
 
 const configureStore = (initialState?: AppState) => {
-  const epicMiddleware = createEpicMiddleware();
-  const middlewares: Middleware[] = [epicMiddleware];
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares: Middleware[] = [sagaMiddleware];
 
   const composeEnhancers = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
   const middlewareEnhancer: StoreEnhancer = applyMiddleware(...middlewares);
@@ -19,7 +19,7 @@ const configureStore = (initialState?: AppState) => {
     composeEnhancers(middlewareEnhancer),
   );
 
-  epicMiddleware.run(rootEpic);
+  sagaMiddleware.run(rootSaga);
 
   return store;
 };

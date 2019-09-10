@@ -1,38 +1,13 @@
-import { ActionType, createReducer } from 'typesafe-actions';
-
-import authActions from 'store/auth/AuthActions';
-import { RequestToken } from 'api/models';
-
-export type AuthActions = ActionType<typeof authActions>;
-
-export interface AuthState {
-  isAuth: boolean;
-  err: string;
-}
+import { handleActions } from 'redux-actions';
+import { updateUserData } from './AuthActions';
 
 const initialState = {
   isAuth: false,
-  err: '',
-} as AuthState;
+  role: null,
+};
 
-export default createReducer<AuthState, AuthActions>(initialState)
-  .handleAction([
-    authActions.createTokenSuccess,
-  ], (state: any, action: any) => {
-    const { payload } : {payload: RequestToken } = action;
-    return {
-      ...state,
-      isAuth: payload && payload.requestToken && true,
-    };
-  }
-  )
-  .handleAction([
-    authActions.createTokenFailed,
-  ], (state: any) => {
-    return {
-      ...state,
-      isAuth: false,
-    };
-  }
-  )
-;
+export default handleActions({
+  [`${updateUserData}`]: (state: {isAuth: boolean, role: any}, action: {payload: any}) => ({
+    ...state, ...action.payload,
+  }),
+}, initialState);

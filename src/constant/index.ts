@@ -1,5 +1,7 @@
 import { getString } from 'locales';
 
+import { keyMirror } from '../utils/keyMirror';
+
 export const nameRegExp = /^[a-zA-Z0-9]+$/;
 export const emailRegExp = /\S+@\S+\.\S+/;
 export const passRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -62,3 +64,11 @@ export const listNumberHour = [
   { hour: 23, string: '23:00' },
   { hour: 24, string: '00:00' },
 ];
+
+// #TODO Update Route Login
+export const DEFAULT_PATH = '/';
+
+export const ActionTypes = keyMirror({
+  LOGIN: undefined,
+  UPDATE_USER_DATA: undefined,
+});
