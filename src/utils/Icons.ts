@@ -49,3 +49,8 @@ export const IC_ARROW_RIGHT = require('../../assets/icons/calendar/arrow-right.p
 
 // time sheet
 export const IC_LINE_HOR = require('../../assets/icons/timeSheet/line.png');
+
+// bottom with notification
+
+export const JOB_LIST_NOTIFICATION = require('../../assets/icons/bottomBar/joblist-notifi.png');
+export const JOB_LIST_UNACTICE_NOTIFICATION = require('../../assets/icons/bottomBar/job-list-unactive-notifi.png');

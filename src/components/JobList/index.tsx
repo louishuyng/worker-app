@@ -27,13 +27,14 @@ export default class JobList extends React.Component<Props, State> {
   render() {
     return (
       <ScrollableTabView
-        tabBarActiveTextColor={colors.capeCod}
-        tabBarInactiveTextColor={colors.paleSky}
         tabBarUnderlineStyle={{
           backgroundColor: colors.skyBlue,
           borderTopLeftRadius: 100,
           borderTopRightRadius: 100,
         }}
+        tabBarActiveTextColor={colors.capeCod}
+        tabBarInactiveTextColor={colors.paleSky}
+
         tabBarTextStyle={{
           fontSize: convertWidth(13),
           fontFamily: fontFamily.regular,
