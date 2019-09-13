@@ -10,7 +10,6 @@ import InProgress from './InProgress';
 import { convertWidth } from 'utils/convertSize';
 import { EmptyScreen } from './EmptyScreen';
 import ReviewTimeSheet from './ReviewTimeSheet';
-import { RouteName } from 'constant';
 
 interface State { }
 
@@ -41,7 +40,7 @@ export default class JobList extends React.Component<Props, State> {
           fontWeight: '400',
         }}
         initialPage={0}
-        renderTabBar={() => <ScrollableTabBar />}
+        renderTabBar={() => <ScrollableTabBar bannedNumber={1} />}
       >
         <NewJobTab
           tabLabel={getString('jobList', 'newJobTabTitle')}
