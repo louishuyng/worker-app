@@ -2,7 +2,7 @@ const React = require('react');
 const { ViewPropTypes } = ReactNative = require('react-native');
 const PropTypes = require('prop-types');
 const createReactClass = require('create-react-class');
-const { convertHeight } = require('../src/utils/convertSize');
+const { convertHeight, convertWidth } = require('../src/utils/convertSize');
 const {
   View,
   Animated,
@@ -143,16 +143,16 @@ const ScrollableTabBar = createReactClass({
         {name === 'NEW JOBS' && (
           <View style={{
             backgroundColor: '#FFA200',
-            width: convertHeight(16),
-            height: convertHeight(16),
-            right: '3%',
-            top: '7%',
+            width: convertHeight(18),
+            height: convertHeight(18),
+            left: convertWidth(84),
+            top: Platform.OS === 'android' ? convertHeight(5) : convertHeight(3),
             position: 'absolute',
             justifyContent: 'center',
             alignItems: 'center',
-            borderRadius: 9,
+            borderRadius: convertHeight(12),
           }}>
-            <Text style={{ color: 'white' }}>{bannedNumber}</Text>
+            <Text style={{ color: 'white', fontSize: convertWidth(10) }}>{bannedNumber}</Text>
           </View>
         )}
         <View style={[styles.tab, this.props.tabStyle]}>

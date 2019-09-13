@@ -81,11 +81,15 @@ export const withDefaultStackNavigationConfig = (
           }
         });
       }
+      let isNotify = false;
+      if (initialRouteName === RouteName.JOB_LIST) {
+        isNotify = true;
+      }
 
       return {
         tabBarIcon: ({ focused }: TabBarIconProps) => {
-          if (focused) return BottomBarIconUI({ source: activeIcon });
-          return BottomBarIconUI({ source: unActiveIcon });
+          if (focused) return BottomBarIconUI({ source: activeIcon, isNotify });
+          return BottomBarIconUI({ source: unActiveIcon, isNotify });
         },
         tabBarVisible,
         tabBarOnPress: () => {

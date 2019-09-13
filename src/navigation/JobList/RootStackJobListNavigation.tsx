@@ -10,8 +10,6 @@ import { RouteName } from 'constant';
 import {
   IC_JOBLIST_ACTIVE,
   IC_JOBLIST_UN_ACTIVE,
-  JOB_LIST_NOTIFICATION,
-  JOB_LIST_UNACTICE_NOTIFICATION,
 } from 'utils/Icons';
 import { withDefaultStackNavigationConfig, wihtDefaultNavigtaionConfig } from 'navigation/shared';
 import JobDetail from 'components/JobDetail';
@@ -118,8 +116,8 @@ const routeConfig: NavigationRouteConfig = {
 };
 const navigatorConfig: StackNavigatorConfig = withDefaultStackNavigationConfig({
   initialRouteName: RouteName.JOB_LIST,
-  activeIcon: JOB_LIST_NOTIFICATION,
-  unActiveIcon: JOB_LIST_UNACTICE_NOTIFICATION,
+  activeIcon: IC_JOBLIST_ACTIVE,
+  unActiveIcon: IC_JOBLIST_UN_ACTIVE,
 });
 
 export default createStackNavigator(routeConfig, navigatorConfig);
