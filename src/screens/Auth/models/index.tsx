@@ -34,7 +34,7 @@ export const handleSubmitLogin: handleSubmitFormikInterface = (
   navigation,
   action: any,
 ) => {
-  return action({ values });
+  navigation.navigate(RouteName.MAIN);
 };
 
 export const handleSubmitSignUpStepOne: handleSubmitFormikInterface = (

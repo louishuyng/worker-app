@@ -1861,6 +1861,14 @@
     "@types/react-native" "*"
     react-native-modal ">=9.0.0"
 
+"@types/react-native-scrollable-tab-view@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@types/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.10.1.tgz#086c7021c24337ca60b4ce659486611c1669963d"
+  integrity sha512-33bFHxlZ3iGCfphkW8fauZeeDMniH2hfOxDxPyvq154OAt7FNAVTmPReTfwUhTKEn7aeM4XetHWpL42JMHl8HA==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native-signature-capture@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@types/react-native-signature-capture/-/react-native-signature-capture-0.4.0.tgz#93a9a3de7a21542b4e16f3755a968ede5727869a"
@@ -8502,7 +8510,7 @@ react-native-safe-area-view@^0.14.1:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha512-kSyAt0AeVU6N7ZonfV6dP6iZF8B7Bce+tk3eujXhzBGsLg0VSLnU7uE9VqJF0xdQrHR91ZjGgVMieo/8df9KTA==
 
-"react-native-scrollable-tab-view@file:/Users/ziik/DevLife/Project/ConEdWorkerApp/react-native-scrollable-tab-view":
+"react-native-scrollable-tab-view@file:react-native-scrollable-tab-view":
   version "0.10.0"
   dependencies:
     create-react-class "^15.6.2"
